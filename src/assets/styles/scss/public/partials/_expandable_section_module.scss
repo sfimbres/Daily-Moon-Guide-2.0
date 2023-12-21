@@ -1,0 +1,70 @@
+/*  
+*   _expandable_section_module - public view
+*
+*
+*  expandable sections on mobile with an anchor and dynamic 'on this page'
+*/
+
+
+#primary_column {
+  > .mb_section:first-of-type .mb_section_title {
+    margin-top: 0;
+    &.hidden_title {
+      display: none;
+    }
+  }
+
+  .mb_section {
+    position: relative;
+  
+    .arrow, .hidden_title {
+      display: none;
+    }
+  
+    @media screen and (max-width: 768px){
+      border-top: 1px solid #a1a3a2;
+      &:first-child{
+        border-top: none;
+      } 
+  
+      &.collapsed {
+        overflow: hidden;
+        &:last-of-type {
+          border-bottom: 1px solid #a1a3a2;
+        }
+  
+        .mb_section_inner {
+          display: none;
+        }
+  
+        .arrow {
+          transform: rotate(90deg);
+        }
+      }
+  
+      .mb_section_title {
+        margin: 1em auto;
+        font-size: 1.15em;
+        font-weight: 500;
+      }    
+  
+      .hidden_title {
+        display: block;
+      }
+  
+      .arrow {
+        display: block;
+        position: absolute;
+        right: 1em;
+        top: 1.2em;
+        //@include sprite_based_ui_button(16px,16px,-18px,-117px,-18px,-117px);
+        background-size: 200px;
+        transform: rotate(-90deg);
+        transition: transform .2s;
+        &:hover {
+          background-size: 200px;
+        }
+      }
+    }
+  }
+}

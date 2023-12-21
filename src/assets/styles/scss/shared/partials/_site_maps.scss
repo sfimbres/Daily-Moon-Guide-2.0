@@ -1,0 +1,135 @@
+
+
+
+
+
+
+/* --- FOOTER SITE MAP (middle footer area) --- */
+
+#site_footer {  
+  .sitemap { // the full-width section
+    z-index: 10;
+    position: relative;
+    margin-bottom: calc($footer_vertical_spacing/2);
+    .grid_layout {
+      margin: auto;
+      max-width: 920px;
+      @include breakpoint($large) {
+        width: 97%;  // Custom overrides to fine-tune the layout for this site -JM
+      }
+    }
+  }
+
+  .sitemap_directory { //the container for the sitemap
+    @extend .clearfix;
+    margin-bottom: 2em;    
+    .footer_sitemap_item {
+      margin-bottom: 1.8em;
+      @include breakpoint($medium_mid) {
+        margin-bottom: 2em;
+      }
+      @include breakpoint($large) {
+        margin-left: 10%; // Makes the sitemap look more centered -JM
+      }
+    }
+  }
+  .sitemap_title {
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: .85em;
+    margin-bottom: .6em;
+  }
+  .sitemap_block {
+    text-align: center;
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      //@include span(1.5 of 6 inside);  // aka 3 of 12 = 4 columns
+      text-align: left;
+
+    }
+    @include breakpoint($large) {
+     // @include span(1 of 5 inside);
+    }
+  }
+  
+  ul.subnav {
+    margin-bottom: 1em;
+    li { // indent a second line if the subnav item is two lines, shouldn't affect mobile overlay
+      padding-left: 1em;
+      text-indent: -1em;
+      margin: 0 0 .25em 0;
+    }
+    a {
+      color: #c6c5d3;
+      text-decoration: none;
+      font-size: .85em;
+      @include breakpoint($large) {
+        font-size: .95em;
+      }
+    }
+    .no-touchevents & a:hover {
+       color: white;
+    }
+  }
+}
+
+/* --- end FOOTER SITE MAP --- */
+
+
+
+
+
+
+
+// 404 page site map
+.main_area_sitemap {
+  .grid_layout {
+    // Custom overrides to fine-tune the layout for this site -JM
+    @include breakpoint($medium_mid) {
+      width: 100%;
+    }
+  }
+  .sitemap_directory { //the container for the sitemap
+    @extend .clearfix;
+    padding: 2em 0 0;   
+    .footer_sitemap_item {
+      margin-bottom: 1.8em;
+      @include breakpoint($medium_mid) {
+        margin-bottom: 2em;
+      }
+    }
+  }
+  .sitemap_block {  
+    text-align: center;
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      //@include span(1.5 of 6 inside);  // aka 3 of 12 = 4 columns
+      text-align: left;
+    }
+    @include breakpoint($large) {
+      //@include span(1 of 6 inside);
+    }
+    a {
+      word-wrap: normal; // this overrides wysiwyg a word-wrap: break-word;
+    }
+  }
+  .sitemap_title {
+    margin-top: 0;
+    a {
+      color: $core_text_color;
+    }
+  }
+  .subnav a { 
+    display: block;
+    @include breakpoint($medium_mid) { // to indent the second line, if the text breaks to 2 lines
+      padding-left: 1em;
+      text-indent: -1em;
+      margin: .1em 0;
+    }
+  }
+}

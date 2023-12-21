@@ -1,0 +1,153 @@
+/*
+*   _global
+*
+*   General styles that are used throughout the site
+*
+*/
+
+.ttt {
+  border: 0 solid blue;
+}
+
+
+/* font optmization/smoothing */
+// Form elements have to be targeted specifically.
+// This is necessary. Don't change or remove. -JM
+html, html a, select, input, button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+html.no-touchevents {
+  text-rendering: optimizeLegibility; // This causes a word wrap issue on Android. -JM
+  html a, select, input, button {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+
+//input, textarea {
+  //@include placeholder {
+  //  -webkit-font-smoothing: antialiased;
+  //  -moz-osx-font-smoothing: grayscale;
+  //  text-rendering: optimizeLegibility;
+  //}
+//}
+
+html, button, input, select, textarea {
+  font-family: $core_font_family;
+  color: $core_text_color;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: $core_font_family;
+  font-size: 100%;
+  line-height: 1.5;
+  min-height: 100%;
+  position: relative;
+  background-color: transparent; // override global.scss bgcolor = white. Mainly to fix fancybox overlays
+  &.noscroll {
+    overflow-y: hidden;
+  }
+  @include breakpoint($medium) {
+    font-size: 98%;
+  }
+  @include breakpoint($medium_large) {
+    font-size: 100%;
+  }
+  @include breakpoint($large) {
+    font-size: 102%;
+  }
+  @include breakpoint($xlarge) {
+    font-size: 104%;
+  }
+  @include breakpoint($xxlarge) {
+    font-size: 107%;
+  }
+}
+
+
+h1,h2,h3,h4,h5 {
+  line-height: 1.2;
+}
+
+h1 {
+  letter-spacing: -.04em;
+}
+h2 {
+  letter-spacing: -.03em;
+}
+h3 {
+  letter-spacing: -.02em;
+}
+h4 {
+  letter-spacing: -.01em;
+}
+
+/* normalize.scss adds .67em top and bottom margin to h1
+* and similar margins to other h's
+* possiblt add better margin-bottom ? - jh
+*/
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+
+
+img {
+  width: 100%;
+}
+
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
+
+.jwplayer video {
+  max-width: none; // jw player videos shouldn't have a max width - jh
+}
+
+
+i {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  margin: 1em 0;
+  font-size: 100%;
+}
+
+article {
+  @extend .clearfix;
+}
+
+//.gradient_line {
+  //@include gradient_line($line_color);
+//}
+
+.gradient_line_extra_margin {
+  //@include gradient_line($line_color);
+  margin: 2em 0;
+  @include breakpoint($medium_large) {
+    margin: 3em 0;
+  }
+}
+#home, #main_container, #site_body {
+  height: 100%;
+}
+
+
+
+

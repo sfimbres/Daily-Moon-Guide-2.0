@@ -1,0 +1,131 @@
+/*
+ * Variables 
+*/
+
+/* ----- Site defaults ----- */
+
+
+/* ----- global ----- */
+$core_font_family: Metropolis, Helvetica, Arial, sans-serif; 
+$secondary_font_family: CooperHewitt, Helvetica, Arial, sans-serif; 
+
+/*
+  CooperHewitt Bold - section title
+  Metropolis Bold - titles
+  Metropolis - body / paragraph text
+  Metropolis SemiBold - main nav
+  Metropolis Regular - footer site map
+
+*/
+
+$core_text_color: #3a3a3a;
+$secondary_text_color: #17559d; // blue
+$tertiary_text_color: #B88414; // yellow ochre
+$nav_text_hover_color:#eee;
+
+$tertiary_text_color_over_dark: #C2DBF9; // top carousel subheads and IOTD subhead
+
+$core_link_color: #0097f9;
+$nav_text_color: #ffffff;
+$background_color_midrange: #e0e7ef; // for header, countdown area, etc.
+$line_color: #BEBEBE; // used in forms.scss which is shared, but mostly? for public body_forms - jh
+$header_background_color: #2a3a49;
+
+$header_height_small: 70px;
+$header_height_medium: 70px;
+$header_height_medium_mid: 70px;
+$header_height_medium_large: 70px;
+$header_height_large: 78px;
+$header_height_xlarge: 92px;
+$header_height_xxlarge: 92px;
+
+$header_height_small_compressed: 58px;
+$header_height_medium_compressed: 58px;
+$header_height_medium_mid_compressed: 58px;
+$header_height_medium_large_compressed: 68px;
+$header_height_large_compressed: 68px;
+$header_height_xlarge_compressed: $header_height_large_compressed;
+
+$nav_height: 47px;
+
+$footer_vertical_spacing: 2em; 
+
+/* Screen size / Breakpoints */
+$small_only: max-width 480px; /* use sparingly. when the styles don't apply to any other sizes */
+$medium: 480px;
+$medium_mid: 600px;
+$medium_large: 769px;
+$large: 1024px;
+$xlarge: 1200px;
+$xxlarge: 1700px;
+
+/*  
+*   Use $width_for_desktop_nav to change the media query for switch from mobile to desktop nav.
+*     - This might need some other adjustments in header.scss and nav.scss to make it work perfectly,
+*     - and might affect relationships to other elements in the body -JM
+*    
+*/
+$width_for_mobile_nav: max-width $large - 1px;
+$width_for_desktop_nav: $large;
+
+$width_for_top_trilogo: $medium_large;
+
+
+/* ----- Footer ----- */
+$footer_main_heading_color: white;  
+
+
+
+/* ----- Navigation ----- */
+
+/* JUST MBCMS styles now for GCC - jh 8/11/14 */
+$nav_arrow_color: gray;
+
+//$site_nav_bg_color: rgba(57, 80, 105, 0.99);
+$site_nav_bg_color: transparent;
+$site_nav_bg_color_fixed: #272727;
+
+
+/* Buttons and form elements: */
+$button_border_radius: 4px;
+$placeholder_color_over_white: rgba(255,255,255,.8);
+$button_color: #4583C0; //#1c589c; // This is intended to visually match the hover overlays -JM
+$button_color_hover: #58a4ef;
+$form_border_color: #a7a8a8;
+//$select_color: $button_color;
+
+
+/* --- SUSY SETTINGS --- */
+
+// Default Susy settings
+$susy: (
+  columns: 4,  // The number of columns in your grid
+  gutters: calc(1/4), // The size of a gutter in relation to a single column
+/*
+  debug: (
+      image: show,
+      color: rgba(#66f, .25),
+      output: overlay,
+      toggle: top right,
+    ),
+*/
+);
+
+// For Susy grid layouts
+// This is not necessarily tied to media queries -JM 
+$medium_layout: (
+  columns: 8,
+  gutters: calc(1/8),
+);
+
+
+$large_layout: (
+  columns: 12,
+  gutters: calc(1/12),
+  max-width: 600px,
+);
+
+
+
+
+

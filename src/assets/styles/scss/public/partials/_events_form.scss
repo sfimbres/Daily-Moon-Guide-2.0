@@ -1,0 +1,354 @@
+/*
+*
+*   Public events form 
+*
+*/
+
+.event_form {
+  .item_list_module li {
+    input[type="checkbox"], input[type="radio"] {
+      display: inline-block;
+
+      & ~ label {
+        display: inline-block;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.event_form .item_list_module li ul,
+.event_form .item_list_module li ul li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+
+
+
+/* OPTIONAL: Prevent radio button labels from wrapping strangly on small screens */
+.event_form .item_list_module li ul li {
+  display: flex;
+  margin-bottom: 0.75em;
+}
+.event_form .item_list_module li ul li input {
+  margin: 0.125em 0.375em 0 0 !important;
+}
+.event_form .item_list_module li ul li label {
+  margin: 0 !important;
+}
+
+@media (min-width: 50em) {
+  .event_form .item_list_module li ul:not([data-item-count="2"]):not([data-item-count="3"]) {
+    column-gap: 2.1em;
+    columns: 2;
+  }
+  @supports (display: grid) and (grid-template-columns: max-content) {
+    .event_form .item_list_module li ul[data-item-count="2"],
+    .event_form .item_list_module li ul[data-item-count="3"] {
+      display: grid;
+      grid-template-columns: max-content max-content;
+      grid-column-gap: 2.1em;
+    }
+  }
+  .event_form .item_list_module li ul li {
+    break-inside: avoid-column;
+  }
+}
+@media (min-width: 80em) {
+  .event_form .item_list_module li ul:not([data-item-count="2"]):not([data-item-count="3"]) {
+    columns: 3;
+  }
+  @supports (display: grid) and (grid-template-columns: max-content) {
+    .event_form .item_list_module li ul[data-item-count="2"],
+    .event_form .item_list_module li ul[data-item-count="3"] {
+      grid-template-columns: max-content max-content max-content;
+    }
+  }
+}
+
+.event_form label small {
+  font-weight: normal;
+  font-size: inherit;
+  display: block;
+  margin-top: 0.35em;
+  margin-bottom: 0.7em;
+}
+
+.event_form_errors {
+  color: #dc1616;
+}
+
+.event_form .expandable_info_button {
+  &.inline {
+    z-index: 21;
+  }
+  .info_button .info_text {
+    left: calc(100% - 33px);
+    bottom: calc(100% + 20px);
+    @include breakpoint($medium_large) {
+      left: 170%;
+      bottom: auto;
+    }
+  }
+}
+
+.event_form {
+  .item_list_module > li {
+    input, textarea, select {
+      margin-bottom: 0;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-bottom: 1em;
+    }
+    margin-bottom: 1.575em !important; /* 1.4em x 9/8 */
+  }
+  select.two_digits {
+    width: 9em;
+  }
+  select, .submit input.button {
+    background-color: #1d56a3;
+  }
+
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h4 + p {
+    margin-top: 0;
+  }
+
+  /* OPTIONAL: Position the country and ZIP field side-by-side */
+  .location_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "." ".";
+    gap: 1.575em;
+    @include breakpoint($width_for_desktop_nav) {
+      grid-template-columns: 50% 40%;
+      grid-template-rows: 1fr;
+      grid-template-areas: ". .";
+      gap: 1em;
+    }
+  }
+  .country_field_container,
+  .zip_field_container {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .zip_field_container {
+    max-width: 240px;
+  }
+  .event_contact_email_opt_in {
+    margin-left: 25px;
+    input[type="checkbox"] {
+      margin-left: -25px;
+      position: absolute;
+      margin-top: 5px;
+    }
+  }
+  
+
+  /* OPTIONAL: Position the “other” radio and text fields side-by-side */
+  .other_field_container {
+    margin-top: -1.5em; /* SHIM: Reduce the space between the other field and the radio options above it */
+    display: flex;
+    align-items: center;
+  }
+  .other_field_container label,
+  .other_field_container input {
+    margin-bottom: 0 !important; /* SHIM: So the label and input and be centered vertically */
+  }
+  .other_field_container__radio {
+    margin-right: 0.75em;
+    white-space: nowrap;
+  }
+  .other_field_container__text {
+    flex-grow: 1;
+  }
+
+  .submit {
+    margin-top: 1.75em; /* 1.4em x 5/4 */
+  }
+  .required {
+    color: red;
+  }
+  .redundant_label {
+    /* hidden but accessible */
+    position: absolute;
+    left: -9999px;
+  }
+  select + .read_only {
+    margin-left: 0.7em;
+  }
+  .event_date_label {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+    @include breakpoint($medium) {
+      margin-right: .5em;
+    }
+  }
+  #event_start_date_day_event_date_select, #event_end_date_day_event_date_select{
+    max-width: 250px;
+    display: inline-block;
+    margin-right: .5em;
+  }
+
+  .event_start_date, .event_end_date {
+    display: grid;
+    grid-template-columns: 40px auto 40px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0.7em 0.5em;
+    grid-template-areas: ". . .";
+    @include breakpoint($medium) {
+      grid-template-columns: 43px auto 50px 1fr;
+    }
+    #event_start_date_time, #event_end_date_time{
+      display: inline-block;
+      width: 82px;
+      @include breakpoint($medium) {
+        margin-left: .5em;
+      }
+    }
+    .event_year {
+      display: flex;
+      align-items: center;
+    }
+  }
+  #event_time_zone {
+    display: block;
+  }
+
+
+  // .expandable_info_button {
+  //   margin-left: .5em;
+  //   z-index: 20; // so it doesn't show up over nav
+  //   .info_button {
+  //     .info_icon {
+  //       background-color: #ffe8ed;
+  //       border-color:#ffe8ed;
+  //       border-radius: 10px;
+  //       width: 20px;
+  //       height: 20px;
+  //       svg {
+  //         fill: #b31c38;
+  //         height: 11px;
+  //       }
+  //     }
+  //   }
+  // }
+  .attendance {
+    list-style: none;
+    margin-left: 0;
+  }
+  .individual_attendance {
+    list-style: none;
+    margin-left: 0;
+    input {
+      max-width: 100px;
+    }
+  }
+  .poc_disclaimer {
+    font-weight: 400;
+    margin-bottom: 2em;
+  }
+  .emphasis {
+    font-weight: 500;
+    font-style: italic;
+    font-size: .8em;
+  }
+}
+
+.delete_confirm {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  border-radius: 5px;
+  background-color: white;
+  padding: 2em 2em 3em;
+  z-index: 20;
+
+  .close_modal {
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 2px;
+    //.close_modal_icon {
+      //@include x_icon(3px, black);
+    //}
+
+    h3 { margin-top: 0.6em; }
+  }
+  .delete_confirm_buttons {
+    margin-top: 1em;
+  }
+
+  .cancel_button {
+    border: none;
+  }
+}
+
+.form_pre_note {
+  .required {
+    color: red;
+  }
+}
+
+.registration_modal { // It would be helpful if the html was consisent with other forms, this one isn't  - jh
+  .body_form {
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: .4rem;
+    }
+    select {
+      display: block; // ugh
+    }
+    label {
+      font-weight: 700; // almost all text on this form is a label
+      
+      & div {
+        font-weight: 500;
+      }
+    }
+  }
+  .has_radio {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: .5em;
+    input[type="radio"] {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+  }
+  .opt_in_message {
+    margin-bottom: 1.6rem;
+    .newsletter_signup_wrapper {
+      display: flex;
+      align-items: flex-start;
+    }
+    input[type="checkbox"] {
+      margin-top: 5px; // ugh
+      min-width: 13px; // keeps checkbox from getting super tiny on ios...
+      min-height: 13px;
+    }
+    .newsletter_email_address_input {
+      margin-top: 0.2rem;
+    }
+  }
+  //.touchevents & .opt_in_message input[type="checkbox"] {
+  //  margin-top: 2px; // ugh
+  //}
+  
+}

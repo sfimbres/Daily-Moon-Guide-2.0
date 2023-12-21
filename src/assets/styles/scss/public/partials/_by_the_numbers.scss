@@ -1,0 +1,78 @@
+.by_the_numbers {
+  text-align: center;
+  .section {
+    margin-bottom: 1em;
+  }
+  .section_separator {
+    background-color: #CCC;
+
+    padding: 7px 0;
+    margin-bottom: .5em;
+  }
+
+  .col {
+    width: 50%;
+    display: inline-block;
+  }
+  .compare {
+    .circles {
+      width: 350px;
+      height: 350px;
+      position: relative;
+      .larger, .smaller {
+        position: absolute;
+        border-radius: 50%;
+      }
+      .larger {
+        background-color: #CCC;
+        height: 100%;
+        width: 100%;
+        .name {
+          top: 50%;
+        }
+      }
+      .smaller {
+        background-color: #222;
+      }
+      .name {
+        position: absolute;
+        left: 105%;
+      }
+    }
+  }
+  .comparisons {
+    .comparison {
+      word-wrap: break-word;
+      display: none;
+    }
+    &.metric {
+      .metric.comparison {
+        display: block;
+      }
+    }
+
+    &.eng {
+      .eng.comparison {
+        display: block;
+      }
+    }
+
+    &.sci {
+      .sci.comparison {
+        display: block;
+      }
+    }
+    &.solo {
+      .comparison {
+        display: block;
+      }
+    }
+    .units {
+      margin-left: .3em;
+    }
+  }
+  &.metric .hide_on_metric, &.eng .hide_on_eng, &.sci .hide_on_sci {
+    display: none;
+  }
+
+}

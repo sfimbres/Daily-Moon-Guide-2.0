@@ -1,0 +1,271 @@
+/*
+*   vital_signs_menu
+*
+*   The horizontal dashboard on the homepage
+*
+*/
+
+body.core, body.data, body.phases {
+  section.dashboard {
+    display:none;
+    @include breakpoint($width_for_desktop_nav) {
+      display: block;
+    }
+  }
+}
+
+.page_dashboard, .homepage_dashboard_container {
+  position: relative;
+}
+
+section.dashboard {
+  $arrows_width_space: 36px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  color: white;
+  text-align: center;
+  z-index: 20;
+  //height: 73px; 
+  visibility: hidden; //shown in js due to fouc
+  @include breakpoint($medium) {
+    background-color: transparent;
+  }
+  @media screen and ( max-height: 380px ) {
+    display: none;
+  }
+  
+  
+  .slick-slider { // also .slide_container. Used to be a 'ul'
+    margin: 0 auto;
+    width: calc(100% - #{$arrows_width_space * 2 + 10px}); // + a little space  
+    @include breakpoint($xlarge) {
+      // width: 100%;
+      max-width: 1400px;
+    }
+    @include breakpoint($xxlarge) {
+      max-width: 1600px;
+      width: 1600px;
+    }
+    .slick-track {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+/*
+
+    .slick-list {
+      overflow: visible;
+      height: 100%;
+      z-index: 22; // needs to be above the util-navigation -JM
+      @include breakpoint($medium_large) { // This needs to be consistent with the Javascript options
+        overflow: hidden;
+      }
+      @media screen and (min-width: 1550px) { // This needs to be consistent with the Javascript options
+        overflow: visible;
+      }
+    }
+    
+*/
+    
+    
+  }
+
+
+  .slick-prev, .slick-next {
+    position: absolute;
+    background-color: transparent;
+    font-size: 1.8em;
+    width: $arrows_width_space; // 40px;
+    color: #808080;
+    background-image: url("/src/assets/arrows_blue_sprite@2x.png");
+    background-repeat: no-repeat;
+    background-size: 135px;
+    height: 100%;
+    text-indent: -9999px;
+    top: 0;
+    margin-top: 0;
+    //z-index: 999999;
+    opacity: .6;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .slick-prev {
+    left: -40px;
+    background-position: 0px 16px;
+  }
+  .slick-next {
+    right: -40px;
+    opacity: .6;
+    background-position: -102px 16px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .slide {
+    outline: 0; // focus puts a blue box around this element. only needed on inner carousels for some reason - jh
+    padding: 1.2rem .6rem;
+    min-width: 200px; // these min-widths determine how many slides are shown
+    @include breakpoint($medium_mid) {
+      padding: 1.2rem 1.4rem;
+    }
+    @include breakpoint($large) {
+      min-width: 0;
+      padding: 1.2rem .3rem;
+    }
+  }
+  
+  li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 100%;
+    outline: 0;
+  }
+  
+  a.image_and_description_container, .image_and_description_container.has_overlay { // ONLY if an item is a link and contains a plus icon
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+
+    .countdown, .readout {
+      width: calc(100% - 20px); // to allow for the plus icon
+      margin-left: auto;
+      margin-right: auto;
+      @include breakpoint($medium) {
+        width: calc(100% - 44px); // to allow for the plus icon
+      }
+      @include breakpoint($large) {
+        width: calc(100% - 47px); // to allow for the plus icon
+      }
+    }
+    // the css 'after' icon solution - present if it is a link
+    .value:after, .countdown_time:after {
+      content: "";
+      display: inline-block;
+      background: url("/src/assets/circle-plus.svg") no-repeat;
+      background-size: 100%;
+      width: 25px;
+      height: 25px;
+      margin-left: .8rem;
+      //vertical-align: -41%;
+      vertical-align: middle;
+    }
+    &:hover {
+      .value:after, .countdown_time:after {
+        filter: brightness(0) invert(1); 
+      }
+    }
+  }
+
+  .title, .countdown_title {
+    color: rgba(255,255,255,.5);
+    @extend .dashboard_title; // confusing - jh
+    font-family: $secondary_font_family;
+    margin-bottom: 0;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .value, .countdown_time {
+    color: #fff;
+    margin-top: 6px;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+    // @include breakpoint($medium) {
+    //   @include themify('color','tertiary');
+    // }
+    .unit {
+      font-weight: 400;
+      padding: 0 4px;
+    }
+    .time_label {
+      display: block; // show labels on homepage dashboard
+    }
+    .completed {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  // uniform font sizes for the defferent 'value' elements
+  .value, .unit, .completed {
+    font-size: 1.4em;
+  }
+  .change_number {
+    font-size: 2.1em;
+  }
+  .units {
+    top: 0;
+    width: 45%;
+  }
+  
+
+  .readout{
+    //@extend %generic_readout;
+    .vital_signs_description { // in the rollover_vital_signs
+      font-size: .85em;
+      line-height: 1.25em;
+      @include breakpoint($xxlarge) {
+        font-size: .9em;
+      }
+    }
+    .subtitle{
+      color: #868686;
+      font-size: .78em;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  .readout, .countdown { // these 2 elements toggle visibility on hover
+    color: white;
+    //position: absolute;
+    //text-align: left;
+    //top: 0;
+    //padding: .8em 0.4em;
+    //margin: 0 auto;
+    //left: 0;
+    //right: 0;
+    
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1.1;
+
+/*
+    @include breakpoint($medium) {
+      padding: .8em 0.7em;
+      top: 6px;
+    }
+    @include breakpoint($medium_large) {
+      padding: .8em 1em;
+    }
+*/
+  }
+}
+
+body.panel_open .carousel_dashboard_container section.dashboard {
+  opacity: 0;
+}
+//probably this will be moot when pointing at gem for this -RK
+section.dashboard .dividing_line_container, #dashboard_modal .dividing_line_container {
+  display: none;
+}
+
+#dashboard_modal .countdown_time {
+  font-size: .85em;
+}

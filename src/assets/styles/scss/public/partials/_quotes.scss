@@ -1,0 +1,44 @@
+/* legacy and new styles for quotes 
+I separated these... need to update for legacy -JM */
+//blockquote module (and other blockquotes?) - jh
+blockquote {
+  @extend .clearfix;
+  clear: both; // keep the module from being floated - jh
+  color: #000;
+  .quote {
+    font-style: italic;
+    margin-bottom: .5em;
+    font-size: 1.5em;
+    line-height: 1.4em;
+    font-weight: 700;
+  }
+  footer {
+    font-size: 1em;
+    text-align: left;
+  }
+  cite {
+    font-style: normal; 
+  }
+  .explore_overlay_page & {
+    color: #FFF !important;
+  }
+  .explore_overlay_page &.inspirational {
+    color: #FFF; //just a guess
+  }
+}
+
+//styles for blockquotes in feature pages
+
+.feature_pages {
+  .wysiwyg_content {
+    blockquote {
+      width: 80%;
+      @include breakpoint($medium_large) {
+        width: 65%;
+      }
+      @include breakpoint($xlarge) {
+        width: 40%;
+      }
+    }
+  }
+}

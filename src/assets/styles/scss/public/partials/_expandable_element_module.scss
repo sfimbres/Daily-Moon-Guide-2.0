@@ -1,0 +1,24 @@
+/*
+*   Expandable_element_module
+*   
+*   in the ckeditor, just a container that expands and contracts
+*
+*/
+
+.feature_pages .wysiwyg_content .mb_expand {
+  width: 100%;
+  max-width: none;
+  .expandable_element_link { // the a
+    //@include feature_page_width;
+    display: block;
+    
+  }
+  .expandable_element {
+    max-width: none;
+    width: 100%;
+    //> * { // not all modules, some override this
+          //@include feature_page_width;
+    //}
+  }
+}
+

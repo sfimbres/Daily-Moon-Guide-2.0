@@ -1,0 +1,538 @@
+/*
+*   _webgl_globe_viewer - public view
+*
+*   could possibly be a carousel as a fallback
+*   on homepage
+*
+*/
+
+// remove space for more bar when embedding webgl globe viewer module
+body.embed {
+  font-family: $core_font_family;
+  .webgl_outer_container {
+    height: 100%;
+    top: 0;
+    @include breakpoint(orientation portrait) {
+      top: -8%;
+      @include breakpoint($width_for_desktop_nav) {
+        top: 0;
+      }
+    }
+    @include breakpoint(orientation landscape) {
+      top: 0;
+      @include breakpoint($width_for_desktop_nav) {
+        top: 0;
+      }
+    }
+  }
+}
+
+//. carousel_dashboard_container {} // rename?  remove? - jh
+.webgl_globe_module {
+  background-color: #001f31;
+  // height: 100vh;
+  //height: calc(100vh - 36px); // for more bar
+  height: 76vh; // Prevents chrome overlap - jm
+  @include breakpoint($xlarge) {
+    height: calc(100vh - 36px);
+  }
+  #webgl_feature {
+    position: relative;
+    &.hotspots .legend {
+      display: none;
+      @include breakpoint($width_for_desktop_nav) {
+        display: block;
+      }
+    }
+  }
+  .panels_and_gl_container {
+    > .readout {
+      display: none; // .readout is causing layout problem, it shouldn't be there according to the previous implementation. There might be ways to not create it at all, but this was the simpler solution. Look at lunar_phases.js.jsx line 189
+    }
+    .tools_menus .tools {
+      top: 40%;
+    }
+    .viewer_text_area {
+      display: block;
+    }
+  }
+  .backdrop{
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+  }
+  .panel_open .viewer_text_area {
+    display: none;
+  }
+  .section_title {
+    font-family: $secondary_font_family;
+    color: #a5a8ac;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+    font-size: 0.9rem;
+    font-weight: 600;  }
+  .legend {
+    display: block;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    @include breakpoint($width_for_desktop_nav) {
+      text-align: left;
+    }
+    .key {
+      display: inline-block;
+      border: 1px solid rgba(67, 75, 80, 0.4);
+      padding: 0.9rem 1.5rem 0.9rem 1.2rem;
+      background-color: rgba(20, 34, 47, 0.8);
+      max-width: 260px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-weight: 500;
+      @include breakpoint($width_for_desktop_nav) {
+        font-size: 1rem;
+      }
+      @include breakpoint($xxlarge) {
+        background-color: transparent;
+      }
+    }
+    label {
+      display: block;
+      & + label {
+        margin-top: .4rem;
+      }
+      input {
+        margin-right: 9px;
+      }
+    }
+    .human {
+      color: $human_landing_sites;
+    }
+    .robotic {
+      color: $robotic_landing_sites;
+    }
+    .geography {
+      color: $geography;
+    }
+    &.lunar_phases {
+      @include breakpoint($width_for_mobile_nav) {
+        .section_title {
+          display: none;
+        }
+        .key {
+          border: none;
+        }
+        .date_and_button {
+          text-align: center;
+          .date {
+            font-size: 1em;
+            .desktop_date {
+              display: none;
+            }
+          }
+        }
+        @media only screen and (orientation: landscape) {
+          .key {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding-bottom: 20px;
+          }
+          .date_and_button {
+            margin-bottom: 8px;
+          }
+        }
+      }
+      @include breakpoint($width_for_desktop_nav) {
+        .mobile_date {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .date_and_button {
+    margin-bottom: 14px;
+    text-align: center;
+    @include breakpoint($medium_mid) {
+      text-align: left;
+    }
+    .today_btn {
+      //@include unselectable;
+      cursor: pointer;
+      background-color: #1e3449;
+      padding: 6px;
+      font-size: .7rem
+    }
+    .date {
+      padding-right: 12px;
+      font-size: 14px;
+    }
+  }
+  //pulled from eyes eclipse
+  .slider_container {
+    //float: left;
+    display: flex;
+    justify-content: center;
+    padding: 11px 0 0; //12px 0 21px;
+    //margin-bottom: 10px;
+    position: relative;
+
+    @include breakpoint($small_only) {
+      height: 100%;
+      z-index: 0; //needed to hide when mobile info/view/pin menus are open - OS
+    }
+    .time_rate_slider {
+      height: 4px;
+      width: 300px;
+      background-color: #343c44; // the track color
+      @include breakpoint($small_only) {
+        left: 0;
+        right: 0;
+      }
+      @include breakpoint($width_for_mobile_nav) {
+        @media only screen and (orientation: landscape) {
+          width: 250px;
+        }
+      }
+      .noUi-handle {
+        box-shadow: none; // was causing a deceptive click area
+        width: 16px; // bigger on mobile?
+        height: 16px;
+        left: -8px;
+        top: -12px;
+        border-radius: 10px;
+        background: #5b9bd4; //#72a7dd;
+        border: none;
+        z-index: 2;
+        box-shadow: none;
+        cursor: pointer;
+        transition: background-color 300ms;
+        outline: none;
+        .no-touchevents &:hover, .no-touchevents &:active {
+          background: white;
+        }
+      }
+      .noUi-handle:after, .noUi-handle:before {
+        background: transparent;
+      }
+      .noUi-handle:before { // using before to create larger hit area.
+        width: 100%;
+        height: 100%;
+        left: -13px;
+        top: -14px;
+        padding: 20px 20px;
+        @include breakpoint($medium_mid) {
+          left: -6px;
+          top: -5px;
+          padding: 14px;
+        }
+      }
+      &.noUi-target {
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+      }
+    }
+    .noUi-background {
+      background-color: transparent; // different on mobile
+      box-shadow: none;
+    }
+
+    .noUi-connect { // left side of handle
+      height: 4px;
+      background-color: #4e739b;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .noUi-base {
+      padding: 6px 0; // hit area, taller than the bar
+      background-clip: content-box;
+      box-shadow: none;
+      background-color: #343d46;
+    }
+    //mixin arrow ($direction:"right", $color:black, $legs: 8px, $base: 6px)
+    .arrow {
+      padding: 3px;
+      margin-top: -13px;
+      cursor: pointer;
+      //.icon {
+        //@include arrow('right', #82bbf9, 11px, 7px);
+      //}
+    }
+    .arrow.right {
+     padding: 6px 5px 2px 9px;
+    }
+    .arrow.left {
+      padding: 6px 9px 2px 5px;
+      .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.panels_and_gl_container {
+  display: block;
+  height: 100vh;
+  @include breakpoint($large) {
+    display: inline-flex;
+    width: 100%;
+  }
+}
+
+.webgl_outer_container {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  width: 100%;
+  // height: 100%;
+  overflow: hidden;
+  // height: calc(100% - 36px);
+  height: 75vh; // Accommodates mobile browser chrome -jm
+
+  @include breakpoint($width_for_desktop_nav) {
+    height: calc(100vh - 90px);
+  }
+  @include breakpoint($width_for_mobile_nav) {
+    @media only screen and (orientation: landscape) {
+      height: 75vh;
+    }
+  }
+  .loading_webgl {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    z-index: 10;
+    .spinner {
+      background: url("/src/assets/loading@2x.gif") no-repeat;
+      background-size: 32px;
+      height: 32px;
+      width: 32px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .loading_text {
+      text-align: center;
+      margin-top: 1em;
+      color: white;
+    }
+  }
+  #webgl_container {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.no_dashboard .webgl_outer_container {
+  top: 30px;
+  @include breakpoint($medium_mid){
+    height: 79vh;
+  }
+  @include breakpoint($medium_large){
+    height: 78vh;
+  }
+  @include breakpoint($large) {
+    height: 80vh;
+  }
+  @include breakpoint($xlarge) {
+    height: calc(100vh - 30px);
+  }
+}
+
+.panel_open .data_map_legend_container {
+  display: none;
+}
+
+.data_map_legend_container {
+  position: absolute;
+  bottom: 123px;
+  left: calc(50% - 150px);
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  @include breakpoint($width_for_mobile_nav) {
+    @media only screen and (orientation: landscape) {
+      bottom: 25px;
+      right: 25px;
+      transform: none;
+      left: auto;
+    }
+  }
+  &.legend_closed {
+    visibility: hidden;
+  }
+  .data_map_key {
+    // border: 1px solid red;
+    color: #FFFFFF;
+    font-family: $core_font_family;
+    font-size: 0.8em;
+    .data_map_data_type {
+      text-align: center;
+    }
+    .data_map_range {
+      text-align: center;
+      .lower_limit {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        margin-right: 0.5rem;
+      }
+      .upper_limit {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        margin-left: 0.5rem;
+      }
+      .data_map_gradient {
+        display: inline-block;
+        height: 11px;
+        width: 120px;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+}
+
+// ----------- fallback mode - no webgl ---------------- //
+.fallback_mode .fallback_container {
+  // position: relative;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  .webgl_warning_text {
+    color: white;
+    text-align: center;
+    position: relative;
+    font-size: .9em;
+    top: 45%;
+    max-width: 420px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1em;
+    @include breakpoint($medium_large) {
+      font-size: 1.0em;
+      top: 50%;
+    }
+  }
+  a {
+    color: #70c2ff;
+    text-decoration: none
+  }
+  img {
+    height: auto;
+  }
+}
+
+.webgl_globe_hotspot_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  .hotspot_wrapper { // anchor tag right now
+    // display: inline;
+    position: absolute;
+    // border: 1px solid yellow;
+    // top: 200px;
+    // left: 0px;
+    // width: 150px;
+    cursor: pointer;
+    visibility: visible;
+    top: -13px; // offset hotspot to be center
+    left: -13px; // offset hotspot to be center
+    // text-align: center;
+    &:hover {
+      .hotspot_dot {
+        background-color: rgba(255,255,255,1.0);
+      }
+    }
+    .hotspot_spacer {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 5px; // the hit area
+      // border: 1px solid red;
+      // cursor: pointer;
+    }
+    .hotspot_dot {
+      // display: inline-block;
+      width: 16px;
+      height: 16px;
+      color: #FFFFFF;
+      border: 2px solid white;
+      border-radius: 9px;
+      // margin-bottom: 4px;
+      background-color: rgba(0,0,0,.20);
+      z-index: -1;
+      position: relative;
+      &.selected {
+        background-color: rgba(255,255,255,1.0);
+      }
+      &.hovered {
+        background-color: rgba(255,255,255,1.0);
+      }
+    }
+    .human {
+      border-color: $human_landing_sites;
+    }
+    .robotic {
+      border-color: $robotic_landing_sites;
+    }
+    .geography {
+      border-color: $geography;
+    }
+    .core {
+      border-color: $core;
+    }
+    .hotspot_label {
+      // text-align: center;
+      color: #FFFFFF;
+      font-family: $core_font_family;
+      font-weight: 600;
+      font-size: .7em;
+      z-index: -1;
+      // width: 250px;
+      position: relative;
+      display: inline-block;
+      // border: 1px solid green;
+      // margin-top: -4px; // this controls spacing between dot and label
+      pointer-events: none;
+      // left: 20px; // position label to center of wrapper
+      // transform: translate(-50%);
+      @media only screen and (min-width: $width_for_desktop_nav) {
+        font-size: .8em;
+      }
+    }
+    .core {
+      color: $core;
+    }
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+  &.hidden {
+    display: none;
+  }
+}
+
+.embed_tools {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  z-index: 13;
+  a.fullscreen {
+    color: #ffffff;
+    .fullscreen_icon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .svg_icon {
+    width: 25px !important;
+    height: 25px !important;
+  }
+}

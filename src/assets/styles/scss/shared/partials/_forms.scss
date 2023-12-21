@@ -1,0 +1,191 @@
+/*
+*   _forms
+*
+*   %form_field represents text input fields with iconic submit button
+*/
+
+/*
+from the photoshop file,
+form container box color is #c1c1c1;
+from the photoshop file form border color is #a7a8a8; // the variable is: $form_border_color
+*/
+
+%form_field {
+    color: white;
+    display: inline-block;
+    position: relative;
+    .search_field {
+      color: white; //search text color
+      background-color: #282828;
+      background-color: rgba(255,255,255,.1);
+      font-weight: 500;
+      font-size: 16px;
+      border: none;
+      border-radius: $button_border_radius;
+      height: 40px;
+      padding-left: 1.1em;
+      padding-right: 40px;
+      width: 155px;
+      //@include placeholder { 
+      //  color: $placeholder_color_over_white; //placeholder color - only in the nav - jh
+      //  -webkit-font-smoothing: antialiased; // needed for webkit browsers. the body targeted style doesn't cover placeholder
+      //  opacity: 1 !important;
+      //  font-family: $core_font_family;
+      //}
+    }
+    .search_submit {
+      //@include sprite_based_ui_button(42px,42px,-127px,-5px,-127px,-5px); // no hover for now - jh 10/22/14
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: none;
+      margin-left: -44px; // What does this do? -JM
+      opacity: .8;
+    }
+  }
+  
+  %form_field_dark { // for light background search boxes (as opposed to dark background)
+    @extend %form_field;
+    .search_field {
+      background-color: #F3F4F8;
+      color: $core_text_color;
+      //@include placeholder { 
+      //  color: $placeholder_color_over_white;
+      //  opacity: 1 !important;
+      //}
+    }
+    .search_submit {
+      //@include sprite_based_ui_button(42px,42px,-127px,-54px,-127px,-54px);
+      opacity: .6;
+    }
+  
+  }
+  
+  /* END PLACEHOLDERS */
+  
+  
+  form.nav_search, form.meganav_search { // the search box in the header
+    .search_field {
+      padding-right: 20px;
+      height: 40px;
+      width: 40px;
+      &.search_open {
+        width: 100%;
+      }
+    }
+  }
+  
+  //chrome's autofill overrides 
+  form.nav_search, form.overlay_search, form.meganav_search, form.meganav_overlay_search, form.submit_newsletter {
+    input:-webkit-autofill { // without this, chrome's autocomplete has different, yellow background - jh
+      -webkit-box-shadow: 0 0 0px 1000px #989898 inset;
+      -webkit-text-fill-color: white !important;
+    }
+  }
+  
+  
+  .overlay_search, .meganav_overlay_search { // the search box that's in the overlay and the filter bar
+    @extend %form_field;
+    .search_field {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+      //@include placeholder { 
+      // color: white;
+      //}
+    }
+    .search_submit {
+      //@include sprite_based_ui_button(42px,42px,-128px,-5px,-128px,-5px); // no hover for now - jh 10/22/14
+      opacity: .6;
+    }
+  }
+  
+  .section_search { // grid / list pages & publications
+    @extend %form_field_dark;
+  }
+  
+  
+  //the default form (not a simple search form, but a full, multi-field input form, could be in admin? Or, does this go in public? - jh
+  .body_form {
+    label {
+      display: block;
+      margin-bottom: .3em;
+    }
+    input:not([type="submit"]):not([type="reset"]), textarea {
+      font-size: 16px; // to prevent zooming on iphone
+    }
+    input[type="text"]:not(#recaptcha_response_field), input[type="tel"], input[type="email"] {
+      height: 40px;
+    }
+    input:not(#recaptcha_response_field):not(.inline_button):not([type="submit"]):not([type="radio"]):not([type="checkbox"]), textarea {
+      width: 100%;
+      border: 1px solid $form_border_color;
+      background-color : white;
+      border-radius: 4px;
+      padding: 10px 12px;
+    } 
+    
+    input, textarea { 
+      margin-bottom: 1em;
+    }
+    .button {
+      margin-top: 1em;
+    }
+    select {
+      //@include select_menu;
+      margin-bottom: 1em;
+  
+    }
+    label {
+      font-weight: 700;
+    }
+    .radio_title {
+      margin-bottom: .5em;
+      font-weight: 700;
+    }
+    fieldset.radio_buttons {
+      .option {
+        @extend .clearfix;
+        white-space: nowrap;
+        margin-bottom: 1em; // better to but spacing on the option div for radio buttons
+      }
+      label {
+        white-space: normal;
+        vertical-align: middle;
+        display: inline;
+      }
+      input[type="radio"], input[type="checkbox"] {
+        display: inline-block;
+        margin: 0 .5em 0 0;
+        vertical-align: middle; // if the label wraps to more than one line
+        &+ label {
+          font-weight: 400;
+        }
+      }
+    }
+    .centered {
+      text-align: center;
+    }
+  }
+  
+  /* recaptcha overrides */
+  //recaptcha doesn't fit well on mobile
+  #recaptcha_widget_div {
+    @include breakpoint($small_only) {
+      overflow: hidden; // for mobile, mainly
+      #recaptcha_area {
+        margin: 0 auto;
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  /* form page titles and areas. Out side the form itself, but related */
+  
+  .event_location, .event_date {
+    margin-bottom: 1em;
+  }
+  

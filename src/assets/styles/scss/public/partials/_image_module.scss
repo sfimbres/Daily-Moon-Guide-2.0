@@ -1,0 +1,27 @@
+/*
+*   _image_module 
+*   
+*    as of 1/14/2016, this module has options:  left, right, wide (wider than its column), column width, full-bleed, and parallax 
+*
+*/
+
+
+// probably needs a container for the css, or a better class name - jh
+.wysiwyg_content .image_module {
+  //@include module_layout;
+  &.column-width {
+    margin-left: auto;
+    margin-right: auto; // centered, if width is too small
+  }
+}
+  
+  
+/* variations: */
+
+//.feature_pages .wysiwyg_content .image_module {
+  //@include feature_page_module_layout;
+//}
+
+.image_module figure.inline_figure {
+  margin-bottom: 0; // the margin-bottom is on the .image_module container
+}

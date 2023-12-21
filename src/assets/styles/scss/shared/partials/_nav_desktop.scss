@@ -1,0 +1,182 @@
+/*
+*   _nav_desktop
+*
+*   For the desktop-style nav layout, we are not using a sticky nav
+*   on touchscreens, as an ios7 bug causes layout problems - JM
+*/
+
+
+$nav_hover_background_color: rgba(0,0,0,0.1);
+
+
+.nav_area { //contains the nav and the search
+  @include breakpoint($width_for_desktop_nav) {
+    .panel_open:not(.nav_is_fixed) & {
+      // This is for the webGL slide out menu -JM
+      display: none !important;
+    }
+  }
+}
+
+// search displays in tophat, not nav at desktop width
+.site_header_area .nav_area {
+  @include breakpoint($width_for_desktop_nav) {
+    .meganav_search {
+      display: none;
+    }
+  }
+}
+
+#site_nav_container { 
+  @include breakpoint($width_for_desktop_nav) {
+    .site_nav {
+      padding-top: 25px;
+      @include breakpoint($xlarge) {
+        padding-top: 30px;
+      }
+      @include breakpoint($xxlarge) {
+        padding-right: 0.8em;
+      }
+      ::-webkit-input-placeholder { 
+        color: transparent;
+      }
+      :-moz-placeholder { 
+         color: transparent;
+      }
+      ::-moz-placeholder { 
+         color: transparent;
+      }
+      :-ms-input-placeholder { 
+         color: transparent;
+      }
+    }
+
+    /* NAV STYLES top level items, no subnav */
+    ul.nav > li {
+      border-radius: 2px;
+      &:not(.admin_site_nav_item) {
+        height: 100%;
+      }
+      &:hover .global_subnav_container {
+        display: block !important; 
+        // position: relative; // this can't be here is meganav is used
+      }
+      &:last-child {
+        .global_subnav_container {
+          // in case of line break
+          & > ul.subnav {
+            border-top-left-radius: 2px;
+            right: -52px;
+          }
+        }
+      }
+      &.current, &:hover {
+        .nav_title a {
+          color: white;
+        }
+      }
+      &.highlit {
+        a.main_nav_item {
+          color: white;
+          background-color: #b2223df7;
+          font-weight: 700;
+          font-size: 1.1em;
+          text-transform: uppercase;
+          padding: 0.6em 1.3em;
+          margin: 0 0 0 1.2em;
+          &:hover {
+            background-color: #F53357;
+          }
+        }
+        .meganav_container {
+          top: 90px;
+          @include breakpoint($large) {
+            top: 98px;
+          }
+          @include breakpoint($xlarge) {
+            top: 102px;
+          }
+        }
+      }
+    }
+    .nav_title {
+      font-size: .9em;
+      color: white;
+      font-weight: 600;
+      a {
+        font-size: 1em;
+        padding: .5em 1em;
+        color: #cdcdcd;
+        &:hover {
+          text-decoration: none;
+        }
+        &.current {
+          color: white;
+        }
+      }
+    }
+    
+    /* SUBNAV STYLES  */
+    ul.subnav {
+      padding: 0.4em 0;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+      border-top-right-radius: 2px;
+      background-color: $button_color;
+      li {
+        @include breakpoint($width_for_desktop_nav) {
+          &:hover {
+            background-color: $button_color_hover;
+          }
+        }
+      }
+      a {
+        color: #84B0DD;
+        font-size: 1em; // font-size for the subnav items
+        line-height: 1.4;
+        padding: .4em 0;
+        font-weight: 600;
+        white-space: nowrap; // This fixes a text wrapping bug on Android
+        @include breakpoint($medium_mid) {
+          padding: .4em 1em
+        }
+        @include breakpoint($width_for_desktop_nav) {
+          font-size: .85em; // font-size for the subnav items
+          color: white;
+          padding: .4em 1.1em;
+        }
+      }
+      .no-touchevents & a:hover {
+         color: white;
+      }
+    }
+    // mobile nav only - overlay search and share styles
+    .social_nav, .social_icons {
+      display: none;
+    }
+    
+
+    /* ------ ADMIN nav ------ */
+    li.admin_site_nav_item {
+      ul.subnav { 
+        background-color: #D94F34;
+      }
+    }
+    /* ------ end ADMIN nav ------ */
+  }
+}
+
+/* ------------------------- Nav theme variations ------------------------- */
+@include breakpoint($width_for_desktop_nav) {
+
+  body#home .nav_title > a {
+   color: white; 
+  }
+
+  #site_nav_container .observe_the_moon_site_nav ul.nav {
+    margin-right: 1.7em;
+  }
+
+}  
+
+/* ------------------------- END Nav themes ------------------------- */

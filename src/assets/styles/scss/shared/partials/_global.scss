@@ -1,0 +1,185 @@
+/*
+ * _global.scss
+ * global styles: basic styles that don't require their own partials
+*/
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after, input[type="search"] {   // Add *:before, *:after to this when we have time to test -JM
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input[type="search"] {
+ -webkit-appearance: none; // previously -webkit-appearance: textfield - old solution? - jh
+ appearance: none;
+}
+
+
+
+body {
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 0;
+ background-color: white;
+ &.nav_overlay_true {
+   @include breakpoint($width_for_mobile_nav) {
+     overflow: hidden; // Hides scrollbars when the nav overlay is up. -JM
+   }
+ }
+}
+
+
+/*
+img {
+ max-width: 100%;
+}
+*/
+
+/* This was removed. Is this too general? I don't think so. - jh */
+//this is also in public/global
+
+img {
+ width: 100%;
+}
+
+
+p {
+ line-height: 1.5;
+ margin-bottom: 17px;
+ margin-top: 0;
+ font-size: 16px;
+ color: $core_text_color;
+/*
+
+ @media screen and ($medium_mid) {
+   font-size: 18px;
+ }
+ @media screen and ($medium_large) {
+   margin-bottom: 20px;
+   font-size: 16px;
+ }
+ @media screen and ($large) {
+   font-size: 17px;
+ }
+ @media screen and ($xlarge) {
+   font-size: 18px;
+ }
+*/
+
+}
+
+
+a {
+ text-decoration: none;
+ color: $core_link_color;
+ &:hover {
+   text-decoration: underline;
+ }
+}
+
+a[name]{
+ position: relative;
+ display: block;
+ visibility: hidden;
+ margin: 0;
+ padding: 0;
+ @include breakpoint($width_for_mobile_nav) {
+   top: -$header_height_small - 50px;
+   @include breakpoint($medium) {
+     top: -$header_height_medium - 50px;
+   }
+   @include breakpoint($medium_mid) {
+     top: -$header_height_medium_mid - 50px;
+   }
+   @include breakpoint($medium_large) {
+     top: -$header_height_medium_large - 50px;
+   }
+ }
+ @include breakpoint($width_for_desktop_nav) {
+   top: -$header_height_large - 50px;
+   @include breakpoint($xlarge) {
+     top: -$header_height_xlarge - 50px;
+   }
+ }
+}
+
+dl, menu, ol, ul {
+ margin: 0;
+ padding: 0;
+}
+
+ul {
+ list-style-type: none;
+}
+
+ol {
+ list-style-position: inside;
+}
+
+hr, .gradient_line {
+ clear: both;
+ margin: 1em 0;
+}
+
+.print_only {
+ display: none;
+}
+
+.page_cover {
+ // This is used along with the meganav to darken the page beneath
+ // it on hover. Perhaps we also use for other purposes, like if
+ // we want modals in the page area? - JM
+ position: absolute;
+ display: none;
+ background-color: rgba(0,0,0,.5);
+ width: 100%;
+ height: 100%;
+ z-index: 20;
+ &.nav_hover_on {
+   pointer-events: none;
+ }
+}
+
+@font-face {
+ font-family: 'Metropolis';
+ font-weight: normal;
+ src: url("/src/assets/fonts/Metropolis-Regular.otf");
+}
+
+@font-face {
+ font-family: 'Metropolis';
+ font-weight: 500;
+ src: url("/src/assets/fonts/Metropolis-Medium.otf");
+}
+
+@font-face {
+ font-family: 'Metropolis';
+ font-weight: 600;
+ src: url("/src/assets/fonts/Metropolis-SemiBold.otf");
+}
+
+@font-face {
+ font-family: 'Metropolis';
+ font-weight: bold;
+ src: url("/src/assets/fonts/Metropolis-Bold.otf");
+}
+
+@font-face {
+ font-family: 'CooperHewitt';
+ font-weight: normal;
+ src: url("/src/assets/fonts/CooperHewitt-Medium.otf");
+}
+
+@font-face {
+ font-family: 'CooperHewitt';
+ font-weight: 500;
+ src: url("/src/assets/fonts/CooperHewitt-Semibold.otf");
+}
+
+@font-face {
+ font-family: 'CooperHewitt';
+ font-weight: bold;
+ src: url("/src/assets/fonts/CooperHewitt-Bold.otf");
+}
+

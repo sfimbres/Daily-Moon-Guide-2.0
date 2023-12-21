@@ -1,0 +1,61 @@
+.zoom_map_toggle {
+    .icon_button {
+      .icon {
+        height: 20px;
+        width: 20px;
+      }
+    }
+    // toggle that floats in upper left of moon window
+    .main_window & {
+      position: absolute;
+      margin: 32px;
+      top: 18%;
+      left: 0;
+      .icon_button {
+        .text {
+          display: none;
+        }
+      }
+      .zoom_icon path {
+        fill: #B9B9BB;
+      }
+      &.zoomed {
+        display: none;
+      }
+      @include breakpoint($medium_mid){
+        display: none;
+      }
+    }
+    .no-touchevents .main_window & {
+      &:hover {
+        .zoom_icon path {
+          fill: #B0E0FF;
+        }
+      }
+    }
+    // toggle to exit zoom in toolbar
+    .toolbar & {
+      display: none;
+    }
+    .zoomed .main_window & {
+      display: none;
+    }
+    .zoomed .toolbar & {
+      display: block;
+      .icon_button {
+        padding: 14px 0 9px;
+        .icon {
+          display: none;
+        }
+        .text {
+          display: block;
+          font-size: 18px;
+        }
+      }
+    }
+    .no-touchevents .zoomed .toolbar & {
+      &:hover {
+        background-color: #474747;
+      }
+    }
+  }

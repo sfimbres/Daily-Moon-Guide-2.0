@@ -1,0 +1,295 @@
+/*
+*   _grid_list_gallery - public view
+*
+*   The controls and gallery for a grid/list view
+*   could be grid list page - jh
+*
+*/
+
+
+.react_grid_list .grid_gallery{
+  padding: 0;
+}
+
+p ~ .react_grid_list .module {
+  padding-top: 3em;
+}
+
+.grid_list_page > .grid_layout {
+  > :first-child {
+    // Make the beginning of a .wysiwyg_content area not have a top margin
+    // (To handle p, inline_img, h1, h2...) -JM
+    margin-top: 0;
+  }
+}
+
+.grid_gallery { //All galleries and lists of articles / grid_view and list_view
+  .gallery_header { //the header above a gallery contains grid view vs. list view selectors
+    min-height: 53px;
+    margin-bottom: 2em;
+    @include breakpoint($medium_large) {
+      margin-bottom: 3em;
+    }
+  }
+  .gallery_header .module_title { // module title should not have a huge margin-bottom because of the filters below it
+    margin-bottom: 0.5em;
+    text-align: left;
+  }
+  .list_date { //news only, for now
+    font-size: .9em;
+    margin-bottom: .4em;
+    color: #747474;
+    font-weight: 500;
+  }
+
+
+  /* DEFAULT GALLERY GRID */
+  &.grid_view {
+    background: white;
+    .content_title {
+      letter-spacing: -.03em;
+      display: none;
+    }
+    .image_and_description_container {
+      min-height: 0; //no min-height needed in grid view
+    }
+    .article_teaser_body {
+      display: none;
+    }
+    .list_date {
+      display: none;
+    }
+    .list_image {
+      width: 100%;
+      float: none;
+      margin: 0;
+    }
+
+    .bottom_gradient { //not always a gradient container
+      color: $core_text_color;
+      display: block;
+      position: relative;
+      margin-top: 0.3rem;
+      margin-top: .5rem;
+      padding-bottom: 0.4rem;
+      text-align: left;
+      min-height: 52px;
+
+      @include breakpoint($medium_large) {
+        margin-top: .5rem;
+        min-height: 85px; // this makes all hover rollovers the same height
+      }
+      &:before {
+        content: none;
+      }
+      div {
+        // This is used for the title, inside of bottom_gradient... no class name... hmm.. -JM
+        text-align: left;
+      }
+      h3 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 0.95em;
+      }
+    }
+
+
+
+
+    /* ----- LAYOUT OF THE GALLERIES ----- */
+    //  A grid/image gallery. ex: images page 'of 24' keeps the gutters tight
+    li.slide {
+      margin-bottom: gutter(24);
+      //@include gallery(12 of 24); //2 across
+
+      @include breakpoint($medium_mid) {
+        margin-bottom: gutter(24);
+        //@include gallery(8 of 24); //3 across
+      }
+      @include breakpoint($medium_large) {
+        //@include gallery(6 of 24); //4 across
+      }
+      @include breakpoint($xlarge) {
+        //@include gallery(4.8 of 24); //5 across
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  // Need to separate these ... -JM
+  &.list_view {
+    .list_image { // A container for a list image different than list_image? - jh
+      float: right;
+      margin-left: 4%;
+      margin-bottom: .5em;
+      width: 32%;
+      @include breakpoint($medium_mid) {
+        margin-left: 0;
+        margin-bottom: 0;
+       // @include span(2 of 8);
+      }
+      @include breakpoint($medium_large) {
+        //@include span(3 of 12);
+      }
+      @include breakpoint($large) {
+        //@include span(3 of 12);
+      }
+    }
+    .list_text {
+      width: auto;
+      @include breakpoint($medium_mid) {
+        //@include span(6 of 8 at 3);
+      }
+      @include breakpoint($medium_large) {
+        //@include span(9 of 12 at 4);
+      }
+      @include breakpoint($large) {
+        //@include span(8 of 12 at 4);
+      }
+    }
+    .content_title a { // the main title of an article also, a link.
+      text-decoration: none;
+      cursor: pointer;
+      color: $core_text_color;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .content_title { // the html is alittle inconsistent
+      display: block;
+      //font-size: 1.3em;
+      //@include responsive_headline(.9, .1);
+      margin-bottom: .2em;
+      font-weight: 700;
+      color: $core_text_color;
+      letter-spacing: -.035em;
+
+    }
+    .bottom_gradient {
+      display: none;
+    }
+    .article_teaser_body {
+      margin-top: 1em;
+
+      p:first-child {
+        margin-top: 0;
+      }
+
+      @include breakpoint($large) {
+        font-size: 1.1em;
+      }
+    }
+    li.slide:first-child {
+      border-top: 1px solid $off_white_over_black_text_color;
+    }
+    li.slide {
+      border-bottom: 1px solid $off_white_over_black_text_color;
+      @extend .clearfix;
+      padding: 1.2em 0; // this style should match list pages too, not just list grid pages
+      a {
+        text-decoration: none;
+        //color: $core_text_color; // no, too general
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+.list_view .list_text {
+  .person_title {
+    color: #6F6F6F;
+  }
+}
+
+
+// THE LIST / GRID BUTTONS (contained within the gallery)
+.view_selectors { //the container for the grid view / list view selectors, like a nav
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: 106px;
+  text-align: right;
+  @include breakpoint($medium_large) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+  }
+  .nav_item { /* maybe a nav_item partial? */
+    display: inline-block;
+    position: relative;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-image: url('/src/assets/grid_list_icon@2x.png');
+    background-size: 125px;
+    background-color: #f1f4f7;
+    border-radius: 50%;
+    &:hover {
+      background-color: #dfe7ed;
+    }
+
+    //@include unselectable;
+
+    &.list_icon {
+      background-position: -12px -62px; //default, grayed out
+      .no-touchevents &:hover {
+        background-position: -12px -12px;
+      }
+      .list_view & { // if list_view is active
+        background-color: #dfe7ed;
+        background-position: -12px -12px;
+      }
+    }
+    &.grid_icon {
+      background-position: -62px -62px;
+      .no-touchevents &:hover {
+        background-position: -62px -12px;
+      }
+      .grid_view & { // if grid_view is active
+        background-color: #dfe7ed;
+        background-position: -62px -12px;
+      }
+    }
+  }
+}
+
+//styles specific to grid "modules" that can be displayed on new planet profile templates
+
+.planet_profile_feature, .planet_profile {
+  .wysiwyg_content .react_grid_list {
+    width: 94%;
+    @include breakpoint($medium_large) {
+      width: 80%;
+      max-width: 1200px;
+    }
+    .grid_layout {
+      width: 100%;
+    }
+    .module_title {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+// Collapse the space between the header and the gridlist gallery
+body:not(.dynamic_grid_list){
+
+
+  .grid_list_page{
+    #page_header {
+      display: none;
+    }
+    &.has_subtitle #page_header {
+      display: block;
+    }
+  }
+
+  .grid_gallery {
+    padding-top: 0;
+  }
+}

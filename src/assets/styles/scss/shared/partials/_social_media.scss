@@ -1,0 +1,117 @@
+/*
+*   _social_media - shared (footer)
+*
+*   also used on home page for follow (share too?)
+*/
+
+
+.addthis-smartlayers { // the fixed sidepage share buttons container
+  visibility: hidden; // javascript makes this visible at a certain scroll point on the page
+  //display: none; // it should not be clickable 
+  opacity: 0;
+  .addthis_32x32_style .at15t_facebook {
+    //background-position: -4px -2528px; // the facebook icon is a little off with the default styles, this will probably change in the future - jh 
+  }
+  .at4-show {
+    visibility: visible!important; //if removed mobile menu will not display on lightbox overlay
+  }
+}
+
+
+// "Follow" social media in footer and home page
+
+.social_icons {
+  display: block;
+  .icon {
+    width: 44px !important;
+    height: 44px!important;
+    display: inline-block;
+    overflow: hidden;
+
+    + .icon {
+      margin-left: .5em; // different for triple teaser
+    }
+    img {
+      opacity: 1 !important; // override weird hover state happening on G+ icon
+      height: 100%;
+      //width: 100%;
+      max-width: none;
+    }
+  }
+  
+  //triple teaser (homepage) styles
+  .triple_teaser & {
+    width: 100%;
+    white-space: nowrap;
+    @include breakpoint($medium_mid) {
+      max-width: 188px;
+    }
+    @include breakpoint($medium_large) {
+      max-width: none;
+    }
+    .icon {
+      width: 44px;
+      height: 44px;
+      &+ .icon {
+        margin-left: .7em;
+      }
+      @include breakpoint($medium_mid) {
+        width: 38px;  // also change the margin-left calc if this changes
+        height: 38px;
+        &+ .icon {
+          margin-left: .4em;
+          margin-left: calc((100% - 152px)/3); //38px x 4 icons = 152px. /3 because there are 3 gaps
+        }
+      }
+      @include breakpoint($medium_large) {
+        width: 44px;
+        height: 44px;
+        &+ .icon {
+          margin-left: .6em;
+        }
+      }
+    }
+  }
+}
+
+/* this is to override some styles from addthis widget.old.css */
+.addthis_default_style .at300b, .addthis_default_style .at300bo, .addthis_default_style .at300m {
+  padding: 0 !important;
+  float: none !important;
+}
+
+// addthis is inserting a div (visibility: invisible) with an iframe in it at the bottom of the page, which still occupies space
+// this may be fixed by addthis in the near future
+#_atssh{
+  display:none;
+}
+
+//unclear why this is not working on grace's addthis config
+#at4-share,#at4-soc {
+  top:60%;
+  bottom:auto;
+}
+
+#secondary_column ul.sidebar_share {
+  margin-left: 0.3em !important;
+
+  li {
+    list-style: none;
+    margin-bottom: 0;
+
+    a.icon {
+      width: 48px;
+      display: inline-block;
+      margin-right: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .share_text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  li + li {
+    margin-top: 0.5em;
+  }
+}

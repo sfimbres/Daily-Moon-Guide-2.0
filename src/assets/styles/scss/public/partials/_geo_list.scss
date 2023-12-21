@@ -1,0 +1,500 @@
+/* from SSE SSA */
+$geo_list_desktop_features: $medium_large;
+
+
+// most datepicker styles are in datepicker.scss
+.geo_list_module {
+  font-family: $core_font_family;
+  .filters {
+    border: 1px solid $line_color;
+    padding: 1.2rem 1.4rem 1rem;
+    margin-bottom: 3rem;
+    .search_binder, .filter_bar {
+      display: block;
+      @include breakpoint($medium) {
+        align-items: center;
+      }
+    }
+    label + label, input.button {
+      @include breakpoint($medium_large) {
+        //margin-left: 1rem;
+      }
+    }
+    .button {
+      vertical-align: baseline;
+    }
+    .date_filters {
+      display: inline-block;
+      min-width: 260px;
+      &:first-of-type {
+        margin-right: 1em;
+      }
+    }
+    img.current_location {
+      width: 16px;
+      margin: 0 .2em 0 .8em;
+    }
+  }
+  .searching {
+    font-size: 1.2em;
+    margin-bottom: .7em;
+  }
+  .field_title {
+    font-weight: 600;
+    margin-right: 0.8rem;
+  }
+
+  input[type="text"] {
+    border: 1px solid #F3F4F8;
+    background-color: #F3F4F8;
+    color: #656565;
+    border-radius: 4px;
+    padding: 10px 12px;
+    @include placeholder {
+      color: #737373;
+    }
+  }
+  label.preposition_small {
+    position: absolute;
+    font-size: 0.6em;
+    left: 9px;
+    top: 5px;
+    color: #777;
+  }
+  .search_binder {
+    width: 100%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto 0.9rem 0;
+    vertical-align: baseline;
+    display: block;
+    select{
+      background-color: #1D56A3;
+    }
+    select, input {
+      margin-bottom: 0;
+    }
+    @include breakpoint($medium_mid) {
+      max-width: 80%; // matches select elements
+    }
+    @include breakpoint(5$xlarge) {
+      display: inline-block;
+      margin-right: 1rem;
+      max-width: 80%;
+      min-width: 200px;
+    }
+
+    .hint {
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+  }
+  input[type="text"] {
+    width: 55%;
+  }
+
+
+
+  .search_clear {
+    padding: 3px;
+    margin-left: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    color: #2AABFE;
+  }
+
+
+
+
+  .date_option_wrapper {
+    display: inline-block;
+    width: 48%; // calc?
+    &:first-of-type {
+      margin-right: 0.6rem;
+    }
+    .calendar_input_binder {
+      margin-bottom: 0;
+    }
+    .begin_date, .end_date { //inputs
+      height: 40px;
+      font-size: 16px; // no zoom on ios
+      padding: 8px 40px 0px 8px;
+      border: 1px solid rgba(0,0,0,0.3);
+      background-color: transparent;
+      border-radius: 4px;
+      width: 100%;
+      position: relative;
+      //margin: 0 0.2em;
+      /* without this, chrome's autocomplete has different, yellow background - jh */
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+        -webkit-text-fill-color: $core_text_color;
+      }
+      // @include breakpoint($medium-mid){
+      //   width: 165px;
+      // }
+      // @include breakpoint($medium_large) {
+      //   width: 140px;
+      // }
+      //
+      // @include breakpoint($large) {
+      //   width: 150px;
+      // }
+    }
+  }
+
+  .ui-datepicker-trigger {
+    right: 2px;
+  }
+
+
+
+  .date_filters {
+    //display: inline-block;
+    //vertical-align: bottom;
+    .field_title {
+      display: none;
+      @include breakpoint($medium_mid) {
+        display: block;
+      }
+    }
+  }
+
+  form.virtual, form.in_person {
+    .select_grid {
+      display: grid;
+      grid-template-columns: auto auto auto auto 1fr;
+      grid-template-rows: 1fr;
+      gap: 1em .5em;
+      grid-template-areas: ".....";
+      legend {
+        font-weight: 600;
+        margin-right: .5em;
+      }
+      label {
+        margin-right: .5em;
+      }
+      input {
+        height: 23px;
+      }
+    }
+    .button.search_submit {
+      background-color: #1D56A3;
+      &.disabled {
+        background-color: #9CB8DE;
+      }
+    }
+  }
+
+  form.virtual {
+    .near {
+      display: none;
+    }
+  }
+
+
+  .results {
+    @include breakpoint($geo_list_desktop_features) {
+      display: flex;
+    }
+  }
+
+  // the 2 columns:
+  .list_results {
+    width: 100%;
+    @include breakpoint($geo_list_desktop_features) {
+      margin-right: 2%;
+    }
+    @include breakpoint($large) {
+      width: 50%;
+    }
+    .geo_item_slide {
+      padding: 1.2em 0;
+    }
+    ul.geo_item_list {
+      margin-left: 0;
+    }
+    .event_cat {
+      background-color: #ffedf0;
+      color: #b31c38;
+      font-size: .85em;
+      font-weight: 700;
+      width: max-content;
+      padding: .2em .4em .1em;
+      margin-bottom: 1em;
+    }
+    .date, .address, .time {
+      color: #5a5a5a;
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+    .date {
+      font-size: .94rem;
+      margin-bottom: .4em;
+    }
+    .address {
+      font-weight: 500;
+    }
+    .link_text {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #2AABFE;
+      text-decoration: none;
+      margin-bottom: 5px;
+    }
+    .country {
+      margin-bottom: 7px;
+    }
+    .time {
+      margin-bottom: 8px;
+    }
+  }
+  .map_container {
+    float: right;
+    width: 100%;
+    @include breakpoint($large) {
+      width: 48%;
+    }
+  }
+  .map_view .list_results {
+    .item_list {
+      display: none;
+    }
+    @include breakpoint($width_for_desktop_nav) {
+      .item_list {
+        display: block; //but always display on desktop
+      }
+    }
+    .no_items {
+      margin-bottom: 1em;
+    }
+
+    @include breakpoint($geo_list_desktop_features) {
+      display: block;
+    }
+  }
+  .events_view .map_container {
+    display: none;
+    @include breakpoint($geo_list_desktop_features) {
+      display: block;
+    }
+  }
+
+  .map_container.offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .the_map {
+    height: 400px;
+    width: 100%;
+    @include breakpoint($geo_list_desktop_features) {
+      position: sticky !important;
+      top: 100px;
+    }
+    // google map info_window close icon
+    .gm-ui-hover-effect {
+      top: 0!important;
+      right: 0!important;
+    }
+    // google map info window triangle
+    .gm-style .gm-style-iw-t::after {
+      top: -1px;
+    }
+  }
+  .map_expand_bar {
+    display: none;
+    @include breakpoint($geo_list_desktop_features) {
+      display: block;
+      background-color: #D1DDE6;
+      padding: 0.7rem;
+      position: sticky;
+      top: 500px;
+    }
+  }
+  .map_expander {
+    .icon {
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+      background-color: $button_color;
+      vertical-align: middle;
+      margin-right: .8rem;
+      border-radius: 3px;
+      position: relative;
+      cursor: pointer;
+      &:hover {
+        background-color: #4A81C1;
+        text-decoration: none;
+      }
+      svg {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
+        transform: rotate(180deg);
+      }
+    }
+    .text {
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+  .map_embiggened .map_expander .icon svg {
+    transform: rotate(0deg);
+  }
+
+  .map_embiggened { // $geo_list_desktop_features only
+    @include breakpoint($geo_list_desktop_features) {
+      .the_map {
+        height: 600px;
+      }
+      .list_results {
+        width: 25%
+      }
+      .map_container {
+        width: 73%;
+      }
+      .map_expand_bar {
+        top: 700px;
+      }
+    }
+  }
+  .results_upper {
+    margin: 1rem 0;
+  }
+  .geo_list_footer { //results are in here
+    clear: both;
+    margin: 2rem auto;
+    text-align: left;
+    .pagination_nav {
+      float: none; //override float right in theme 1
+    }
+  }
+  // not sure what this was supposed to be, but i removed that element from the react -nmj
+  .results_title {
+    margin-bottom: 1rem;
+  }
+
+  .event_list_item .list_text {
+    width: 100%;
+  }
+
+//may separate this
+  .events_view {
+    &.events_page {
+      .geo_item_slide {
+        border-top: 1px solid $line_color;
+      }
+      .list_text {
+        width: 100%;
+      }
+      .location {
+        margin-bottom: .6rem;
+      }
+      .description {
+        margin-bottom: .7rem;
+      }
+    }
+    .location {
+      font-weight: 700;
+      color: #6a6a6a;
+    }
+    .list_title {
+      font-size: 1.4rem;
+      margin-bottom: 0.2em;
+      @include breakpoint($medium_large) {
+        font-size: 1.7rem;
+      }
+    }
+    .contact {
+      margin-top: .2rem;
+      a {
+        margin-left: 5px;
+      }
+    }
+  }
+  .mobile_view_toggle {
+    margin: 2rem auto;
+    text-align: center;
+    @include breakpoint($width_for_desktop_nav) {
+      display: none;
+    }
+  }
+
+}
+
+
+// ambassador map info window
+.ambassador_page {
+  font-family: $core_font_family;
+  #country_select {
+    background-color: #797E84;
+  }
+  .map_info_window {
+    display: flex;
+    max-width: 300px;
+    
+    .list_image {
+      width: 41%;
+      margin-right: 3%;
+    }
+    .list_text {
+      width: 55%;
+      .list_title {
+        font-size: 1.2rem;
+        margin-top: 0;
+      }
+    }
+    .location {
+      font-size: .9rem;
+      font-weight: normal;
+      color: #6a6a6a;
+    }
+  }
+}
+
+.feature_pages .wysiwyg_content .geo_list_module.wide {
+  width: 94%;
+  max-width: 1200px;
+}
+
+.map_info_window { // map popover
+  font-family: $core_font_family;
+  &.event {
+    .detail_text {
+      padding: .3rem .5rem;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 16px;
+      margin: 4px 0 2px;
+    }
+    .venue {
+      color: grey;
+      line-height: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .contact, .geo_list_module .events_view .contact {
+      margin-top: .4rem;
+      font-weight: 700;
+      a {
+        font-weight: initial;
+      }
+    }
+    .time {
+      margin-bottom: .6rem;
+      line-height: 1.2rem;
+    }
+    .contact_link { // space it out a little - jh
+      margin-bottom: .5rem;
+    }
+  }
+}

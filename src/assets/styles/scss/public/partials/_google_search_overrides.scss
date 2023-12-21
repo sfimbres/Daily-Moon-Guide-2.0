@@ -1,0 +1,44 @@
+/* New Site tabs */
+
+// move into gem if wanted on other sites
+.site_tabs {
+  display: inline-flex;
+  margin: 1em 0;
+  font-size: 1rem;
+  border: 1px solid #C1C1C1;
+  border-radius: 4px;
+  .site {
+    padding: 1em 0.7em;
+    cursor: pointer;
+    color: black;
+    border-right: 1px solid #C1C1C1;
+    &.current {
+      background-color: #777777;
+      color: white;
+      font-weight: 700;
+    }
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+}
+
+// a little fragile, using google class names
+
+.gsc-tabsArea {
+  border-top: 1px solid #C1C1C1;
+  border-bottom: 1px solid #C1C1C1;
+  padding: 1rem 0;
+  .gsc-tabHeader {
+    padding: 0.5rem 1.2rem;
+    margin-right: .5rem;
+  }
+  .gsc-tabhActive {
+    background-color: #EFEFEF;
+    border-radius: 4px;
+  }
+  .gsc-tabHeader.gsc-tabhActive {
+    border-bottom: 0;
+  }
+}
+

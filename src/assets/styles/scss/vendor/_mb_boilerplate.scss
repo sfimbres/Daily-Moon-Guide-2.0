@@ -1,0 +1,46 @@
+
+/* ----- MB BOILERPLATE ----- */
+
+/* This file should only modify styles directly from the html5 boilerplate, which we leave intact */
+
+html,
+button,
+input,
+select,
+textarea {
+  color: #3c3c3c; /* default text color variablalize? - jh */
+}
+
+html {
+  height: 100%; // not on map tool - jh
+}
+
+
+/* ------------------- END Brought from global.scss ------------------- */
+
+
+.browsehappy {
+  background: white;
+  color: #333;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+
+}
+
+
+/* MB custom styles */
+
+/* remove highlighting for clickable divs on android devices */
+html.touch.-webkit- {
+  -webkit-tap-highlight-color:transparent;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    position: absolute; //invisible elements shouldn't alter design of webpage when they become visible - jh
+}

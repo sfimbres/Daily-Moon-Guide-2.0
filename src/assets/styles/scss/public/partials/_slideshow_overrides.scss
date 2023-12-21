@@ -1,0 +1,10 @@
+
+.slideshow_module {
+  .slideshow {
+    .image_area {
+      @include breakpoint($large){
+        padding: 0;
+      }
+    }
+  }
+}

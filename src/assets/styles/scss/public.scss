@@ -1,0 +1,157 @@
+/* shared */
+
+/*@import "vendor/jquery-ui-1.9.0.custom";
+@import "vendor/simplemodal";
+@import "vendor/slick";
+@import "vendor/foundation-icons";
+@import "vendor/nouislider";*/
+
+
+/* Our styles */
+
+//shared
+
+@import "shared/main"; // shared scss manifest, imports some vendor files, susy, normalize, variables, wrapper styles
+
+@import "public/variables";
+//@import "theme1/public/mixins"; //@import "public/mixins";
+@import "shared/mixins_instance";
+
+@import "public/partials/global";
+@import "public/partials/headings";
+//@import "theme1/public/partials/layout";
+@import "public/partials/layout";
+
+//@import "theme1/public/partials/gradient_overlay";
+@import "public/partials/grid_list_gallery";
+//@import "theme1/public/partials/grid_list_gallery_spa";
+///@import "theme1/public/partials/faceted_search";
+
+@import "public/partials/lists_ul_ol";
+
+@import "public/partials/module";
+@import "public/partials/floating_text_area";
+@import "public/partials/banner_area";
+
+//@import "theme1/public/partials/carousels"; // masterslider carousels
+@import "public/partials/carousel_navs";
+@import "public/partials/carousel_primary";
+//@import "theme1/public/partials/carousel_teasers";
+@import "public/partials/page_carousel";
+@import "public/partials/multi_teaser";
+
+//@import "theme1/public/partials/filter_bar";
+@import "public/partials/rollover_description";
+
+@import "public/partials/gallery_lightbox";
+@import "public/partials/figure";
+@import "public/partials/detail_pages";
+@import "public/partials/article_nav";
+
+@import "public/partials/feature_pages"; // 12/1/2015
+
+//2016 ckeditor modules - all wysiwyg content
+@import "public/partials/expandable_element_module"; // this really should be before image module, possibly all module partials
+@import "public/partials/countdown_module"; // varies
+@import "public/partials/curtain_module";
+@import "public/partials/related_content_module";
+//@import "theme1/public/partials/carousel_module";
+//@import "theme1/public/partials/slideshow";
+@import "public/partials/image_module"; // older module with new options
+@import "public/partials/masonry_grid";
+@import "public/partials/masonry_gallery";
+@import "public/partials/quotes";
+@import "public/partials/video_module";
+@import "public/partials/webgl_module";
+@import "public/partials/image_carousel";
+//@import "theme1/public/partials/image_of_the_day";
+
+@import "public/partials/expandable_section_module"; // exp. sections with an anchor and dynamic 'on this page'
+//@import "theme1/public/partials/on_this_page_nav";
+
+
+
+@import "public/partials/wysiwyg_content";
+@import "public/partials/image_enlarge";
+//@import "public/partials/wysiwyg_legacy";
+@import "public/partials/tables";
+
+@import "public/partials/tooltip";
+@import "public/partials/google_search";
+@import "public/partials/google_search_overrides";
+
+//@import "theme1/public/partials/info_button";
+
+//@import "mbcms/lib/partials/sharelines";
+
+@import "public/partials/definition_teaser";
+@import "public/partials/footnotes";
+@import "public/partials/primary_media_feature";
+//@import "theme1/public/partials/faq";
+
+@import "public/partials/fullscreen_element";
+
+@import "public/partials/vital_signs";
+
+/* SMAP/GRACE specific styles */
+/*@import "public/partials/double_teaser";
+@import "public/partials/item_lists";
+@import "public/partials/nav_secondary";
+@import "public/partials/nav_tertiary";
+@import "theme1/public/partials/nav_middlenav";
+@import "public/partials/expanding_elements";*/
+
+/* new styles for GRACE-FO and CCS */
+/*@import "public/partials/carousel_separator";
+@import "public/partials/wide_feature";
+
+@import "public/partials/explore_overlay";
+@import "public/partials/timeline_overrides";*/
+
+/* new styles for Solar System*/
+/*@import "public/partials/orrery";
+@import "public/partials/masonry_teaser";
+@import "public/partials/numbered_grid_module";
+@import "public/partials/dashboard";
+@import "public/partials/center_focus_carousel";
+@import "public/partials/by_the_numbers";
+@import "public/partials/image_grid_teaser";
+@import "public/partials/geo_list";
+@import "public/partials/geo_list_switchbox";
+@import "public/partials/datepicker";
+@import "theme1/public/partials/pagination";*/
+
+/* new styles for Moon*/
+@import "public/partials/info_panel";
+@import "public/partials/webgl_globe_viewer";
+@import "public/partials/expandable_side_menu";
+@import "public/partials/tools_menu";
+@import "public/partials/viewer_text_area";
+@import "public/partials/events_form";
+@import "public/partials/responsive_image";
+@import "public/partials/photo_gallery";
+@import "public/partials/top_hat";
+//@import "theme1/public/partials/automat";
+//@import "theme1/public/partials/video_module";
+//@import "theme1/public/partials/gltf_viewer";
+//@import "theme1/public/partials/snippet_box";
+
+/* megasection styles from SSE */
+/*@import "theme1/public/partials/megasection_nav";
+@import "theme1/public/partials/megasection_nav_mobile";
+@import "public/partials/certificate_module";
+
+@import "public/partials/webgl_iframe";
+
+@import "theme1/public/partials/sticky_notice";
+@import "theme1/public/partials/resource_swapper";
+@import "theme1/public/partials/switchbox";
+@import "theme1/public/partials/aside_module";
+@import "theme1/public/partials/first_and_more_gallery";
+@import "theme1/public/partials/google_chart_module";
+
+@import "public/partials/overrides";
+@import "public/partials/slideshow_overrides";*/
+
+/* Internet Explorer Styles */
+@import "public/ie";

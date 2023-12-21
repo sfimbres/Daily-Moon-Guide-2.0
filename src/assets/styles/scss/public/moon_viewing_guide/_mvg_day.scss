@@ -1,0 +1,459 @@
+/*
+*   _mvg_day - public view
+*
+*   styles for nom moon map. version of moon viewing guide that
+*   displays only a single day
+*
+*/
+
+body.fullscreen_element {
+    .single_day.module {
+      padding: 0;
+      .moon_img_and_detail_container {
+        height: 100vh;
+      }
+      .main_window {
+        .view_frame, .view_frame_toggle {
+          transform: translateY(50%);
+          bottom: 50%;
+        }
+      }
+    }
+  }
+  
+  .single_day {
+    &.full-bleed {
+      width: 100%;
+      max-width: none;
+    }
+    .moon_viewing_guide { // general
+      position: relative;
+      a.fullscreen {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 30px;
+        color: #ffffff;
+        z-index: 1;
+        //body.fullscreen_element .single_day & {
+        //  display: block;
+        //}
+        @include breakpoint($medium_large) {
+          display: block;
+        }
+        .motanf & {
+          display: none;
+        }
+        .fullscreen_icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      &.detail_open a.fullscreen {
+        display: none;
+      }
+      .icon.tag {
+        flex-shrink: 0;
+      }
+      .switchbox_container {
+        .switchbox {
+          color: #D2D2D2;
+          border: 1px solid #303743;
+        }
+        .switch_label {
+          &:hover {
+            background-color: #474747;
+          }
+        }
+        .switch_input:checked + .switch_label, .switch_input.selected + .switch_label {
+          background-color: #303743;
+        }
+      }
+    }
+  
+    // moon view styles
+    section.moon_view {
+      .main_window {
+        position: relative;
+      }
+      .moon_img_and_detail_container {
+        height: 800px;
+      }
+      .inomn_brand_logo_icon {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 90px;
+        width: 130px;
+        margin: 30px 26px;
+        background-image: url('/src/assets/mvg/inomn-logo-full.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 1;
+        @include breakpoint($medium_large) {
+          display: block;
+        }
+        .international_night_text {
+          fill: #9898ff;
+        }
+        .observe_moon_text {
+          fill: #ffffff;
+        }
+        .crescent_moon {
+          fill: #6161ff;
+        }
+      }
+      .moon_img {
+        position: relative; 
+        margin-top: 0;
+        &.horizontal {
+          height: 100%;
+          img {
+            width: auto;
+            height: 100%;
+          }
+        }
+        img {
+          max-height: none;
+        }
+        .hotspots {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .detail_selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        //max-width: 279px;
+        top: 18px;
+        left: 50%;
+        bottom: auto;
+        transform: translateX(-50%);
+        text-align: left;
+        pointer-events: none;
+        @include breakpoint($medium_large) {
+          width: auto;
+          max-width: 280px;
+          left: 39px;
+          top: auto;
+          bottom: 20px;
+          transform: none;
+          text-align: left;
+        }
+        .category_title {
+          font-size: 14px;
+          font-weight: 700;
+          color: #CBCBE4;
+          margin-top: 6px;
+          margin-bottom: 4px;
+          @include breakpoint($medium_mid) {
+            margin-top: 12px;
+          }
+        }
+        .media_feature_title {
+          font-size: 22px;
+          font-weight: 700;
+          letter-spacing: -0.55px;
+          margin-bottom: 10px;
+          @include breakpoint($medium_mid) {
+            font-size: 26px;
+            letter-spacing: -0.65px;
+          }
+          @include breakpoint($medium_large) {
+            font-size: 32px;
+            letter-spacing: -0.8px;
+          }
+        }
+        .inomn_brand_logo_icon {
+          display: block;
+          position: static;
+          margin: 0 17px 0 0;
+          height: 65px;
+          width: 93px;
+          @include breakpoint($medium_large) {
+            display: none;
+          }
+        }
+      }
+    }
+    .touchevents & {
+      section.moon_view .moon_img_and_detail_container {
+        height: 600px;
+  
+        @include breakpoint($medium_mid) {
+          height: 750px;
+        }
+        @include breakpoint($large) {
+          height: 800px;
+        }
+        @media screen and (orientation: landscape) {
+          @media screen and (max-height: 600px) {
+            height: 400px;
+          }
+          .moon_img {
+            padding: 72px 0;
+              @include breakpoint($medium_large) {
+                padding: 0;
+              }
+          }
+        }
+      }
+    }
+  
+    // start view frame styles
+    .view_frame {
+      .pane_title {
+        color: #CBCBE4;
+      }
+      .icon_button {
+        color: #AAAAAA;
+        .icon.indicator {
+          visibility: hidden;
+        }
+        &:hover {
+          color: $hover_color;
+        }
+        &.current {
+          color: white;
+          .icon.indicator {
+            visibility: visible;
+          }
+        }
+      }
+    }
+    .zoom_map_toggle {
+      background-color: #1C2027;
+      .icon_button {
+        color: #D2D2D2;
+      }
+      &.zoomed {
+        background-color: #6161FF;
+        .icon_button {
+          color: #ffffff;
+        }
+      }
+    }
+    .no-touchevents & { // correct hover states on mobile
+      .zoom_map_toggle {
+        &:hover {
+          background-color: #474747;
+        }
+      }
+    }
+    .view_frame_toggle {
+      background-color: #1C2027;
+      .icon_button {
+        color: #D2D2D2;
+      }
+      &.zoomed {
+        display: none;
+      }
+      &:hover {
+        background-color: #474747;
+      }
+    }
+    .main_window {
+      .view_frame {
+        max-width: 176px;
+        padding: 29px 26px 31px;
+        @include breakpoint($medium_mid) { // overrides mvg breakpoint
+          &.open {
+            display: none;
+          }
+        }
+        @include breakpoint($medium_large) {
+          &.open {
+            display: block;
+          }
+        }
+        .pane_title {
+          margin-bottom: 4px;
+        }
+        .filters_wrapper {
+          margin-bottom: 10px;
+          .icon_button {
+            margin: 0;
+            padding: 0;
+            flex-direction: row;
+            min-height: 48px;
+            opacity: 0.4;
+            &.current {
+              opacity: 1;
+            }
+          }
+          .text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-left: 15px;
+            line-height: 1.2;
+          }
+        }
+        .pane.filters {
+          padding-bottom: 16px;
+          margin-bottom: 23px;
+        }
+      }
+      .view_frame_toggle {
+        width: 84px;
+        background-color: #6161FF;
+        @include breakpoint($medium_mid) { // overrides mvg breakpoint
+          display: none;
+          &.open {
+            display: none;
+          }
+        }
+        @include breakpoint($medium_large) {
+          display: block;
+          &.open {
+            display: none;
+          }
+        }
+        .icon_button {
+          margin: 0;
+          padding: 13px 22px 14px 23px;
+          color: #ffffff;
+        }
+        .text {
+          font-size: 13px;
+        }
+      }
+      .zoom_map_toggle {
+        display: none;
+      }
+    }
+    .toolbar {
+      position: absolute;
+      @include breakpoint($medium_large) {
+        display: none;
+      }
+      .tap_for_more_panel {
+        margin: 0 auto;
+        max-width: 270px;
+      }
+      .view_frame {
+        background-image: none;
+        background-color: #1C2027;
+        &.open {
+          display: block;
+          @include breakpoint($medium_mid) { // overrides mvg breakpoint
+            display: block;
+          }
+          @include breakpoint($medium_large) {
+            display: none;
+          }
+        }
+        .pane_title {
+          margin-bottom: 0;
+        }
+        .filters_wrapper {
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+          .icon_button {
+            width: 50%;
+            padding: 1rem;
+            margin-bottom: 2px;
+            opacity: 0.4;
+            &.current {
+              opacity: 1;
+            }
+          }
+          .text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+          }
+        }
+        .pane.filters {
+          margin-top: 20px;
+        }
+      }
+      .view_frame_toggle {
+        width: 50%;
+        &.more_options_open {
+          display: block;
+          @include breakpoint($medium_mid) { // overrides mvg breakpoint
+            display: block;
+          }
+          @include breakpoint($medium_large) {
+            display: none;
+          }
+        }
+        &.zoomed {
+          display: none;
+        }
+        .text {
+          font-size: 12px;
+        }
+      }
+      .zoom_map_toggle {
+        display: block;
+        width: 50%;
+        .text {
+          font-size: 12px;
+        }
+        &.zoomed {
+          width: 100%;
+          .text {
+            font-size: 18px;
+            font-weight: 600;
+          }
+          .icon {
+            display: none;
+          }
+        }
+      }
+      .icon_button .icon {
+        .naked_eye_icon {
+          width: 22.5px;
+          height: 22.5px;
+          margin-top: -4px;
+        }
+        .zoom_icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .zoomed .toolbar .tap_for_more_panel {
+      max-width: none;
+    }
+    // end view frame styles
+  
+    // detail panel styles
+    .moon_detail {
+      background-color: #1C2027;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      z-index: 25; // above site nav
+      @include breakpoint($large) {
+        height: 90%;
+        z-index: 5; // back down to what it is set at for mvg
+      }
+      .detail_inner_wrapper {
+        height: 100%;
+      }
+      .detail_close {
+        &.arrow {
+          background-color: #6161FF;
+        }
+        .icon_wrapper {
+          color: #ffffff;
+        }
+      }
+      .detail_content {
+        height: 100%;
+        @include breakpoint($large) {
+          max-height: none;
+        }
+      }
+    }
+  }

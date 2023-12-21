@@ -1,0 +1,42 @@
+/*
+*
+*   _image_enlarge.scss
+*
+*   for images with a "Click to enlarge" lightbox  
+*/
+
+a.main_image_enlarge, a.inline_image_enlarge {
+  
+  display: block;
+  position: relative;
+  height: 100%;
+
+  .enlarge_icon {
+    position: absolute; 
+    border-radius: 6px;
+    border: 1px solid rgba(200,200,200,0.8);
+    left: 15px; 
+    bottom: 15px; 
+    width: 40px; 
+    height: 40px; 
+    background-color: rgba(0,0,0,0.5);
+    background-image: url("/src/assets/zoom_icon.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    //display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+  }
+
+  &:hover {
+    .enlarge_icon {
+      opacity: 0.8;
+    }
+  }    
+}
+
+// This gets attached to the #fancybox-lock div to make sure it comes up on top of the addthis floater
+body #fancybox-lock {
+  z-index: 200000;
+}

@@ -1,0 +1,81 @@
+// outside the iframe. just the layout
+
+.wysiwyg_content .webgl_module_container {
+  @include module_layout;
+  iframe {
+    height: 60vh;
+    @include breakpoint((orientation landscape) (max-height 600px)) {
+      height: 120vh; // to accommodate stacking of the controls & title so they don't overlap
+      .controls.key {
+        position: relative;
+      }
+      .title_container {
+        text-align: center;
+      }
+    }
+  }
+
+  .caption_button {
+    cursor: pointer;
+    background-color: #e4eef7;
+    text-align: center;
+    margin-top: -7px;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 1.3em 1.5em;
+    display: block;
+    @include breakpoint($medium_large) {
+      padding: 1.5em;
+      font-size: 1.3em;
+    }
+    &:hover {
+      background-color: #edf7ff;
+      text-decoration: underline;
+    }
+  }
+}
+
+.webgl_module_container_title {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+
+/* variations: */
+.feature_pages .wysiwyg_content .webgl_module_container {
+  //@include feature_page_module_layout;
+  max-width: none;
+  &.column-width {
+    @include feature_page_module_layout;
+  }
+}
+
+.webgl_module_container {
+  &.full {
+    margin: 0;
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99999; //above addthis
+    }
+  }
+}
+
+// touchscreen styles - needs to be a gutter on each side so a user can scroll past (also needed for webGL module)
+.touchevents {
+  .feature_pages .webgl_module_container {
+    max-width: 86%;
+  }
+  .content_page .webgl_module_container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 86%;
+    @include breakpoint($medium_mid) { // when 1 column, stacked
+      max-width: none;
+
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Metropolis';
+  font-weight: normal;
+  src: url("/src/assets/fonts/Metropolis-Regular.otf");
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-weight: 500;
+  src: url("/src/assets/fonts/Metropolis-Medium.otf");
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-weight: 600;
+  src: url("/src/assets/fonts/Metropolis-SemiBold.otf");
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-weight: bold;
+  src: url("/src/assets/fonts/Metropolis-Bold.otf");
+}
+
+@font-face {
+  font-family: 'CooperHewitt';
+  font-weight: normal;
+  src: url("/src/assets/fonts/CooperHewitt-Medium.otf");
+}
+
+@font-face {
+  font-family: 'CooperHewitt';
+  font-weight: 500;
+  src: url("/src/assets/fonts/CooperHewitt-Semibold.otf");
+}
+
+@font-face {
+  font-family: 'CooperHewitt';
+  font-weight: bold;
+  src: url("/src/assets/fonts/CooperHewitt-Bold.otf");
+}
+
+body{
+  font-family: Metropolis, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+}
+
+#app {
+  margin: 0 auto;
+}

@@ -1,0 +1,418 @@
+// aka tools_menus
+
+@mixin scrollbar_styled($bar_color: rgba(107,107,107,0.6), $track_color: rgba(157,157,157,0.4), $width: 8px, $height: 8px) {
+    &::-webkit-scrollbar {
+      width: $width;
+      height: $height;
+    }
+    &::-webkit-scrollbar-thumb { // the 'bar'
+      background-color: $bar_color; //rgba(107,107,107,0.6); //#93a4ab;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $track_color; //rgba(157,157,157,0.4); // #1c1a1d;
+    }
+  }
+
+
+.view_frame_wrapper { // aka tools_menu
+    .pane {
+      border-bottom: 1px solid #3E434D;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    .pane_title {
+      font-family: $secondary_font_family;
+      color: #a5b4cf;
+      text-transform: capitalize;
+      font-size: 13px;
+    }
+    .filters_wrapper {
+      display: flex;
+    }
+    .icon_button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: $moon_blue;
+      transition: color 200ms ease-out;
+      .icon.indicator {
+        visibility: hidden;
+      }
+      &:hover {
+        color: $hover_color;
+      }
+      &.current {
+        color: white;
+        .icon.indicator {
+          visibility: visible;
+        }
+      }
+      &.south .icon.hemisphere {
+        transform: rotate(180deg);
+      }
+    }
+    .hemisphere {
+      text-align: center;
+    }
+    .hemisphere_buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+      .icon_button {
+        .icon.indicator {
+          position: absolute;
+          transform: translate(50%, -100%);
+          top: -8px;
+          width: 8px;
+          height: 8px;
+        }
+        .icon.hemisphere {
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .icon_button.north:after {
+        display: block;
+        content: "Northern";
+      }
+      .icon_button.south:after {
+        display: block;
+        content: "Southern";
+      }
+    }
+    .faq {
+      color: $moon_blue;
+      cursor: pointer;
+      transition: color 200ms ease-out;
+      &:hover {
+        color: $hover_color;
+      }
+      .question {
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        background-color: $dark_side;
+        margin-right: 8px;
+        text-align: center;
+      }
+    }
+  
+    ////////////////
+    // desktop panel
+    .main_window & {
+      color: #A5B4CF;
+      display: none;
+      position: absolute;
+      height: auto;
+      width: 174px;
+      background-color: #1C2027;
+      padding: 31px 17px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      overflow-y: auto;
+      @include scrollbar_styled(#78CBFF, rgb(26, 48, 85), 8px); 
+  
+      // cascading vertical breakpoints 
+      bottom: 84px;
+      max-height: calc(100% - 166px);
+  
+      @include breakpoint($medium_mid) {
+        display: block;
+        &.open {
+          .view_frame {
+            opacity: 1;
+          }
+          .close {
+            opacity: 1;
+          }
+        }
+      }
+      @include breakpoint($medium_large) {
+        bottom: 160px;
+      }
+      @media (max-height: 700px) and (orientation: landscape) { // for small landscape screens, could add a width
+        bottom: 68px;
+      }
+  
+      .view_frame {
+        opacity: 0;
+        transition: opacity 125ms ease-out;
+      }
+      .pane_title {
+        text-align: left;
+      }
+      .pane {
+        &.filters {
+          padding-bottom: 4px;
+          .pane_title {
+            margin-bottom: 10px;
+          }
+        }
+        &.sights {
+          padding: 18px 0 20px;
+          .pane_title {
+            margin-bottom: 6px;
+          }
+        }
+        &.hemisphere {
+          padding-top: 18px;
+          .pane_title {
+            margin-bottom: 22px;
+          }
+        }
+        &.faq {
+          padding-top: 16px;
+        }
+      }
+      .filters_wrapper {
+        flex-direction: column;
+        .icon_button {
+          flex-direction: row;
+          margin-bottom: 18px;
+          .icon {
+            width: 24px; // just filters_wrapper icons
+            height: 24px;
+            margin-right: 16px;
+          }
+        }
+      }
+      .sights_select {
+        margin: 0;
+      }
+      .hemisphere_buttons {
+        flex-direction: column;
+        .icon_button {
+          margin-bottom: 20px;
+          .icon.hemisphere {
+            margin-right: 18px;
+          }
+        }
+        .icon_button.north:after {
+          line-height: 0;
+        }
+        .icon_button.south:after {
+          line-height: 0;
+        }
+      }
+      .faq .question {
+        display: none;
+      }
+      .close {
+        position: absolute;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 36px;
+        width: 36px;
+        right: 0;
+        top: 0;
+        padding: 11px;
+        cursor: pointer;
+        transition: opacity 125ms ease-out;
+        .icon {
+          color: #cccccc;
+          font-size: 1rem;
+          pointer-events: all;
+          //right: 10px;
+        }
+        &:hover .icon {
+          color: #ffffff;
+        }
+      }
+    }
+    .detail_open .main_window & {
+      display: none;
+    }
+  
+    ///////////////
+    // mobile panel
+    .toolbar & {
+      position: absolute;
+      bottom: -10px;
+      width: 100%;
+      padding: 9px 25px 30px;
+      margin: auto;
+      border-radius: 9px 9px 0 0;
+      background-image: linear-gradient(#0B1932, #081F3F);
+      max-height: calc(var(--vh) - var(--header_height));
+      overflow-y: auto;
+      display: none;
+      opacity: 0;
+      transition: bottom 500ms ease-in-out, opacity 500ms ease-in-out;
+      &.disable {
+        transition: none;
+      }
+      &.open {
+        display: block;
+        @include breakpoint($medium_mid) {
+          display: none;
+        }
+      }
+      &.slide_and_fade {
+        bottom: 0;
+        opacity: 1;
+      }
+      .pane {
+        text-align: center;
+      }
+      .pane {
+        &.filters {
+          padding-top: 16px;
+        }
+        &.sights {
+          padding: 22px 0 26px;
+          .pane_title {
+            margin-bottom: 16px;
+          }
+        }
+        &.hemisphere {
+          padding-top: 20px;
+          padding-bottom: 18px;
+          border-bottom: none;
+          .pane_title {
+            margin-bottom: 28px;
+          }
+        }
+        &.faq {
+          padding-top: 16px;
+        }
+      }
+      .filters_wrapper {
+        flex-direction: row;
+        margin: 0 20px;
+        .icon_button {
+          flex-direction: column;
+          margin-bottom: 9px;
+          width: 33%;
+          .icon {
+            width: 23px;
+            height: 23px;
+          }
+          .text {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+          }
+        }
+      }
+      .sights_toggle.switchbox_container {
+        width: 140px;
+        margin: 0 auto;
+        .switch_label {
+          padding: 4px 10px;
+        }
+      }
+      .hemisphere_buttons {
+        .icon_button {
+          flex-direction: column;
+          padding: 0;
+          .icon.indicator {
+            transform: translate(0, -100%);
+          }
+        }
+        .icon_button.north {
+          margin-right: 36px;
+        }
+        .icon_button.north:after {
+          display: block;
+          content: "Northern";
+          font-size: 12px;
+          margin-top: 10px;
+        }
+        .icon_button.south:after {
+          display: block;
+          content: "Southern";
+          font-size: 12px;
+          margin-top: 10px;
+        }
+      }
+      .faq {
+        .faq_wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .text {
+          line-height: 0;
+        }
+      }
+      .close {
+        cursor: pointer;
+        top: 0;
+        width: 20px;
+        margin: auto;
+        border-top: 2px solid grey;
+        text-align: center;
+        height: 11px;
+        .icon {
+          width: 33px;
+          height: 33px;
+          position: absolute;
+          color: #cccccc;
+          font-size: 1rem;
+          pointer-events: all;
+          right: 10px;
+        }
+        &:hover .icon {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  
+  .view_frame_toggle {
+    .main_window & {
+      opacity: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 58px;
+      background-color: #ffffff00;
+      border-radius: 2px 0 0 2px;
+      transition: background-color 200ms ease-out, opacity 125ms ease-out;
+      &:hover {
+        background-color: $hover_color;
+      }
+      &.open {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 125ms ease-out;
+      }
+      .icon_button {
+        color: #0E0E22;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 6px 0 7px 0;
+  
+        .icon {
+          width: 24px; // just filters_wrapper icons
+          height: 24px;
+        }
+        .text {
+          margin-top: 6px;
+          text-align: center;
+          font-family: $core_font_family;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.071;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .moon_view.detail_open .main_window & {
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+    }
+    .toolbar & {
+      display: block;
+      width: 33%;
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+    }
+  }

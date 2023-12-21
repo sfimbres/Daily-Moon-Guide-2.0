@@ -1,0 +1,72 @@
+/*
+*   _layout
+*
+*   High-level layout elements
+*/
+
+// All modules are full width, 12 columns by default
+.module { 
+  // this is the padding for large sections (modules) - a mixin, so it can have a media query within it - jh
+  //@include module_padding; 
+  position: relative;
+
+}
+
+/*
+.content_page.module { // maybe - jh
+  padding: 2.3em 0 3em;
+}
+*/
+
+.grid_layout {
+  //@include container();
+  width: $small_inner_layout_width;
+  @include breakpoint($medium_mid) {
+    //@include container($medium_layout);
+    width: $medium_mid_inner_layout_width;
+    
+  }
+  @include breakpoint($medium_large) {
+    //@include container($large_layout);
+    width: $medium_large_inner_layout_width;
+
+  }
+  @include breakpoint($large) {
+    max-width: $max_inner_layout_width;
+    width: $large_inner_layout_width;
+    .content_page & {
+      width: 90%; // This allows for the arrow buttons to fit in the side margins
+    }
+  }
+}
+
+
+// for modules that contain a carousel
+//applied to grid_container, on mobile it should be 100% otherwise it should inherit grid_layout's sizes
+.suggested_features .grid_layout, .news_teaser .grid_layout, .carousel_teaser .grid_layout {
+  @include breakpoint($small_only) {
+    width: 100%;
+    header {
+      margin-left: auto;
+      margin-right: auto;
+      width: 95%;
+    }
+    footer {
+      margin-left: auto;
+      margin-right: auto;
+      width: 95%;
+    }
+  }
+}
+
+.grid_layout .grid_layout { // nested grid layouts 
+  width: 100%; 
+  max-width: none;
+}
+
+.feature_area_container {
+  z-index: auto;
+  @include breakpoint($width_for_desktop_nav) {
+    z-index: 1;
+  }
+}

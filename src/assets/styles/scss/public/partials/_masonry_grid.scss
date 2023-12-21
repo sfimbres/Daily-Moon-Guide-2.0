@@ -1,0 +1,71 @@
+//For user generated item grid modules
+.item_grid_module {
+  clear: both;
+  margin: 3em auto;
+  @include breakpoint($medium_large) {
+    margin: 4em auto;
+  }
+  li {
+    visibility: hidden; //shown in js
+  }
+  .grid_content {
+    margin-bottom: 20px; //in px to match masonry gutter
+    .grid_image {
+      text-align: center;
+      @include breakpoint($medium_mid) {
+        text-align: left;
+      }
+      img {
+        width: auto;
+        @include breakpoint($medium_mid) {
+          width: 100%
+        }
+      }
+    }
+    .caption {
+      font-size: .88em;
+      padding: 1em;
+      color: #565455;
+      @include breakpoint($medium_mid) {
+        background-color: #D8D6D7;
+      }
+    }
+  }
+}
+
+.feature_pages .wysiwyg_content .item_grid_module { // for Feature Page overrides
+  max-width: none;
+  width: 90% !important;
+  left: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  @include breakpoint($medium_mid) {
+    width: 98% !important;
+    left: 1%;
+  } 
+  @include breakpoint($medium_large) {
+    width: 95% !important;
+    left: 2.5%;
+  } 
+  @include breakpoint($large) {
+    width: 85% !important;
+    left: 0;
+  } 
+  @include breakpoint($xlarge) {
+    width: 75% !important;
+  } 
+  @include breakpoint($xxlarge) {
+    width: 65% !important;
+  }    
+}
+
+//explore overlay styles
+.explore_overlay_page {
+  .item_grid_module {
+    .caption {
+      background-color: transparent;
+      color: #9C9FA4; //#b0b4b9 - explore overlay captions are usuaaly - jh
+    }
+  }
+}
+

@@ -1,0 +1,361 @@
+/*
+*   _feature_pages - public view
+*
+*  2 different layouts 2 different header types
+*/
+
+.feature_pages {
+  padding: 1em 0 3.8em;
+  &.banner_present {
+    padding: 2.5em 0 2.2em;
+    @include breakpoint($medium_large){
+      padding: 4.8em 0 5em;
+    }
+  }
+  //#page_header {
+    //@include feature_page_width;
+  //}
+
+  #on_this_page_column {
+    .on_this_page_nav_wrapper.desktop {
+      display: none;
+      left: 4%;
+      &.nav_is_open {
+        width: 16%;
+        @include breakpoint($xlarge) {
+          width: 20%;
+        }
+      }
+      &.nav_is_fixed {
+        left: auto;
+        transform: translateX(0);
+      }
+      &.nav_is_open.nav_is_fixed {
+        left: 4%;
+        transform: translateX(-1rem);
+      }
+      @include breakpoint($large) {
+        display: block;
+      }
+    }
+  }
+  #primary_column {
+    width: 100%;
+    margin: 0;
+    .on_this_page_nav_wrapper.mobile {
+      display: block;
+      .on_this_page_nav {
+        @include breakpoint($medium_mid) {
+          width: 45%;
+        }
+      }
+      @include breakpoint($large) {
+        display: none;
+      }
+    }
+  }
+  //.wysiwyg_content > * { // not all modules
+    //@include feature_page_width;
+  //}
+
+  .wysiwyg_content > .mb_section {
+    width: 100%;
+    max-width: none;
+    margin: auto 0;
+
+    //& > :not(.mb_section_inner), .mb_section_inner > :not(.wide):not(.full-bleed):not(.left):not(.right):not(.parallax):not(.numbered_grid_module):not(.carousel_module):not(.double_teaser) {
+      //@include feature_page_width;
+    //}
+
+  }
+
+  .wysiwyg_content .table_wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wysiwyg_content {
+    p {
+      font-size: 18px;
+      line-height: 28px;
+      @include breakpoint($medium_large) {
+        font-size: 19px;
+        line-height: 30px;
+      }
+    }
+
+    // not easily maintainable, but it does work - jh
+    // bulleted and numbered lists on a feature page
+    > ul:not(.item_list_module):not(.item_grid_module), > ol { // feature page bulleted and ordered lists need special attention. make sure this doesn't affect related_content_module or ...
+      list-style-position: outside;
+      padding-left: 1em;
+      ul, ol { // and all sub lists
+        list-style-position: outside;
+      }
+    }
+  }
+  //&.planet_profile_feature { // initial layout of planet profile feature page
+    // cannot find any reference to "planet_profile_feature" here in moon or in the gem -smb
+    //#on_this_page_column {
+    //  width: 16%;
+    //  margin-left: 4%;
+    //  position: absolute;
+    //  display: none;
+    //  z-index: 1;
+    //  @include breakpoint($medium_large){
+    //    display: block;
+    //  }
+    //}
+  //}
+}
+
+
+
+// above the .feature_pages container
+.top_feature_area {
+  text-align: center;
+  position: relative;
+
+
+  .header_overlay {
+    position: absolute;
+    width: 100%;
+    padding: 0 2%;
+    top: 46%;
+    color: white;
+    transform: translateY(-50%);
+    @include breakpoint($medium_large) {
+      padding: 0 4%;
+    }
+
+    @include breakpoint($xlarge) {
+      padding: 0 8%;
+    }
+    .article_title {
+      font-size: 1.6em; // 1.2em
+      margin-bottom: 0;
+      @include breakpoint($medium){
+        font-size: 2em; // 1.6em
+      }
+      @include breakpoint($medium_mid){
+        font-size: 1.9em;
+      }
+      @include breakpoint($medium_large){
+        font-size: 2.2em;
+      }
+      @include breakpoint($large){
+        font-size: 2.8em;
+      }
+      @include breakpoint($xlarge){
+        font-size: 3.2em;
+      }
+      @include breakpoint($xxlarge){
+        font-size: 3.4em;
+      }
+    }
+    .sub_title {
+      font-size: 1.2em;
+      @include breakpoint($medium){
+        font-size: 1.5em;
+      }
+      @include breakpoint($medium_large){
+        font-size: 1.9em;
+      }
+    }
+    .author {
+      padding: 0.2em 0.5em 0.5em 0.6em;
+      background-color: rgba(0,0,0,0.5);
+      margin: 0.2em auto 1em;
+      display: inline-block;
+      @include breakpoint($medium){
+        margin-top: 0.4em;
+      }
+      @include breakpoint($medium_mid){
+        margin-top: 0.7em;
+      }
+      @include breakpoint($medium_large){
+        padding: 0.3em 0.5em 0.5em 0.7em;
+        max-width: 500px;
+        margin-top: 1em;
+      }
+      @include breakpoint($large){
+        padding: 0.4em 0.6em 0.6em 0.8em;
+        max-width: 600px;
+        margin-top: 1.5em;
+      }
+      @include breakpoint($xlarge){
+        margin-top: 1.8em;
+      }
+      p {
+        color: white;
+        margin: 0;
+        font-size: 0.8em;
+        @include breakpoint($medium_large) {
+          font-size: 0.95em;
+        }
+      }
+    }
+  }
+
+  .article_title {
+    margin-bottom: 0.9em;
+  }
+  .category_title {
+    color: $tertiary_text_color; // "FEATURE" category title
+    margin-bottom: 1em;
+  }
+  a.category_title{
+    color: $core_link_color;
+  }
+
+  .feature_header:first-child {
+    //@include feature_page_width;
+    padding: 3em 0 1.7em;
+
+    @include breakpoint($medium){
+      padding: 4em 0 2em;
+    }
+
+    @include breakpoint($medium_large){
+      max-width: 700px;
+    }
+
+    @include breakpoint($large){
+      max-width: 800px;
+    }
+
+    @include breakpoint($xlarge){
+      max-width: 900px;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 56%;
+      border-bottom: 5px solid;
+      max-width: 200px;
+      margin: 1.7em auto 0.3em;
+    }
+  }
+
+  .feature_header.no_main_image {
+    padding-bottom: .9em;
+  }
+
+  // no main image and a BANNER or FEATURE
+  .feature_header.header_under_banner {
+    margin-bottom: 1rem;
+    &:first-child {
+      padding: 0; // let's not use first-child to add space. - jh
+      &:after { // remove the underline
+        content: none;
+      }
+    }
+    .article_title {
+      padding-top: 4.8rem;
+      margin-bottom: 0;
+    }
+  }
+
+
+  .release_date {
+    text-transform: none;
+    color: $core_text_color;
+    margin-left: 0.1em;
+  }
+
+  .header_overlay + .feature_header {
+    //@include feature_page_width;
+    text-align: left;
+  }
+
+  figure.lede.full_width figcaption {
+    margin: .8em;
+    text-align: left;
+    font-size: 1em;
+  }
+  .news_feature_subtitle {
+    font-size: 1.1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .5em;
+    font-weight: 500;
+    line-height: 1.3em;
+
+  }
+  &.full_width_top .news_feature_subtitle {
+    @include breakpoint($medium){
+      max-width: 480px;
+      font-size: 1.2em;
+    }
+
+    @include breakpoint($medium_mid){
+      max-width: 600px;
+      font-size: 1.4em;
+    }
+
+    @include breakpoint($medium_large){
+      max-width: 700px;
+      font-size: 1.6em;
+    }
+
+    @include breakpoint($large){
+      max-width: 800px;
+      font-size: 1.8em;
+    }
+
+    @include breakpoint($xlarge){
+      max-width: 900px;
+      font-size: 2em;
+    }
+  }
+
+  &.left_top .news_feature_subtitle, &.no_image .news_feature_subtitle {
+    @include breakpoint($medium) {
+      font-size: 1.2em;
+    }
+
+    @include breakpoint($medium_mid) {
+      font-size: 1.4em;
+    }
+
+    @include breakpoint($medium_large) {
+      font-size: 1.5em;
+}
+
+    @include breakpoint($large) {
+      font-size: 1.6em;
+    }
+  }
+}
+
+
+// Don't display anchor titles - these are just there to make the ckeditor widget work
+span.mb_anchor_title {
+  display: block;
+  position: relative;
+  height: 0;
+  visibility: hidden;
+
+  a.mb_anchor {
+    position: absolute;
+  }
+}
+
+/* SHIM: if an anchor is the only element inside a paragraph,
+         cancel out that paragraph’s top margin
+         (to avoid extra space above the content that follows) */
+@media not print { // not wanted for print styles
+  p span.mb_anchor_title:first-child:last-child {
+    margin-top: -1em;
+  }
+}
+
+// a little hacky, but the subtitle is optional
+.article_title + .news_feature_subtitle {
+  margin-top: -19px;
+  .header_overlay & {
+    margin-top: 12px;
+  }
+}

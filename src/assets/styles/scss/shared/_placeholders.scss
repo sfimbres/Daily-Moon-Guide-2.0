@@ -1,0 +1,174 @@
+/*instance mixins */
+
+
+
+@mixin scrollbar_styled($bar_color: rgba(107,107,107,0.6), $track_color: rgba(157,157,157,0.4), $width: 8px, $height: 8px) {
+    &::-webkit-scrollbar {
+      width: $width;
+      height: $height;
+    }
+    &::-webkit-scrollbar-thumb { // the 'bar'
+      background-color: $bar_color; //rgba(107,107,107,0.6); //#93a4ab;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $track_color; //rgba(157,157,157,0.4); // #1c1a1d;
+    }
+  }
+  
+  
+  // this is a little fragile, as soon as the thickness changes, the numbers get a little wonky. But this is the version I've chosen. Also the hit area is indepent of the size of the arrow
+  @mixin outline_arrow($direction: right, $color: #a1a3a3, $hover: #bcb9b9) {
+    position: absolute;
+    height: 75px;  // the hit area
+    width: 44px;
+    &:after {
+      content: '';
+      position: absolute;
+      margin: auto;
+      width: 25px;
+      height: 25px;
+      transform: rotate(45deg) skew(10deg, 10deg);
+      @if $direction == "right" {
+        top:0px;
+        left:2%;
+        right:20%;
+        bottom:2px;
+        border-top: 3px solid $color;
+        border-right: 3px solid $color;
+      }
+      @if $direction == "left" {
+        top:0px;
+        left:20%;
+        right:2%;
+        bottom:2px;
+        border-bottom: 3px solid $color;
+        border-left: 3px solid $color;
+      }
+    }
+    &:hover:after {
+      border-color: $hover;
+    }
+  
+  }
+  
+  $themes: (
+    'default': (
+      'primary': #FFCF2C,
+      'secondary': #fbe1c0,
+      'tertiary': #ffe3cc,
+      'background': #aac9ee,
+      'text_over_background': #f59f54,
+      'bg-color': #E0E7EF,
+      'number_bg': #aac9ee
+    ),
+  
+    'venus': (
+      'primary': #FFCF2C,
+      'secondary': #fbe1c0,
+      'tertiary': #ffe3cc,
+      'background': #984000,
+      'text_over_background': #f59f54,
+      'bg-color': #ede4e5,
+      'number_bg': blue
+    ),
+    'jupiter': (
+      'primary': #e36d79,
+      'secondary': #f9d1d2,
+      'tertiary': #ffe3cc,
+      'background': #E86A7B,
+      'text_over_background': #0f1e33,
+      'bg-color': #ede4e5,
+      'number_bg': #dcbfbf
+    ),
+    'sun': (
+      'primary': #fc7502,
+      'secondary': #ff6f0c,
+      'tertiary': #fecbca,
+      'background': #950600,
+      'text_over_background': #f43628,
+      'bg-color': #ede4e5
+    ),
+    'mercury': (
+      'primary': #f5b800,
+      'secondary': #ffb00a,
+      'tertiary': #f5e9ff,
+      'background': #5242be,
+      'text_over_background': #aca1ff,
+      'bg-color': #f3f1d8,
+      'number_bg': green
+  
+    ),
+    'juno': (
+      'primary': #a9d3ee,
+      'secondary': #2aabfe,
+      'tertiary': #fff,
+      'background': #5242be,
+      'text_over_background': #6c92ae,
+      'bg-color': #d1dde6,
+      'number_bg': orange
+    )
+  );
+  
+  
+  @function theme-opts(){
+    $options: '[' + map-keys($themes) + ']' ;
+    @return $options
+  }
+  
+  // @usage @include themify('color', 'primary');
+  @mixin themify($property, $key, $themes: $themes) {
+    // Iterate over the themes
+    @each $theme, $colors in $themes {
+      @if $theme != 'default' {
+      // Create a selector (e.g. `.media.jupiter, .jupiter .media`)
+      &.#{$theme},
+      .#{$theme} & {
+        // Output the declaration
+        #{$property}: map-get($colors, $key);
+      }
+  
+      } @else {
+        #{$property}: map-get($colors, $key);
+      }
+    }
+  }
+  
+  @mixin moon_caret($bg-color: #1a446b, $arrow-direction: 'up') {
+    &:before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      background-color: $bg-color;
+      border-radius: 50%;
+    }
+    &:after {
+      content: '';
+      @include arrow($arrow-direction, #a1cbff, 5px, 4px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  
+  }
+  
+  @mixin focus {
+  
+    outline: 3px solid #b3d4fc;
+    outline-offset: 0px;
+  
+    // outline: thin dotted;
+    // Hide keyboard focus outline from touch users
+    .touchevents & {
+       outline: none;
+    }
+    // Hide keyboard focus outline from mouse users
+    &:hover {
+      outline: none;
+    }
+  
+  }
+  

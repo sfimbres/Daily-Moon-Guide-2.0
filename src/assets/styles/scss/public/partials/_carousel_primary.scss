@@ -1,0 +1,123 @@
+/*
+*   _page_carousel - public view
+*
+*   Just the main carousel on the homepage
+*  this needs work. There is a lot of extra css in here - jh 1/14/15
+*/
+
+// Overrides to vendor file
+.main_carousel.module {
+  padding-top: 1.7em; // overrides the default module padding - jh
+  padding-bottom: 2.1em; // overrides the default module padding - jh
+  @include breakpoint($medium_mid) {
+    padding-top: 2em;
+    padding-bottom: 2.2em; 
+  }
+  @include breakpoint($medium_large) {
+    padding-top: 3em;
+    padding-bottom: 2.9em; 
+  }
+  @include breakpoint($medium_large) {
+    padding-top: 3.5em;
+    padding-bottom: 3.2em; 
+  }
+
+  .carousel_header {
+    .carousel_title { // very similar to module_title but not tied to it, And with extra bottom margin - jh
+      @extend .module_title;  
+      margin-bottom: .8em;
+      @include breakpoint($medium_mid) {
+        margin-bottom: 1.1em;
+      }
+    }
+  }
+  .slick-slider {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; // the width of carousels with arrows on the sides. make a mixin with responsiveness - jh
+    margin-bottom: 0;  // not needed for main carousel
+    .slick-slide a {
+      text-decoration: none;
+    }
+  
+    .content_title { // full width on mobile half on larger screens
+      margin: .6em 0 0;
+      color: $core_text_color;
+      @include breakpoint($medium_mid) {
+        margin: 0 0 .8em;
+      }
+      //h1 { // trying the headline mixin, but this may not be appropriate (it changes from half to full width) - jh
+        //@include responsive_headline(.93);
+      //}
+    }
+  
+    .left-col, .right-col {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    .left-col { //text column
+      @include breakpoint($medium_mid) {
+      display: inline-block;
+        //@include span(2.4 of 5);
+      }
+    }
+  
+    .right-col { 
+      width: 100%;
+      @include breakpoint($medium_mid) {
+        //@include span(2.6 of 5 last);
+      }
+    }
+    
+/* // not used 2/17/15 - jh
+    .left-col ul a {
+      color: #249;
+    }
+*/
+    
+    .carousel_item_description {
+      display: none;
+      @include breakpoint($medium_mid) {
+        display: block;
+        margin-bottom: 1.5em;
+      }
+    }
+
+
+    .content_body { //contains the text (not the title) for carousel item
+      @extend .clearfix;
+      margin-bottom: .9em;
+      @include breakpoint($medium_mid) {
+        margin-bottom: 0;
+      }
+    }
+    .content_footer {
+      padding: .6em 1em 1em 0;
+      @include breakpoint($medium_large) {
+        padding: 0;
+        a + a { // stacked links at this size
+          margin-top: .6em;
+        }
+      }
+      .full_artical_link, .full_category_link { 
+        padding-right: .8em;
+        display: inline-block;
+        font-size: .9em;
+        white-space: nowrap; // android fix
+        @include breakpoint($medium_mid) {
+          font-size: 1em;
+        }
+        @include breakpoint($medium_large) {
+          float: left;
+          clear: both;
+        }
+        &:before {
+          content: "› ";
+        }
+      }
+    }
+  }
+}
+
+

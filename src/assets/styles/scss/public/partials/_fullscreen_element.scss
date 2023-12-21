@@ -1,0 +1,75 @@
+//-------------------- fullscreen styles --------------------//
+// possibly move out of timeline styles, if used elsewhere
+
+.fullscreen_element {
+  position: absolute;
+  top: 7px;
+  right: 7px; 
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  z-index: 10;
+  @include breakpoint($medium_large) {
+    top: 20px;
+    right: 20px; 
+
+  }
+
+  .fullscreen-icon {
+    height: 25px;
+    width: 25px;
+    background: url("/src/assets/fullscreen_sprite@2x.png") 1px -25px;
+    background-size: 25px;
+    margin: 13px 0 0 13px;
+  }
+
+  &:hover .fullscreen-icon {
+    background: url("/src/assets/fullscreen_sprite@2x.png") 1px 0px;
+    background-size: 25px;
+  }
+
+  &.fullscreen-mode .fullscreen-icon
+  {
+    background: url("/src/assets/fullscreen_sprite@2x.png") 1px -74px;
+    background-size: 25px;
+  }
+
+  &.fullscreen-mode:hover .fullscreen-icon {
+    background: url("/src/assets/fullscreen_sprite@2x.png") 1px -49px;
+    background-size: 25px;
+  }
+}
+
+
+// should be generalized - parent section, or just make a list of containers, like: ranger_module, ioc_module
+#timeline-embed {
+  // browsers hate each other
+  &:fullscreen {
+    height: 100%;
+    width: 100%;
+    min-height: none;
+    max-height: none;
+  } 
+/* // I don't think these are needed - jh
+  &:-webkit-full-screen {
+    height: 100%;
+    width: 100%;
+    min-height: none;
+    max-height: none;
+  }
+  &:-moz-full-screen {
+    height: 100%;
+    width: 100%;
+    min-height: none;
+    max-height: none;
+  }
+  &:-ms-fullscreen {
+    height: 100%;
+    width: 100%;
+    min-height: none;
+    max-height: none;
+  }
+*/
+}

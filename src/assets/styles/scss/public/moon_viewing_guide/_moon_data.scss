@@ -1,0 +1,182 @@
+.moon_data_container {
+    background-image: linear-gradient(#000,  #052652);
+    padding: 60px 0 30px;
+    @include breakpoint($medium_mid) {
+      padding: 30px 0 120px;
+    }
+    @include breakpoint($medium_large) {
+      padding: 20px 0 113px;
+    }
+  }
+  
+  .moon_data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    //margin-bottom: 7rem;
+    padding: 0 20px;
+    @include breakpoint($medium_mid) {
+      max-width: calc(100% - 208px);
+      padding: 0;
+      margin: 0 auto;
+    }
+    @include breakpoint($medium_large) {
+      flex-direction: row;
+      max-width: calc(100% - 100px);
+    }
+    @include breakpoint($large) {
+      max-width: 880px;
+    }
+    @include breakpoint($xlarge) {
+      max-width: 960px;
+    }
+    .col {
+      width: 100%;
+      @include breakpoint($medium_large) {
+        width: 50%;
+      }
+      &:first-child {
+        margin-top: 30px;
+        @include breakpoint($medium_large) {
+          margin-top: 0;
+          margin-right: 31px;
+        }
+        @include breakpoint($large) {
+          margin-right: 59px;
+        }
+        @include breakpoint($xlarge) {
+          margin-right: 140px;
+        }
+      }
+      &:last-child {
+        margin-top: 4rem;
+        @include breakpoint($medium_large) {
+          margin-top: 0;
+        }
+      }
+    }
+    .description {
+      font-family: $core_font_family;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .fact {
+      margin: 0 5px 30px;
+      border-bottom: 1px solid #4B4B4B;
+      @include breakpoint($medium_large) {
+        margin: 0 0 30px;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      .expand_row.expanded{
+        .chevron_icon {
+          transform: rotate(180deg);
+          color: white;
+        }
+      }
+      .category_title {
+        font-family: $secondary_font_family;
+        color: #A5B4CF;
+        font-size: 10px;
+        font-weight: 700;
+        @include breakpoint($medium_mid) {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+        @include breakpoint($large) {
+          margin-bottom: 0.7rem;
+        }
+      }
+      .expand_row_top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+      .icon_and_title_wrapper {
+        display: flex;
+        align-items: center;
+      }
+      .icon {
+        margin-right: 20px;
+      }
+      .moon_icon, .distance_from_earth_icon, .angular_diameter_icon {
+        width: 35px;
+        height: 35px;
+      }
+      .title {
+        font-family: $core_font_family;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.273;
+        letter-spacing: -0.37;
+        margin-right: 16px;
+        @include breakpoint($medium_mid) {
+          font-size: 26px;
+          margin-right: 22px;
+          line-height: 1.077;
+          letter-spacing: -0.43;
+        }
+        @include breakpoint($medium_large) {
+          font-size: 22px;
+          margin-right: 16px;
+          line-height: 1.273;
+          letter-spacing: -0.37;
+        }
+        @include breakpoint($large) {
+          font-size: 26px;
+          margin-right: 22px;
+          line-height: 1.077;
+          letter-spacing: -0.43;
+        }
+      }
+      .mi_km_toggle {
+        width: 80px;
+        margin: 0;
+      }
+      .expand_btn {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        margin-right: 7px;
+        padding: 15px;
+        color: #F6F6F6;
+  
+        &:hover {
+          color: #ffffff;
+        }
+        .chevron_icon {
+          width: 19px;
+          height: 19px;
+          transition: transform 0.2s;
+        }
+      }
+    }
+    .promo {
+      .video_container {
+        margin-bottom: 1rem;
+        video {
+          width: 100%;
+        }
+      }
+      .title {
+        font-family: $core_font_family;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: .2rem;
+      }
+      .description {
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }

@@ -1,0 +1,146 @@
+/*
+*   _wysiwyg_content
+*   including legacy styles
+*
+*
+*/
+
+.wysiwyg_content {
+  // Prevent long words from overlapping the secondary column
+  p, a {
+    word-wrap: break-word;
+  }
+  table a {
+    word-break: break-word;
+  }
+  > p {
+    .subsite_content_page & {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+  #primary_column & {
+    > :first-child {
+      // Make the beginning of a .wysiwyg_content area not have a top margin
+      // (To handle p, inline_img, h1, h2...) -JM
+      margin-top: 0;
+    }
+
+    .inset_box {
+      // A grey outline box for substantial blocks of special content (see /news_items/175) -JM
+      padding: .5em 2em;
+      margin: 2em 0;
+      border: 4px solid #DCE0E5;
+    }
+  }
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin: 1.2em 0 .5em; // added 11-17-14, 1.5em on mobile seems excessive - jh
+    @include breakpoint($medium_large) {
+      margin: 1.5em 0 .5em;
+    }
+  }
+  h1 {
+    font-size: 2.2em;
+  }
+  h2 {
+    font-size: 1.8em;
+  }
+  h3 {
+    font-size: 1.4em;
+  }
+  h4 {
+    font-size: 1.1em;
+  }
+  strong, b, .bold {
+    font-weight: bold;
+  }
+  // For image/text list items (overrides) -JM
+  //.content_title { // the main title of an article also, a link.
+    //@include responsive_headline(.8, .1);
+  //}
+  .article_teaser_body {
+    font-size: 1em;
+  }
+
+  //indentation buttons in the wysiwyg editor
+  .indent1 {
+    margin-left: 3.5em;
+  }
+  .indent2 {
+    margin-left: 7em;
+  }
+  .indent3 {
+    margin-left: 10.5em;
+  }
+
+
+  //modules in the CMS need to clear both, so they aren't floated by default - jh
+  .item_list_module { // in the cms an item list module
+    clear: both;
+  }
+
+/*
+  .extended_width_area {
+    // Used on list image text list on Evidence, for example.
+    // Breaks out of the primary column width
+    // Note: Means that primary column cannot have overflow hidden.
+    // -JM
+    @include breakpoint($medium_mid) {
+      width: 140%;
+    }
+  }
+*/
+
+  .expandable_element_link {
+    &.style_1 { // not used in SMAP? - jh
+      font-size: .8em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  .expandable_element { // used in table, expandable_element_module
+    display: none;
+  }
+}
+
+// For “Observe the Moon”
+.events_count {
+  font-size: 2.5em;
+  vertical-align: middle;
+}
+.map_info_window {
+  font-family: $core_font_family;
+  h3 {
+    font-size: inherit;
+    margin: 0.7em 0;
+  }
+  p {
+    margin: 0;
+  }
+  .category {
+    background-color: #ffedf0;
+    color: #b31c38;
+    padding: .3em .5em;
+    display: inline-block;
+    margin-bottom: 0.3em;
+    font-weight: 600;
+  }
+}
+
+.item_list + .mb_expand {
+  margin-top: 0;
+}
+.item_list + .mb_expand .expandable_element_link {
+  display: block;
+  margin-left: 34.48276%;
+  margin-top: -3em;
+}
+
+.item_list + .mb_expand .expandable_element {
+  margin-top: 1.5em;
+}
+
+

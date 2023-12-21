@@ -1,0 +1,120 @@
+/*
+*   _image_carousel 
+*   
+*    A carousel module with caption below the slides 
+*
+*/
+
+
+
+.wysiwyg_content .carousel_module.image_carousel {
+  overflow: visible; // for the lower caption and nav - needed?
+  height: auto;
+  .master-slider {
+    width: 100%;
+    height: 250px;
+    @include breakpoint($medium_large) {
+      height: 300px;
+    }
+    @include breakpoint($large) {
+      height: 500px;
+    }
+    @include breakpoint($xlarge) {
+      height: 600px;
+    }
+  }
+  .slider_caption {
+    display: block;
+    margin-top: .8em;
+    color: #5a6470;
+    font-size: 0.8em;
+    height: 70px; // this will need adjusting
+    overflow-y: auto;
+    line-height: 1.4em;
+    @include breakpoint($medium_large) {
+      height: 63px;
+    }
+    .link_container {
+      margin-top: 7px;
+      a {
+        font-size: 1rem;
+        font-weight: 700;
+        &:before {
+          //content:"\203A";
+        }
+      }
+    }
+  }
+
+  .ms-nav-next, .ms-nav-prev { 
+    // since this is inheriting our carousel module styles, we need to override those styles:
+    //border: 0;
+    //width: auto;
+    //height: auto;
+    display: block;
+    background: none;
+    margin-top: -25px;
+  }
+  
+  &.medium_mid, &.medium_large , &.large, &.xlarge , &.xxlarge {
+    .ms-nav-next, .ms-nav-prev {
+      display: block;
+    }
+  }
+  
+  //desktop (notouchevents) and a small carousel still needs arrows on hover
+  .no-touchevents &.medium, .no-touchevents &.small {
+    .ms-nav-next, .ms-nav-prev {
+      display: block;
+    }
+  }
+
+  .ms-nav-prev, .ms-nav-next { // we may need a media query here, for small size, but desktop window width - jh
+  }
+  &.medium_large, &.large, &.xlarge , &.xxlarge {
+    .ms-nav-next, .ms-nav-prev {
+      //margin-top: -80px;
+    }
+  }
+  .ms-nav-prev {
+    @include outline_arrow(left);
+    left: -57px;
+  }
+  .ms-nav-next {
+    @include outline_arrow();
+    right: -57px;
+  }
+  .ms-nav-prev, .ms-nav-next {
+    display: none;
+    @include breakpoint($medium_large) {
+      display: block;
+    }
+  }
+
+  .ms-bullets { //on mobile they are below
+    .ms-bullet {
+      background-color: white;
+      opacity: .3;
+    }
+    .ms-bullet-selected {
+      opacity: 1;
+      background-color: white;
+    }
+
+    @include breakpoint($small_only) {
+      bottom: -1.2em;
+      .slider_caption {
+        margin-top: 2.3em;
+        height: 56px;
+      }
+      
+      .ms-bullet {
+        background-color: black;
+      }
+      .ms-bullet-selected {
+        opacity: 1;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,161 @@
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: calc($height / $width) * 100%;
+    }
+    > .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  
+  body.detail_panel_open {
+    overflow: hidden;
+  }
+  
+  .moon_detail {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    flex: 1 0 auto;
+    max-width: none;
+    background-color: #0B1932;
+    z-index: 5;
+    @include breakpoint($large) {
+      position: relative;
+      height: auto;
+      top: auto;
+      max-width: 700px;
+      border-radius: 4px;
+    }
+    .detail_inner_wrapper {
+      position: relative;
+      color: #FFF;
+    }
+    .detail_close {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 0;
+      background-color: transparent;
+      cursor: pointer;
+      z-index: 1;
+      @include breakpoint($large) {
+        top: calc(50% - 20px);
+        left: -39px;
+        width: 39px;
+        height: 44px;
+        border-radius: 4px 0 0 4px;
+        background-color: #78CBFF;
+        &:hover {
+          background-color: $hover_color;
+        }
+      }
+      &.arrow {
+        display: none;
+        @include breakpoint($large) {
+          display: flex;
+        }
+      }
+      &.x {
+        display: flex;
+        @include breakpoint($large) {
+          display: none;
+        }
+      }
+      .icon_wrapper {
+        width: 20px;
+        height: 20px;
+        color: #ffffff;
+        margin-left: 8px;
+        @include breakpoint($large) {
+          margin-left: 9px;
+          color: #000000;
+        }
+      }
+      // use this for x instead of svg: @include x_icon(2px, white);
+      //.arrow {
+      //  padding: 0;
+      //  cursor: pointer;
+      //  width: 25px;
+      //  height: 25px;
+      //  background: url(/assets/ui_sprite@2x.png) -25px 0px;
+      //  background-size: 300px;
+      //  margin-top: 13px;
+      //  margin-left: 13px;
+      //  @include breakpoint($large) {
+      //    background: url(/assets/ui_sprite@2x.png) -75px -175px;
+      //    background-size: 300px;
+      //  }
+      //}
+    }
+    .detail_content {
+      max-height: 100vh;
+      width: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 49px 20px 7rem 20px; // large bottom margin b/c browser chrome can get in way on mobile
+      position: relative;
+      @include breakpoint($large) {
+        padding: 38px 31px 4rem 36px;
+      }
+      .detail_figure {
+        .detail_caption p {
+          font-family: $core_font_family;
+          color: #DBE8FF;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.429;
+        }
+      }
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        @include breakpoint($large) {
+          font-size: 33px;
+        }
+      }
+      .description {
+        margin-bottom: 2rem;
+        p {
+          font-family: $core_font_family;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.5;
+        }
+      }
+      .best_phase .description p {
+        margin-top: .3rem;
+      }
+      .subtitle {
+        font-family: $secondary_font_family;
+        color: #A5B4CF;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .view_type_wrapper {
+        display: flex;
+        margin-top: 0.4rem;
+      }
+      .icon_wrapper {
+        width: 24px;
+        height: 24px;
+        color: #78CBFF;
+        margin-right: 20px;
+        &.suggested {
+          color: #ffffff;
+        }
+      }
+    }
+  }

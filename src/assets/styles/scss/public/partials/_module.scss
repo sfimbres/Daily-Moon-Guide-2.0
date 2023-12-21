@@ -1,0 +1,439 @@
+/*
+*   _module
+*
+*   Large areas usually 'sections', but also 'asides' in the sidebar
+*   Gallery grid/list styles within modules should be in _grid_list_gallery
+*
+*/
+
+.module {
+  header {
+    margin-bottom: 1em;
+    position: relative;
+  }
+  footer {
+    text-align: center; //everything is centered in a module footer, by default
+    position: relative;
+  }
+}
+
+/* SPECIFIC MODULES */
+// Multimedia module - a carousel - "explore your planet" - GCC we should rename this maybe - jh 8/26/14
+.multimedia_teaser {
+  //@include unselectable;
+  overflow: hidden; // to handle that 190% below
+}
+
+.news_teaser, .site_teaser {
+  background-color: white;
+  z-index: 11;
+}
+
+// This Google Map is now depending on .responsive_image for dimensions. -Jim
+// .google_map_module {
+//   #map_inom_events {
+//     height: 800px;
+//     max-height: calc(100vh - 160px); // minus site header & a little space
+//     width: 100%;
+//   }
+// }
+
+#secondary_column aside .multimedia_teaser {
+  position: relative;
+  .text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 0 1.4em 2em;
+    bottom: 0;
+    .category_title, .media_feature_title {
+      color: white;
+    }
+  }
+}
+
+.multimedia_teaser { // this is identical to the other util-carousel teaser (.multimedia_teaser) - jh
+  //@include unselectable;
+  overflow: hidden; // to handle that 190% below
+  .util-carousel { //the container for util carouseld - possibly just util-carousel, unless there's a util-carousel without a 'more' button - jh
+    margin-bottom: 2em;
+    width: 190%;
+    @include breakpoint($medium) {
+      width: 90%;
+    }
+    @include breakpoint($medium_large) {
+      margin-bottom: 3em;
+    }
+  }
+}
+
+
+.suggested_features.module {
+  //@include unselectable;
+  @include themify('background-color', 'bg-color');
+  background-color: $background_color_midrange;
+}
+
+.related.module {
+  //@include unselectable;
+  padding-top: 1em; // module override
+  .module_title {
+    text-align: left;
+    font-size: 2em;
+  }
+  .gradient_line_module_top {
+    @extend .gradient_line;
+    margin: 0 0 2em;
+  }
+}
+
+
+.carousel_teaser.related {
+  .module_title { // the h2, to mostly match util-carousel width, which is determined with javascript - jh
+    text-align: center;
+    @include breakpoint($medium_mid) {
+      text-align: left;
+      width: 88%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @include breakpoint($medium_large) {
+      width: 88.5%;
+    }
+    @include breakpoint($large) {
+      width: 89%;
+    }
+  }
+}
+
+
+//homepage image on the left text on the right
+section.site_teaser {
+  .img_col {
+    width: 100%;
+    margin-bottom: 1.5em;
+    @include breakpoint($medium_mid) {
+      //@include span(1.75 of 4);
+      margin-bottom: 0;
+    }
+  }
+  .text_col {
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      //@include span(2.25 of 4);
+      //@include last;
+    }
+    .category_title {
+      font-size: 0.9em;
+    }
+    .description {
+      margin-bottom: 1.5em;
+    }
+    .module_title {
+      text-align: left;
+      font-weight: 400;
+    }
+    .module_title_small {
+      font-size: 2rem;
+      margin-bottom: .5em;
+    }
+  }
+  .site_teaser_caption {
+    margin: .5em 1em 0 0;
+    text-align: right;
+    font-size: .8em;
+  }
+
+  footer {
+    text-align: left;
+  }
+
+  .button {
+    padding: 0.8em 1.2em;
+  }
+
+}
+
+section.more_bar {
+  text-align: center;
+  background-color: #4d8cbf;
+  color: black;
+  height: 36px;
+  cursor: pointer;
+  position: relative;
+  .title, .arrow_down {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .arrow_down {
+    //@include sprite_based_ui_button(25px,25px,-50px,-125px,-50px,-125px);
+    top: 50%;
+  }
+  span, div, .title {
+    display: inline-block;
+    position: relative;
+    top: 45%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  & + .module.automat_module {
+    margin-top: 0;
+  }
+}
+
+section.single_teaser.module {
+  @include breakpoint($medium_large) {
+    max-width: 1000px;
+    padding: 3em 0;
+  }
+  @extend .clearfix;
+  .image_col {
+    margin-bottom: 2em;
+    @include breakpoint($medium_large) {
+      width: 50%;
+      float: left;
+    }
+  }
+  .text_col {
+    @include breakpoint($medium_large) {
+      width: 45%;
+      float: right;
+    }
+    .title {
+      margin-top: 0;
+    }
+  }
+}
+
+#secondary_column .people_sidebar_module {
+  .list_title a { // 2 html versions of this. This one, with the a tag is the future
+    font-size: 1.2rem;
+    .no-touchevents &:hover { // hover persists with a single page app - jh
+      color: $core_text_color;
+    }
+    &:active { // in a single page app, this is for touchscreens
+      color: $core_text_color;
+    }
+  }
+  .list_text { // maybe all sidebar modules?
+    font-weight: 700;
+    color: #535353;
+    font-size: 0.95rem;
+  }
+}
+
+.no-touchevents .expandable_info_button.inline .info_button:hover, .expandable_info_button.inline .info_button.open {
+  padding: 0;
+}
+
+.expandable_info_button.inline {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: inline-flex;
+  margin-left: .5em;
+  z-index: 20; // so it doesn't show up over nav
+  .info_button {
+    .info_icon {
+      background-color: #ffe8ed;
+      border-color:#ffe8ed;
+      border-radius: 10px;
+      width: 20px;
+      height: 20px;
+      svg {
+        fill: #b31c38;
+        height: 11px;
+      }
+    } 
+    .info_text {
+      right: 0;
+      left: 100%;
+      @include breakpoint($medium_large) {
+        left: 170%;
+      }
+      .info_link {
+        display: none;
+      }
+
+      &:after {
+        content: '';
+        //@include arrow(down, white, 13px, 9px); //($direction:"right", $color:black, $legs: 8px, $base: 6px)    
+        position: absolute;
+        bottom: -15px;
+        left: 16px;
+        @include breakpoint(max-height 450px) { // landscape / short screen
+          //@include arrow('left', white);
+          bottom: auto;
+          left: -8px;
+          top: calc(50% - 8px);
+        }
+        @include breakpoint($medium_large) {
+          //@include arrow('left', white);
+          bottom: auto;
+          left: -8px;
+          top: calc(50% - 8px);
+        }
+      }
+    }
+  }
+}
+
+// homepage top feature and a small 'aside' module
+.google_map_module {
+  .primary_media_feature {
+    position: relative;
+    #map_inom_events {
+      height: calc(calc(var(--vh) - 35px) - var(--more_bar_height)); //
+      @include breakpoint($medium_large) {
+        height: calc(calc((var(--vh) - var(--header_height)) - var(--more_bar_height)) - 35px - 94px); // hv - header height - more bar height - top hat height
+        // margin-top: 35px; // tophat
+      }
+      @include breakpoint($large) {
+        height: calc(calc((var(--vh) - var(--header_height)) - var(--more_bar_height)) - 40px - 94px); // hv - header height - more bar height - top hat height
+        margin-top: 40px; // tophat - be better as a css variable
+      }
+      .gm-bundled-control { // not really just the zoom controls - a little hacky - jh
+        display: none;
+      }
+
+      @include breakpoint($width_for_desktop_nav) {
+        .gmnoprint {
+          display: block;
+        }
+      }
+    }
+    .floating_text_area { // inherits styles, but not all placement/sizing styles
+      background-color: rgba(0,0,0,0.7);
+      width: 50%;
+      max-width: 200px;
+      padding: .9rem;
+      text-align: left;
+      left: 6px;
+      @include breakpoint($width_for_desktop_nav) {
+        left: 45px;
+        bottom: 83px;
+        max-width: 322px;
+        text-align: left;
+        padding: 1.8rem;
+      }
+      .desktop {
+        display: none;
+        @include breakpoint($width_for_desktop_nav) {
+          display: block;
+        }
+      }
+      .mobile {
+        @include breakpoint($width_for_desktop_nav) {
+          display: none;
+        }
+      }
+      .media_feature_title {
+        margin-top: 0;
+        font-size: 1.15rem;
+        margin-bottom: 1rem;
+        @include breakpoint($width_for_desktop_nav) {
+          font-size: 1.65rem;
+        }
+
+      }
+      .mobile.description {
+        width: auto;
+        margin: 0 auto;
+        
+        .links {
+          margin-bottom: 0;
+        }
+      }
+      .cta {
+        font-weight: 500;
+        // margin-bottom: 0.8rem;
+      }
+      .links {
+        a {
+          font-size: 1.1rem;
+          color: #54B2FF;
+          font-weight: 600;
+          display: block;
+          width: fit-content;
+          margin-bottom: 0.9rem;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+        margin-bottom: 0.9rem;
+      }
+      .big_button {
+        font-size: 1rem;
+        text-transform: none;
+        background-color: #CE2C4A;
+        border: none;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .registration_modal { // 'form' styles are in events_form.scss file
+    .modal_body {
+      position: relative;
+      left: 5%;
+      top: 25px; // check on the standard way of doing this when there is time - jh
+      background-color: white;
+      width: 90%;
+      padding: 1em 1.5em;
+    }
+    .close_btn {
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      //.icon {
+        //@include x_icon;
+      //}
+    }
+  }
+}
+
+// generated by google_map_module - feature version of the map module
+body.top_feature_map_module {
+  .site_header_area {
+    @include breakpoint($medium_large) {
+      background-color: #272727;
+      position: relative;
+    }
+  }
+}
+
+// Iframe feature layout
+
+.mb_iframe_container {
+  &.left {
+    @include breakpoint($medium_large) {
+      float: left;
+      width: 50%;
+      margin-right: 1em;
+    }
+  }
+  &.right {
+    @include breakpoint($medium_large) {
+      float: right;
+      width: 50%;
+      margin-left: 1em;
+    }
+  }
+  //.feature_pages & {
+    //@include feature_page_module_layout;
+  //}
+}
+
+// Observe the Moon
+
+section.site_teaser.otm_teaser {
+  .module_title {
+    font-weight: 700;
+  }
+}

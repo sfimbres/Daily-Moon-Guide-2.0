@@ -1,0 +1,263 @@
+.ten_things.module {
+  background-color: #e0e7ef;
+  padding-bottom: 4em;
+  header {
+    text-align: center;
+    color: #009cff;
+    font-weight: 600;
+    margin-bottom: .2em;
+    span {
+      font-weight: 700;
+      color: $core_text_color;
+      &::before {
+        content: " - "
+      }
+    }
+  }
+  .wysiwyg_content {
+    .show_more_button {
+      position: absolute;
+      bottom: 45px;
+      color: white;
+      background-color: #1f96fe;
+      padding: 14px;
+      font-size: 0.8em;
+      font-weight: 600;
+      right: 20%;
+      left: 20%;
+      text-align: center;
+      margin: auto;
+      max-width: 184px;
+      cursor: pointer;
+      z-index: 11;
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+    }
+  }
+  .module_title {
+    margin-bottom: .5rem;
+    font-weight: 600;
+  }
+  h3.module_subtitle {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    @include breakpoint($medium) {
+      font-size: 1.6rem;
+    }
+    @include breakpoint($medium_mid) {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .module_title, h3.module_subtitle {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.teaser_grid_container {
+  border-bottom: 9px solid #1f96fe;
+  max-height: 600px;
+  overflow: hidden;
+  @include breakpoint($medium_mid) {
+    border-bottom: none;
+    max-height: none;
+  }
+  &.open {
+    border-bottom: none;
+    max-height: none;
+    .teaser_grid {
+      max-height: none;
+    }
+    .show_more_button {
+      display: none;
+    }
+  }
+  .teaser_grid {
+    width: 90%;
+    margin: 0 auto;
+    @include breakpoint($medium) {
+      width: 80%;
+    }
+    @include breakpoint($medium_large) {
+      width: 90%;
+    }
+    @include breakpoint($xlarge) {
+      width: 80%;
+    }
+    @include breakpoint($xxlarge) {
+      width: 70%;
+    }
+    .teaser_grid_item {
+      width: 100%;
+      margin: 0 0 2em 0;
+      @include breakpoint($medium_mid) {
+        width: auto;
+        max-width: 40%;
+        margin: 0 0 2em 2em;
+      }
+      @include breakpoint($medium_large) {
+        max-width: 350px;
+      }
+      @include breakpoint($large) {
+        max-width: 400px;
+      }
+      @include breakpoint($xlarge) {
+        max-width: 450px;
+      }
+      @include breakpoint($xxlarge) {
+        max-width: 500px;
+      }
+    }
+    .caption {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      padding: .5em;
+      color: #222;
+      .grid_num {
+        font-size: 2.3em;
+        font-weight: 700;
+        padding: 0 .5rem 0 .5rem;
+      }
+      .grid_title {
+        padding: .5rem;
+        font-weight: 500;
+      }
+    }
+
+    //teaser types
+    .teaser_grid_item {
+      &.video {
+        .grid_image {
+          position: relative;
+          .play {
+            position: absolute;
+            top: 47%; // for non calc browsers
+            left: 47%; // for non calc browsers
+            top: calc(50%- 30px);
+            left: calc(50%- 30px);
+            top: -webkit-calc(50% - 30px); // safari
+            left: -webkit-calc(50% - 30px); // safari
+            width: 60px;
+            height: 60px;
+            padding-top: 0;
+            cursor: pointer;
+            background: url('/src/assets/play-button.png') 0 0 no-repeat;
+            z-index: 10;
+          }
+        }
+      }
+      &:last-child .modal .next_arrow, &.item_1 .modal .prev_arrow { //hiding prev/next arrows on first and last modals
+        display: none;
+      }
+
+    }
+
+    .teaser_grid_item.image{
+      height: auto;
+      width: 100%;
+      border: 0;
+      border-radius: 0;
+      transform: none;
+      @include breakpoint($medium_mid) {
+        width: auto;
+      }
+    }
+    .teaser_gutter_sizer { width: 2em; }
+  }
+  .big_button {
+    display: block;
+    width: 120px;
+    background-color: transparent;
+    margin: 1.5em auto 0 auto;
+    font-size: 0.9em;
+    cursor: pointer;
+    @include breakpoint($medium_mid) {
+      margin: 3em auto 2em auto;
+    }
+  }
+
+  // modal specific styles
+  .modal {
+    .loader {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      z-index: 1;
+      @include breakpoint($medium_large) {
+        top: 30%;
+      }
+    }
+    .arrow_navigation {
+      .prev_arrow, .next_arrow {
+        position: absolute;
+        top: 25%;
+        width: 40px;
+        height: 80px;
+        cursor: pointer;
+        @include breakpoint($medium_large) {
+          top: 30%;
+        }
+      }
+      .prev_arrow {
+        left: 15px;
+        background: url('/src/assets/arrow_left_slim.png') 40px 103px;
+        background-position: 0;
+      }
+      .next_arrow {
+        right: 15px;
+        background: url('/src/assets/arrow_right_slim.png') 40px 103px;
+        background-position: 0;
+      }
+    }
+    .modal_content {
+      position: relative;
+      z-index: 9;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      top: 10%;
+      @include breakpoint($large) {
+        max-width: 1200px;
+        width: 70%;
+      }
+      figure {
+        margin-bottom: 1em;
+      }
+      .embedded_video {
+        width: 100%;
+        iframe {
+          width: 100%;
+        }
+      }
+      .caption {
+        background-color: transparent;
+        color: #fff;
+        padding: 0;
+        .grid_num {
+          padding-left: 0;
+        }
+      }
+      .description {
+        color: #fff;
+        margin-bottom: 1.5em;
+      }
+      .addthis_button_compact {
+        margin-right: 1em;
+        display: inline-block;
+        img {
+          border-radius: 4px;
+        }
+      }
+      .button {
+        display: inline-block;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

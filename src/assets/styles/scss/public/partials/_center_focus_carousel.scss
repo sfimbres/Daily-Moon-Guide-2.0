@@ -1,0 +1,103 @@
+/*
+*   _center_focus_carousel 
+*   
+*    A full width carousel with slick slider in 'center mode'
+*
+*/
+
+$jupiter_secondary_title_color: #9c6772;  // will be dynamicized with themes
+
+.content_page .center_focus_carousel_module, .feature_pages .center_focus_carousel_module {
+  //@include themify('background-color', 'bg-color');
+  background-color: #EDE4E5;
+  width: 100%;
+  max-width: none;
+  padding: 2rem 0px 3.3rem;
+  @include breakpoint($medium_mid) {
+    padding: 4rem 0 5rem;
+  }
+  .grid_layout {
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      width: calc(100% - 100px); // to allow for arrows
+    }
+  }
+  .person {
+    margin: 0 3px;
+    &.slick-center {
+    z-index: 2;
+    }
+  }
+  .person .image_container {
+    opacity: .3;
+  }
+  .person.slick-center .image_container {
+    opacity: 1;
+    transform: scale(1.3);
+    transition: transform .5s;
+  }
+  .center_focus_carousel {
+    margin-bottom: 15px;
+  }
+  .carousel_header  {
+    padding: 0 8%;
+    
+  }
+  h2.module_title {
+    margin: 0;
+  }
+  .slick-track {
+    padding-top: 15%; //39px;
+    padding-bottom: 15%; //39px;
+    @include breakpoint($medium_mid) {
+      padding-top: 6%;
+      padding-bottom: 6%;
+    }
+  }
+  .person_text_container { 
+    // hidden with .hidden in boilerplate
+  }
+  .caption_container {
+    margin: auto;
+    text-align: center;
+    width: 86%;
+    max-width: 568px; 
+    .person_name {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+    .person_title {
+      font-weight: 600; // semibold
+      font-size: 1.1rem;
+      color: $jupiter_secondary_title_color;
+    }
+    .person_descritpion {
+      text-align: left;
+    }
+    .big_button {
+      margin-bottom: 0;
+    }
+  }
+  
+  .slick-prev, .slick-next {
+    top: calc(50% - 32px); //or vertical center?
+    &:before {
+      content: none;
+    }
+  }
+  .slick-next {
+    @include outline_arrow(right, #a1a3a3);
+    right: -50px;
+  }
+  
+  .slick-prev {
+    @include outline_arrow(left, #a1a3a3);
+    left: -50px;
+  }
+
+
+}
+
+
+

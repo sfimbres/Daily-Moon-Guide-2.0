@@ -1,0 +1,234 @@
+// taken straight from europa for middle nav -nmj
+// consider making this the de-facto in the gem nav_tertiary
+
+/* tertiary_nav */
+
+.tertiary_nav.tertiary_nav_mobile select { // not always within a tertiary_nav_container. When not, it should be gray
+  background-color: #efefef;
+  padding-top: 7px;
+}
+.tertiary_nav_container.upper_tertiary_nav_container:empty { // should this be handled with css? - jh
+  background-color: transparent;
+  padding: 0;
+}
+
+.tertiary_nav_container { // This container is used when the tertiary nav is in a colored or grey block
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  padding: 0.3em 0 0 0;
+  & nav.tertiary_nav {
+    margin: 0;
+    ul li + li:before {
+      content: none;
+    }
+    ul li a {
+      @include breakpoint($medium_large) {
+        padding: 1em 1em 0.8em 1em;
+      }
+    }
+  }
+
+
+  &.upper_tertiary_nav_container {
+    width: 100%;
+    //@include themify('background-color','bg-color');
+    background-color: #d1dde6;
+    select {
+      padding-top: 3px;
+      //@include themify('background-color','bg-color');
+      background-color: #d1dde6;
+    }
+    ul li.current .tertiary_nav_arrow { //the indicator arrows under the current item
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      // border-top-color: #F6F6F6;
+      //@include themify('border-top-color','bg-color');
+      border-top-color: #d1dde6;
+      border-width: 20px;
+      margin-left: -20px;
+    }
+  }
+  &.lower_tertiary_nav_container {
+    margin-bottom: 1.1em;
+    background-color: transparent; // desktop needs a color on the container, not mobile
+    @include breakpoint($medium_large) {
+      margin-bottom: 0.3em;
+      //background-color: white;
+    }
+  }
+}
+
+
+
+
+nav.tertiary_nav { // Rename? these are page-level navs on SMAP. On mobile these are ... waiting on design - jh
+  position: relative;
+  margin: 1.1em 0 3em .1em;
+  font-family: $secondary_font_family;
+
+  ul {
+    li {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+
+      &:hover a, &.current a {
+        color: black;
+      }
+    }
+    li + li:before {
+      content: " | ";
+      padding: 0 .6em;
+      vertical-align: middle;
+      font-weight: 100;
+      color: $line_color;
+    }
+    li.current {
+      a {
+        color: black;
+      }
+    }
+    a {
+      font-size: 1em;
+      text-transform: uppercase;
+      display: inline-block;
+      //@include themify('color', 'tertiary');
+      color: #285978;
+      &:hover {
+        text-decoration: none;
+      }
+
+    }
+  }
+}
+
+
+.tertiary_nav_mobile {
+  display: block;
+  text-align: center;
+  select {
+    font-size: 16px;
+    height: 50px;
+    padding-left: 1.5em;
+    border: 0;
+    vertical-align: middle;
+    -webkit-appearance:none;
+    -o-appearance:none;
+    -moz-appearance:none;
+    background: transparent url('/src/assets/arrows_select_box_black@2x.png') no-repeat;
+    background-position: right 25px top 16px;
+    background-size: 9px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    font-family: $secondary_font_family;
+    &::-ms-expand { // hide select arrow in IE
+      display: none;
+    }
+  }
+  @include breakpoint($medium_mid) {
+    text-align: left;
+  }
+  @include breakpoint($medium_large) {
+    display: none;
+  }
+  .nav_label {
+    display: none;
+  }
+}
+
+.lower_tertiary_nav_container .tertiary_nav_mobile {
+  margin-bottom: 2.7rem;
+  @include breakpoint($medium_mid) {
+    margin-bottom: 4rem;
+  }
+  select {
+    height: 45px;
+    background-position: right 25px top 13px;
+  }
+}
+
+
+.tertiary_nav_desktop {
+  display: none;
+  @include breakpoint($medium_large) {
+    display: block;
+  }
+}
+
+body.exoplanet_catalog_header .tertiary_nav_container.upper_tertiary_nav_container {
+  display: none; // to hide tertiary nav when exoplanet catalog header is present
+}
+
+.middle_nav.tertiary_nav_container {
+  &.upper_tertiary_nav_container, &.lower_tertiary_nav_container {
+    padding: 0;
+    text-transform: none;
+    //@include themify('background-color', 'secondary_bg');
+    background-color: #374DA7;
+    nav.tertiary_nav {
+      &.tertiary_nav_mobile {
+        @include breakpoint($width_for_mobile_nav) {
+          display: flex;
+          font-weight: 700;
+          .nav_label {
+            display: inline-flex;
+            //@include themify('color', 'nav_text'); // possibly themify at a later point -smb 06-04-2020
+            color: #b5b5b5;
+            margin: 1em .5em 1em 1em;
+            font-weight: 800;
+          }
+          select {
+            font-family: $core_font_family;
+            font-weight: 700;
+            background: rgba(255,255,255,.6) url("/src/assets/arrows_select_box@2x.png") no-repeat;
+            background-position: right 25px top 16px;
+            background-size: 9px;
+            //@include themify('color', 'nav_text_hover');
+            color: #fff;
+            //@include themify('background-color', 'secondary_bg');
+            background-color: #374DA7;
+            padding-left: 0;
+            padding-right: 3em;
+            text-transform: none;
+          }
+        }
+      }
+      &.tertiary_nav_desktop {
+        display: none;
+        @include breakpoint ($width_for_desktop_nav) {
+          display: block;
+          overflow-x: unset;
+          ul li a {
+            //@include themify('color', 'nav_text');
+            color: #BAC4F2;
+            font-family: $core_font_family;
+            font-weight: 600;
+            padding: 1.2em 1em;
+            text-transform: none;
+          }
+          ul li.current a, ul li:hover a {
+            //@include themify('color', 'nav_text_hover');
+            color: #fff;
+          }
+          ul li.current .tertiary_nav_arrow {
+            //@include themify('border-top-color', 'secondary_bg');
+            border-top-color: #374DA7;
+          }
+        }
+      }
+    }
+  }
+  &.lower_tertiary_nav_container {
+    background-color: transparent;
+  }
+}

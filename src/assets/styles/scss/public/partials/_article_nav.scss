@@ -1,0 +1,72 @@
+/* 
+*   _article_nav - public view
+*
+*   The previous/next fixed position arrow buttons on detail pages
+*   Thumb/title preview on hover
+*   
+*/
+
+
+.article_nav{ //rename?
+  display: none;
+  
+  // Show on large because the buttons otherwise obstruct the viewable area of the page -JM
+  
+  @include breakpoint($large) {
+    display: block;
+    position: relative;
+    z-index: 12;
+   .article_nav_block{
+     position: fixed;
+     height: 86px;
+     display: inline-block;
+     top: 42.5%;
+     .link_box{
+       width: 40px;
+       background-color: #e4e9ef;
+       display: inline;
+       height: 100%;
+     }
+     .article_details{
+       display: inline;
+       width: 250px;
+       background-color: #FFF;
+       text-decoration: none;
+       color: #000;
+       padding: 10px;
+       background-color: #e4e9ef;
+       .img {
+          margin-bottom: 6px;
+        }
+       .title {
+         font-weight: 700;
+         font-size: .9em;
+       }
+     }
+
+     &.prev{
+      left: 0;
+       .link_box {
+         float: left;
+       }
+       .article_details{
+         float: left;
+         display: none;
+       }
+     }
+     &.next {
+       right: 0;
+       .link_box {
+         float: right;
+       }
+       .article_details{
+         display: none;
+         float: right;
+       }
+     }
+     .no-touchevents &:hover .article_details{
+       display: block;
+     }
+   }
+ }
+}

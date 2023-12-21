@@ -1,0 +1,211 @@
+/*
+*   _countdown_module
+*
+*    The countdown can be in a content page or used in a dashboard
+*
+*/
+
+
+.countdown {
+  .countdown_title {
+    font-size: 11px; //1.3em;
+  }
+  /* not dashboard */
+  @include breakpoint($medium_large){
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .countdown_header {
+    text-align: left;
+    white-space: normal;
+  }
+  .countdown_end {
+    font-weight: 600;
+    color: #777;
+    margin-top: -0.1em;
+    text-align: center;
+    @include breakpoint($medium_large){
+      text-align: left;
+    }
+  }
+
+  .countdown_title {
+    font-size: 1.3em;
+    text-align: center;
+    @include breakpoint($medium_large){
+      text-align: left;
+    }
+  }
+
+
+  .countdown_time {
+    @include breakpoint($medium_large){
+      white-space: nowrap
+    }
+  }
+
+
+  .unit { // contains the 2-digit number and the label
+    display: inline-block;
+    position: relative;
+    font-size: 2em;
+    font-weight: 300;
+    padding: 0 6px;
+    vertical-align: middle;
+    text-align: right;
+    & +.unit:before {
+      content: " : ";
+      //display: inline-block;
+      //vertical-align: top;
+      //padding: 0 1px;
+      position: absolute;
+      left: -4px;
+    }
+    &:first-of-type {
+      padding-left: 0;
+    }
+  }
+  .time_label {
+    clear: both;
+    display: block;
+    color: #868686;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: -2px;
+    font-weight: 700;
+  }
+  .completed {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin-top: 3px;
+  }
+}
+
+
+// variations
+
+.carousel_separator .separator_links .homepage_countdown { // homepage dashboard
+  border-left: 0 !important;
+  padding-left: 0;
+  padding-top: 2px;
+  .mobile_text {
+    display: block;
+    font-size: .7em;
+    text-align: left;
+    padding-right: 0 !important;
+    @include breakpoint($medium_mid) {
+      display: none;
+    }
+  }
+  .countdown {
+    line-height: 1.3;
+
+    .countdown_title {
+      display: none;
+    }
+    .countdown_end {
+      margin-top: 0.25em;
+    }
+
+    &.the_end .countdown_title::before {
+      content: "";
+    }
+    .countdown_time{
+      display: inline-block;
+      // max-width: 60%;
+      vertical-align: top;
+      //margin-top: -6px;
+      span {
+        display: none;
+      }
+    }
+    .unit{
+      font-size: 1.65em;
+      font-weight: 500;
+      @include breakpoint($medium_mid) {
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+.dashboard .countdown {
+  display: block;
+}
+
+#dashboard_modal { // homepage overlay
+  .countdown {
+    display: block;
+    margin-bottom: 1em;
+    .unit {
+      font-size: 1.6em;
+    }
+  }
+  .countdown_title {
+    font-weight: 700;
+    text-align: left;
+  }
+  .countdown_end {
+    text-align: left;
+  }
+  .right_col .countdown_time {
+    white-space: normal;
+  }
+}
+
+
+.feature_pages, .content_page {
+  .countdown {
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    text-align: center;
+    padding: 0.7em 0 0.9em;
+    margin-top: 2.7em;
+    margin-bottom: 2.7em;
+    > div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  #primary_column .countdown_header {
+    margin-right: .8em;
+    margin-left: .8em; // this needs to be centered, so left and right margins
+  }
+  .countdown_title {
+    font-size: 1.6em;
+    font-weight: 700;
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      width: auto;
+    }
+  }
+}
+
+#secondary_column .countdown {
+  white-space: normal;
+  display: block;
+  margin-bottom: gutter(3); // matches secondary column aside bottom margin
+  text-align: left;
+  .countdown_header {
+    display: block;
+  }
+  .countdown_title {
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+  }
+  .countdown_end {
+    text-align: left;
+  }
+}
+
+//explore overlay styles
+#explore_overlay {
+  .countdown {
+    border-top-color: #212121;
+    border-bottom-color: #212121;
+  }
+}

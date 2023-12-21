@@ -1,0 +1,169 @@
+/*  
+ *
+ *  carousel_separator - below the homepage main carousel. contains countdown (pre-launch), quick facts, science calendar
+ *
+ *  svg styles are in here
+ * 
+*/
+
+.carousel_separator {
+  position: relative;
+  background-color: #ffffff;
+  padding: .8em 0;
+  z-index: 10;
+  @include breakpoint($medium) {
+    padding: 1em 0;
+  }
+  @include breakpoint($small_only) {
+    .grid_layout {
+      width: 100%;
+    }
+  }
+  .separator_links {
+    text-align: center;
+    white-space: nowrap;
+    > div {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 3.8%;
+      //margin-bottom: 6px; // if it goes to 2 lines - jh
+      border-left: 1px solid #babec3; // variabilize? //changing to border-left  to avoid the ocassional div for absence calendar -RK
+      height: 47px; // this is needed to standardize the heights. Because the countdown javascript alters the height. - jh
+      &:nth-child(2){
+        border-left: none;
+      }
+      &:first-child {
+        border-left: none;
+      }
+    @include breakpoint($medium_large){
+      &:nth-child(2){
+        border-left: 1px solid #babec3;
+      }
+    }
+
+      @include breakpoint($medium_mid) {
+        padding: 0 2%;
+        height: 51px;
+      }
+    }
+    .quick_facts, .science_calendar, .events_calendar, .absence_calendar, .xglobe, .text { // to match the countdown container's height
+      padding-top: 12px; 
+    }
+
+    .text {
+      display: none;
+      @include breakpoint($medium_mid) {
+        display: inline-block;
+      }
+    }
+  }
+  /* icons contain svg */
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    height: 23px;
+    width: 23px;
+    margin-right: .5em;
+    @include breakpoint($medium) {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  .events_calendar .icon, .absence_calendar .icon {
+    // For some reason this icon wasn't lining up like the others, so needed exception. -JM
+    margin-right: .2em;
+  }
+  .icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .icon path {
+    fill: #187FE4;
+  }
+  .quick_facts , .science_calendar, .events_calendar, .absence_calendar, .xglobe {
+    .text, .text a {
+      color: #187FE4;
+    }
+    
+    &:hover {
+      color: #015FBB;
+      .icon path {
+        fill: #015FBB;
+      }
+      a, .text {
+        color: #015FBB;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .quick_facts {
+    a {
+      display: block;
+      cursor: pointer;
+    }
+    .text {
+      padding-top: 0;
+      display: inline-block !important;
+      text-align: left;
+    }
+  }
+
+  /* no svg browsers fallback */
+  .no-svg & {
+    .quick_facts .icon {
+      background-image: url('/src/assets/icon_info.png');
+      background-repeat: no-repeat;
+    }
+    .absence_calendar .icon, .events_calendar .icon, .science_calendar .icon {
+      background-image: url('/src/assets/icon_calendar.png');
+      background-repeat: no-repeat;
+    }
+  } 
+  
+  .text, .mobile_text {
+    font-size: .67em;
+    line-height: 1.15;
+    text-align: right; // default
+    font-weight: 700;
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 1.2em !important; // ? - jh
+    color: #575e6b;
+    @include breakpoint($medium_mid) {
+      font-size: .75em;
+    }
+  }  
+
+  .countdown {
+    .text {
+      padding-top: 0; // just a nudge as it's not lining up excactly with countdown time - jh
+      text-align: right;
+      color: #626262;
+      line-height: 1.2em;
+    }
+    #countdown_time {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: .5em; // apply this (right) to icons also
+      span {
+        font-size: 2em;
+      }  
+    }
+  }
+  
+  .arrow { //pointing down, partially covering the section below  
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -40px; 
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-top-color: #ffffff;
+    border-width: 20px;
+  }
+}

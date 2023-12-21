@@ -1,0 +1,161 @@
+/*  
+*   _viewer_text_area - public view
+*
+*   like a floating text area over the webGL module
+*   
+*/
+
+.panels_and_gl_container .viewer_text_area { // inside the #webgl_container
+  color: white;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 11px;
+  @include breakpoint($width_for_desktop_nav) {
+    padding: 0;
+    bottom: auto;
+    top: 40%;
+    left: 3%;
+    width: 300px;
+    @media screen and ( max-height: 1000px ){
+      top: 35%;
+    }
+    @media screen and ( max-height: 800px ){
+      top: 25%;
+    }
+  }
+  @include breakpoint($xxlarge) {
+    left: 5%;
+    width: 350px;
+  }
+
+  .media_feature_title {
+    margin-bottom: .6rem;
+    display: inline-block;
+    font-size: 1.6em;
+    @include breakpoint($width_for_desktop_nav) {
+      font-size: 1.9em;
+    }
+    @include breakpoint($xxlarge) {
+      font-size: 2.1em;
+    }
+  }
+
+  .info_panel_content .section_title {
+    color: #a5a8ac;
+    font-size: 0.8rem;
+  }
+  @include breakpoint($width_for_mobile_nav) {
+    .title_container {
+      text-align: center;
+      @include breakpoint($width_for_mobile_nav) {
+        @media only screen and (orientation: landscape) {
+          text-align: left;
+        }
+      }
+      .caret {
+        @include moon_caret;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        top: -3px;
+        margin-left: .6rem;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .description, .info_panel_content, .section_title {
+      display: none;
+    }
+    &.open {
+      background-color: #091825;
+      padding: 1em;
+      z-index: 31;
+      .description, .info_panel_content, .section_title {
+        display: block;
+      }
+      .caret {
+        @include moon_caret(#1a446b, 'down')
+      }
+      .lunar_phases.legend {
+        display: none;
+      }
+      & + .info_modal_background {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(25,25,25,0.6);
+        z-index: 28;
+        position: absolute;
+      }
+    }
+  }
+  
+  select:-moz-focusring { // this is a little hacky, so I hesitate to put it in the gem's scss - jh
+    color: transparent;
+    text-shadow: 0 0 0 white;
+  }
+
+
+  .primary_feature_select {
+    //@include select_menu;
+    margin-bottom: 1em;
+    background-color: #0b2235;
+    font-weight: 700;
+    @include breakpoint($width_for_desktop_nav) {
+      // background-color: transparent;
+      // padding: 0 1em 0 0;
+      // font-size: 21px;
+      height: auto;
+      outline: none;
+      // @include responsive_headline(1.1);
+      white-space: pre-line;
+      margin-bottom: .6rem !important;
+      background-position: right 0.6em top 50%;
+      font-size: 1.3em;
+      line-height: 1.2;
+      max-width: none;
+      background-color: rgba(0,0,0,.25);
+      padding: 0.4em 0.6em;
+    }
+    @include breakpoint($xxlarge) {
+      font-size: 1.5em;
+    }
+    option { // for browsers that allow customization of options
+      color: white;
+      background-color: #0F1923;   
+    }
+  }
+    
+  .credit {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    &:before {
+      content: "Credit: ";
+    }
+  }
+  .detail_link {
+    font-weight: 700;
+    display: block;
+    margin-top: 0.6rem;
+    cursor: pointer;
+    color: #418fd5;
+  }
+}
+
+#webgl_feature {
+  &.data .media_feature_title {
+    @include breakpoint($width_for_desktop_nav) {
+      display: none;
+    }
+  }
+  &.core .section_title {
+    @include breakpoint($width_for_mobile_nav) {
+      display: none;
+    }
+  }
+  &.core .media_feature_title {
+    margin-top: 0;
+  }
+}

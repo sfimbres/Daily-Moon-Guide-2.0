@@ -1,0 +1,740 @@
+.feature_pages .wysiwyg_content .collage_teaser_module {
+  @include feature_page_module_layout;
+}
+
+.collage_teaser_module {
+  position: relative;
+  background-color: #e0e7ef;
+  padding: 2.5em 0 2.2em; // mimic the .module styles - not on homepgae
+  @include breakpoint($medium_large) {
+    padding: 4.8em 0 5em;
+  }
+}
+
+.image_grid_teaser .collage_teaser_module { // homepage only
+  padding: 0;
+  position: static;
+}
+
+
+.collage_teaser_module, .image_grid_teaser { // shared homepage and module styles
+  .show_more_button {
+    position: absolute;
+    bottom: 41px;
+    color: white;
+    background-color: #1f96fe;
+    padding: 14px;
+    font-size: 0.8em;
+    font-weight: 600;
+    right: 20%;
+    left: 20%;
+    text-align: center;
+    margin: auto;
+    max-width: 184px;
+    cursor: pointer;
+    z-index: 11;
+    @include breakpoint($medium_mid) {
+      display: none;
+    }
+  }
+  .module_title {
+    margin-bottom: .5rem;
+    font-weight: 600;
+  }
+  h3.module_subtitle {
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    @include breakpoint($medium) {
+      font-size: 1.6rem;
+    }
+    @include breakpoint($medium_mid) {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .module_title, h3.module_subtitle {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.image_grid_teaser { // homepage version
+  background-color: #e0e7ef;
+  //padding-bottom: 4em;
+  header {
+    text-align: center;
+    color: #009cff;
+    font-weight: 600;
+    margin-bottom: .2em;
+    font-family: $secondary_font_family;
+    span {
+      font-weight: 700;
+      color: $core_text_color;
+      text-transform: uppercase;
+      &::before {
+        content: " - "
+      }
+    }
+  }
+}
+
+.teaser_grid_container {
+  border-bottom: 9px solid #1f96fe;
+  max-height: 625px; /* This roughly fits two rows of items in view */
+  overflow: hidden;
+  margin-bottom: 44px;
+  @include breakpoint($medium_mid) {
+    margin-bottom: 0;
+    border-bottom: none;
+    max-height: none;
+  }
+  &.open {
+    border-bottom: none;
+    max-height: none;
+    // .teaser_grid {
+    //   max-height: none;
+    // }
+    .show_more_button {
+      display: none;
+    }
+  }
+  .teaser_grid {
+    // width: 90%;
+    // margin: 0 auto;
+    // @include breakpoint($medium) {
+    //   width: 80%;
+    // }
+    // @include breakpoint($medium_large) {
+    //   width: 90%;
+    // }
+    // @include breakpoint($xlarge) {
+    //   width: 80%;
+    // }
+    // @include breakpoint($xxlarge) {
+    //   width: 70%;
+    // }
+    // .teaser_grid_item {
+    //   width: 100%;
+    //   margin: 0 0 2em 0;
+    //   cursor: pointer;
+    //   @include breakpoint($medium_mid) {
+    //     width: auto;
+    //     max-width: 40%;
+    //     margin: 0 0 2em 2em;
+    //   }
+    //   @include breakpoint($medium_large) {
+    //     max-width: 350px;
+    //   }
+    //   @include breakpoint($large) {
+    //     max-width: 400px;
+    //   }
+    //   @include breakpoint($xlarge) {
+    //     max-width: 450px;
+    //   }
+    //   @include breakpoint($xxlarge) {
+    //     max-width: 500px;
+    //   }
+    // }
+    // .caption {
+    //   background-color: #fff;
+    //   display: flex;
+    //   align-items: center;
+    //   padding: .5em;
+    //   color: #222;
+    //   .grid_num {
+    //     font-size: 2.3em;
+    //     font-weight: 700;
+    //     padding: 0 .5rem 0 .5rem;
+    //   }
+    //   .grid_title {
+    //     padding: .5rem;
+    //     font-weight: 500;
+    //   }
+    // }
+
+    //teaser types
+    // .teaser_grid_item {
+    //   &.video {
+    //     .grid_image {
+    //       position: relative;
+    //       .play {
+    //         position: absolute;
+    //         top: 47%; // for non calc browsers
+    //         left: 47%; // for non calc browsers
+    //         top: calc(50%- 30px);
+    //         left: calc(50%- 30px);
+    //         top: -webkit-calc(50% - 30px); // safari
+    //         left: -webkit-calc(50% - 30px); // safari
+    //         width: 60px;
+    //         height: 60px;
+    //         padding-top: 0;
+    //         cursor: pointer;
+    //         background: url('/assets/play-button.png') 0 0 no-repeat;
+    //         z-index: 10;
+    //       }
+    //     }
+    //   }
+    //   &:last-child .modal .next_arrow, &.item_0 .modal .prev_arrow { //hiding prev/next arrows on first and last modals
+    //     display: none;
+    //   }
+
+    // }
+
+    // .teaser_grid_item.image{
+    //   height: auto;
+    //   width: 100%;
+    //   border: 0;
+    //   border-radius: 0;
+    //   transform: none;
+    //   @include breakpoint($medium_mid) {
+    //     width: auto;
+    //   }
+    // }
+    // .teaser_gutter_sizer { width: 2em; }
+  }
+  .big_button {
+    display: block;
+    width: 120px;
+    background-color: transparent;
+    margin: 1.5em auto 0 auto;
+    font-size: 0.95em;
+    cursor: pointer;
+    font-family: $secondary_font_family;
+    padding: 16px 20px 14px;
+    @include breakpoint($medium_mid) {
+      margin: 4em auto 2em auto;
+    }
+  }
+
+  /* SHIM: Add padding after the big button, so it can be scrolled past a little. */
+  .after_big_button_shim {
+    padding-top: 9em;
+  }
+
+  // modal specific styles
+  .modal_container {
+    position: absolute;
+    z-index: 100;
+  }
+  .modal {
+    -webkit-overflow-scrolling: touch; // Momentum scrolling in iOS
+    .loader {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      z-index: 1;
+      display: none;
+      @include breakpoint($medium_large) {
+        top: 30%;
+      }
+    }
+    .modal_close {
+      top: 10px;
+      right: 10px;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      padding: 2px;
+      text-decoration: none;
+      @include unselectable; 
+      .modal_close_icon {
+        @include x_icon(2px, white);
+      }
+    }
+
+
+    .arrow_navigation {
+      position: absolute;
+      width: 100%;
+      top: 143px; //13.7%; //21.7%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      max-width: 920px;
+      @include breakpoint($medium_mid) {
+        top: 260px;
+      }
+      @include breakpoint($large) {
+        top: 303px;
+      }
+
+      .prev_arrow, .next_arrow {
+        z-index: 10;
+        position: absolute;
+        width: 50px;
+        height: 80px;
+        cursor: pointer;
+        background: url("/src/assets/ui_sprite@2x.png") -175px -87px;
+        background-size: 300px;
+        padding: 22px 0;
+        background-clip: content-box;
+        @include breakpoint($medium_mid) {
+          background: url('/src/assets/arrow_right_slim.png') 40px 103px;
+          width: 40px;
+          height: 80px;
+          opacity: .8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      .prev_arrow {
+        left: 0;
+        transform: rotate(180deg);
+        @include breakpoint($medium_mid) {
+          left: 15px;
+          background-position: 0;
+        }
+      }
+      .next_arrow {
+        right: 0;
+        @include breakpoint($medium_mid) {
+          right: 15px;
+          background-position: 0;
+
+        }
+      }
+    }
+    .modal_content {
+      position: relative;
+      z-index: 9;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      top: 77px;
+      @include breakpoint($medium_mid) {
+        max-width: 700px;
+        width: 70%;
+      }
+      figure {
+        margin-bottom: 1em;
+      }
+      .embedded_video {
+        width: 100%;
+        iframe {
+          width: 100%;
+        }
+      }
+      .caption {
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        color: #fff;
+        .grid_num {
+          font-size: 2em;
+          font-weight: 700;
+          font-family: $secondary_font_family;
+          padding: 0 .5rem 0 0;
+        }
+        .grid_title {
+          font-weight: 600;
+          padding: 0 0 0.3rem 0.5rem;
+          font-weight: 600;
+          font-size: 1.2rem;
+          line-height: 1.6rem;
+        }
+      }
+      .description {
+        color: #fff;
+        margin-bottom: 1.5em;
+        p {
+          color: inherit;
+        }
+        p:first-child {
+          margin-top: 0;
+        }
+        p:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .buttons > div { // safer than using addthis class names
+        display: inline-block;
+        vertical-align: top;
+      }
+      
+      .addthis_button_compact {
+        margin-right: 1em;
+        display: inline-block;
+        img {
+          border-radius: 4px;
+        }
+      }
+      .button {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 11px 25px 0px;
+        height: 38px;
+        display: inline-block;
+        margin: 0 1em 0 0;
+      }
+    }
+  }
+}
+//hiding prev/next arrows on first and last modals
+.teaser_grid_item:last-child .modal .next_arrow,
+.teaser_grid_item.item_0     .modal .prev_arrow {
+  display: none;
+}
+
+
+.wysiwyg_content { /* SHIM: Extra selector to override styles intended for wysiwyg content */
+
+.teaser_grid,
+.teaser_grid_item {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.teaser_grid {
+  font-size: 1rem;
+  margin: 2em 1em;
+  counter-reset: image_grid_teaser;
+}
+.teaser_grid_link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+.teaser_grid_link:hover,
+.teaser_grid_link:active,
+.teaser_grid_link:focus {
+  text-decoration: none;
+}
+.teaser_grid_item .grid_image {
+  display: block;
+  position: relative;
+  transition: opacity 0.2s;
+
+  /* Assume images will be 4:3 ratio */
+  padding-bottom: 75%;
+
+  /* Gracefully handle images that are a different aspect ratio*/
+  background: black;
+  overflow: hidden;
+}
+.teaser_grid_link:hover  .grid_image,
+.teaser_grid_link:active .grid_image,
+.teaser_grid_link:focus  .grid_image {
+  opacity: 0.8;
+}
+.teaser_grid .grid_image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+@supports (object-fit: cover) {
+  .teaser_grid .grid_image img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.teaser_grid_item .grid_text {
+  font-size: 0.875rem;
+  font-size: 1.1em;
+  background: white;
+  color: #222;
+  display: flex;
+  height: 4.5454545455em; /* (80px / 16px) = 5em  …  (5em / 1.1em) = 4.5454545455em */
+  overflow: hidden;
+  align-items: center;
+  padding: 0.675em 1.35em; /* 20px / 16px (font size) */
+  box-sizing: border-box;
+  font-weight: 600;
+  line-height: 1.35;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+.teaser_grid_item .grid_text::before {
+  counter-increment: image_grid_teaser;
+  content: counters(image_grid_teaser, ".") " ";
+  font-size: 2em;
+  font-family: $secondary_font_family;
+  font-weight: 700;
+  margin-right: 0.43em;
+  margin-top: 0.25em; /* SHIM: Attempt to center the number vertically (the particular typeface we’re using makes it appear too high). */
+  white-space: nowrap;
+}
+.teaser_grid_item__video {
+  .grid_image {
+    position: relative;
+    .play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      margin-top: -30px; /* width / 2 */
+      margin-left: -30px;
+      padding-top: 0;
+      cursor: pointer;
+      background: url('/src/assets/play-button.png') 0 0 no-repeat;
+      z-index: 10;
+    }
+  }
+}
+
+.teaser_grid_item {
+  margin-bottom: 1em;
+}
+
+@media (min-width: 600px) {
+  .teaser_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  .teaser_grid_item {
+    margin: 0.5em;
+    width: calc(50% - 1em); /* margin (0.5em) x 2 = 1em */
+  }
+}
+
+@media (min-width: 850px) {
+  .teaser_grid_item {
+    margin: 1em;
+    width: calc(33.333% - 2em); /* margin (1em) x 2 = 2em */
+  }
+}
+
+@media (min-width: 850px) {
+  .teaser_grid {
+    width: 100vw; /* 1190px */
+    max-width: 1190px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* Layout A */
+@supports (display: grid) {
+  @media (min-width: 850px) {
+    .teaser_grid.layout_a {
+      font-size: calc(16 / 1190 * 100vw); /* (16px / 1190px) * 100vw */
+    }
+  }
+  @media (min-width: 1190px) {
+    .teaser_grid.layout_a {
+      font-size: 1rem;
+    }
+  }
+  @media (min-width: 850px) { /* Slightly bigger than the “three columns across” layout */
+    .teaser_grid.layout_a .teaser_grid_item {
+      width: 100%;
+      margin: 0;
+    }
+    .teaser_grid.layout_a {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-gap: 1.875em; /* 30px / 16px */
+      max-width: 74.375em; /* 1190px / 16px */
+      padding-left: 1.875em; /* 30px / 16px */
+      padding-right: 3.125em; /* 50px / 16px */
+      box-sizing: border-box;
+    }
+
+    /* TRICKY:
+    We have to target an element inside the grid item (the link), when using percentages for margins or padding:
+    https://stackoverflow.com/questions/42708323/percentage-padding-margin-on-grid-item-ignored-in-firefox */
+
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(1) .teaser_grid_link {
+      margin-left: auto;
+      width:         calc(300 / 450 * 100%); /* column width = 300 */
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(2) {
+      grid-column: span 2;
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(2) .teaser_grid_link {
+      margin-right:  calc(80 / 630 * 100%); /* column width = 300 + 30 + 300 = 630 */
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(3) .teaser_grid_link {
+      margin-top:    calc(-185 / 450 * 100%);
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(6) .teaser_grid_link {
+      margin-top:    calc(-70 / 450 * 100%);
+      margin-right:  calc( 30 / 450 * 100%);
+      margin-left:   calc( 30 / 450 * 100%);
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(7) .teaser_grid_link {
+      margin-left:   calc(-30 / 300 * 100%); /* column width = 300 */
+      margin-right:  calc(-75 / 300 * 100%);
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(8) .teaser_grid_link {
+      margin-right:  calc(-20 / 300 * 100%); /* column width = 300 */
+      margin-left:   calc( 75 / 300 * 100%);
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(9) .teaser_grid_link {
+      margin-left: auto;
+      width:         calc(300 / 450 * 100%);
+      padding-right: calc( 30 / 450 * 100%);
+      margin-top:    calc(-80 / 450 * 100%);
+    }
+    .teaser_grid.layout_a .teaser_grid_item:nth-child(10) .teaser_grid_link {
+      margin-left:   calc( -30 / 300 * 100%); /* column width = 300px */
+      margin-right:  calc(-120 / 300 * 100%);
+    }
+  }
+}
+
+
+/* Layout B */
+@supports (display: grid) {
+  @media (min-width: 850px) {
+    .teaser_grid.layout_b {
+      font-size: calc(16 / 1190 * 100vw); /* (16px / 1190px) * 100vw */
+    }
+  }
+  @media (min-width: 1190px) {
+    .teaser_grid.layout_b {
+      font-size: 1rem;
+    }
+  }
+  @media (min-width: 850px) { /* Slightly bigger than the “three columns across” layout */
+    .teaser_grid.layout_b .teaser_grid_item {
+      width: 100%;
+      margin: 0;
+    }
+    .teaser_grid.layout_b {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-gap: 1.875em; /* 30px / 16px */
+      max-width: 74.375em; /* 1190px / 16px */
+      padding-left: 1.875em; /* 30px / 16px */
+      padding-right: 3.125em; /* 50px / 16px */
+      box-sizing: border-box;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(1) {
+      grid-column: span 2;
+      align-self: end;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(1) .teaser_grid_link {
+      margin-left:  calc(195 / 780 * 100%); /* column width = 450 + 30 + 300 = 780 */
+      margin-right: calc(135 / 780 * 100%);
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(2) {
+      grid-column: 3 / 4;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(2) .teaser_grid_link {
+      margin-left:  calc(-135 / 300 * 100%); /* column width = 300 */
+      width: 100%; /* Maintain normal size */
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(3) {
+      grid-column: 3 / 4;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(3) .teaser_grid_link {
+      margin-left:  calc(-135 / 300 * 100%); /* column width = 300 */
+      margin-top:   calc(-110 / 300 * 100%);
+      margin-right: calc( -15 / 300 * 100%);
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(4) {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      grid-column: span 2;
+      align-self: end;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(4) .teaser_grid_link {
+      margin-right: calc(135 / 780 * 100%); /* column width = 450 + 30 + 300 = 780 */
+      margin-left: calc(-5 / 780 * 100%); /* column width = 450 + 30 + 300 = 780 */
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(5) {
+      grid-column: 3 / 4;
+      position: relative;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(5) .teaser_grid_link {
+      margin-left: calc(-135 / 300 * 100%); /* column width = 300 */
+      margin-top:  calc(-260 / 300 * 100%);
+      width: 100%; /* Maintain normal size */
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(6) .teaser_grid_link {
+      margin-top:  calc(-75 / 450 * 100%); /* column width = 450 */
+      margin-left: calc( 50 / 450 * 100%);
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(9) .teaser_grid_link {
+      margin-left: calc(50 / 450 * 100%); /* column width = 450 */
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(10) {
+      grid-column: span 2;
+    }
+    .teaser_grid.layout_b .teaser_grid_item:nth-child(10) .teaser_grid_link {
+      margin-right: calc(-15 / 630 * 100%); /* column width = 300 + 30 +300 = 630 */
+    }
+  }
+}
+
+
+/* Layout C */
+@supports (display: grid) {
+  @media (min-width: 850px) {
+    .teaser_grid.layout_c {
+      font-size: calc(16 / 1190 * 100vw); /* (16px / 1190px) * 100vw */
+    }
+  }
+  @media (min-width: 1190px) {
+    .teaser_grid.layout_c {
+      font-size: 1rem;
+    }
+  }
+  @media (min-width: 850px) { /* Slightly bigger than the “three columns across” layout */
+    .teaser_grid.layout_c .teaser_grid_item {
+      width: 100%;
+      margin: 0;
+    }
+    .teaser_grid.layout_c {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-gap: 1.875em; /* 30px / 16px */
+      max-width: 74.375em; /* 1190px / 16px */
+      padding-left: 1.875em; /* 30px / 16px */
+      padding-right: 3.125em; /* 50px / 16px */
+      box-sizing: border-box;
+    }
+
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(1) {
+      grid-column: span 3;
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(1) .teaser_grid_link {
+      /* column width = 450px + 30px + 300px + 30px + 300px = 1110px */
+      width:        calc(650 / 1110 * 100%);
+      margin-left:  calc(275 / 1110 * 100%);
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(5) .teaser_grid_link {
+      margin-left:  calc(50 / 450 * 100%); /* column width = 450px */
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(6) {
+      grid-column: span 2;
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(6) .teaser_grid_link {
+      margin-top:   calc(-110 / 630 * 100%); /* column width = 300px + 30px + 300px = 630px */
+      margin-right: calc( -20 / 630 * 100%);
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(7) .teaser_grid_link {
+      /* column width = 450px */
+      margin-top:   calc(-75 / 450 * 100%);
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(10) {
+      grid-column: 2 / 3;
+    }
+    .teaser_grid.layout_c .teaser_grid_item:nth-child(10) .teaser_grid_link {
+      margin-top:   calc( -35 / 300 * 100%); /* column width = 300px */
+      margin-right: calc(-100 / 300 * 100%);
+    }
+  }
+}
+
+} //.wysiwyg_content
+

@@ -1,0 +1,194 @@
+/*  
+*  expandable_side_menu.scss
+*  Expandable side menu on mobile only
+*  
+*/
+
+
+
+
+$width_for_desktop_styles: $width_for_desktop_nav;
+
+.expandable_side_menu.mobile { // prviously eox_quick_menu
+  display: block;
+  height: 100%;
+  .panel_open & {
+    // This is for the webGL slide out menu -JM
+    display: none !important;
+  }
+  @include breakpoint($width_for_desktop_styles) {
+    display: none;
+  }
+  .expander {
+    position: absolute;
+    top: 68%;
+    right: 0;
+    text-align: center;
+    background-color: #2f6ba1;
+    height: 44px;
+    width: 44px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    z-index: 20;
+    @media only screen and (orientation: landscape) {
+      top: 50%;
+    }
+    &:after {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      content: '';
+      //@include sprite_based_ui_button (30px,30px,-78px,-158px);
+      background-size: 320px;
+    }
+  }
+  .filter_panel {
+    color: white;
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    &.open{
+      display: block;
+    }
+    .modal_background {
+      height: 100%;
+      width: 100%;
+      background-color: rgba(25,25,25,.6)
+    }
+    .menu {
+      width: 65%;
+      @include breakpoint($medium) {
+        width: 58%;
+      }
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #091825;
+      overflow: auto;
+      header {
+        background-color: #102033;
+        height: 55px;
+        padding: 19px 15px 15px;
+        font-weight: 700;
+        font-family: $secondary_font_family;
+        color: #8d9ba6;
+        .filter_title {
+          font-size: .8em;
+          &.back {
+            //@include sprite_based_ui_button (20px,20px,-53px,-177px);
+            display: inline-block;
+            position: absolute;
+            margin-top: -4px;
+          }
+        }
+        .menu_title {
+          display: block;
+          text-align: center;
+          font-size: .8em;
+          margin-top: 4px;
+        }
+        .close_btn {
+          //@include sprite_based_ui_button (20px,20px,-52px,-151px);
+          position: absolute;
+          right: 15px;
+          top: 18px;
+        }
+      }
+      .compare {
+        padding: 0 15px;
+      }
+      .secondary_level_tools li {
+        padding: 0.95rem 0;
+        border-bottom: 1px solid #1c2d3c;
+        margin: 0 15px;
+      }
+      label {
+        display: block;
+        margin: 1em;
+        input {
+          margin-right: 1em;
+        }
+        &.human {
+          color: #db5d7e;
+        }
+        &.robotic {
+          color: #dbab5d;
+        }
+        &.geography {
+          color: #43c95a;
+        }
+      }
+      li {
+        list-style: none;
+        font-size: .87rem;
+        position: relative;
+        //border-bottom: 1px solid #1c2d3c;
+        //height: 52px;
+        //line-height: 52px;
+        padding: 0 15px;
+        color: #767fa3;
+        text-transform: capitalize;
+        .icon_and_text_container {
+          border-bottom: 1px solid #1c2d3c;
+          padding: 0.95rem 0;
+        }
+        &.current {
+          color: #fff;
+          .arrow_right {
+            border-left: 5px solid white;
+          }
+        }
+        &.disabled {
+          color: rgba(118, 127, 163, .36);
+        }
+        &.lighting .icon_and_text_container:after {
+          content: " Off";
+        }
+        &.lighting.enabled .icon_and_text_container:after {
+          content: " On";
+        }
+        &.phases {
+          border-bottom: 4px solid #1c2934;
+          .icon_and_text_container {
+            border-bottom: none;
+          }
+        }
+        .arrow_right {
+          position: absolute;
+          top: calc(50% - 5px);
+          right: 25px;
+          width: 0;
+          height: 0;
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-left: 5px solid #2f6ba1;
+        }
+        .icon {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 10px;
+          position: relative;
+        }
+      }
+      //.compare li {
+        //.icon {
+          //@include sprite_based_ui_button (24px,24px,-74px,-200px);
+        //}
+        //&.current .icon {
+          //@include sprite_based_ui_button (24px,24px,-74px,-225px);
+        //}
+      //}
+    }
+  }
+}
+
+

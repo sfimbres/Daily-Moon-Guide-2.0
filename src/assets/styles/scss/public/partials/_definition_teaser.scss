@@ -1,0 +1,287 @@
+/* definition_teaser module styles */
+// on the homepage with a video background and large circles. Unique - new to GCC
+
+
+section.definition_teaser {
+  display: none;
+  
+  @include breakpoint($medium_mid) {
+    display: block;
+    background-color: #0b2535;
+    overflow: hidden;
+    max-height: 600px;
+    color: white;
+    padding: 3em 0 3.5em;
+  }
+   @include breakpoint($medium_large) { // this needs adjustments as the size gets in the 600px - 850px range - jh 9/4/14
+    max-height: 500px;
+    padding: 3.5em 0 4.5em;
+  }
+  
+  @include breakpoint($large) {
+    max-height: 610px;
+    padding: 3.7em 0 6em;
+  }
+  @include breakpoint($xlarge) {
+    max-height: 850px;
+    padding: 4em 0 7em;
+  }
+  .definitions_container {
+    text-align: center;
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  header {
+    margin-bottom: 2em;
+  }
+  h2.module_title {
+    margin-bottom: .6em;
+  }
+  .module_subtitle {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    @include breakpoint($medium) {
+      width: 90%
+    }
+    @include breakpoint($medium_large) {
+      width: 80%
+    }
+    @include breakpoint($large) {
+      width: 60%
+    }
+    @include breakpoint($xlarge) {
+      width: 50%
+    }
+  }
+  
+  video, .background_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 120%;
+  }
+  video {
+    // Display the video on no-touch screens starting at medium mid
+    display: none;
+    @include breakpoint($medium_mid) { 
+      display: block;
+      width: 120%;
+      .touchevents & {
+        display: none;
+      }
+    }
+    @include breakpoint($large) { 
+      width: 105%;
+    }
+    @include breakpoint($xlarge) { 
+      width: 102%;
+    }
+    @include breakpoint($xxlarge) { 
+      width: 101%;
+    }
+  }
+  .background_image {
+    // Display the background image on all screens up to medium mid
+    // and on all touch screens
+    min-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    img {
+      height: 100%;
+    }
+    @include breakpoint($medium_mid) { 
+      .no-touchevents & {
+        display: none;
+      }
+    }
+  }
+
+  .definition { // the large circular 'button' - different layout and html below 600px
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    border: 4px solid #7dbce2;
+    background-color: rgba(255,255,255,.13);
+    border-radius: 50%;
+    width: 125px; // using percentage is too difficult to maintain equal proportions
+    height: 125px;
+    margin: 0 1%;
+    cursor: pointer;
+    transition: all 200ms;
+    color: #d4ecfb;
+    &:hover {
+      color: white;
+      border-color: white;
+      border-width: 6px;
+    }
+
+    @include breakpoint($medium_large) {
+      margin: 0 1%;
+      width: 150px; // using percentage is too difficult to maintain equal proportions
+      height: 150px;
+      border-width: 6px;
+      &:hover {
+        border-width: 8px;
+      }
+    }
+    @include breakpoint($large) {
+      margin: 0 2%;
+      width: 200px; // using percentage is too difficult to maintain equal proportions
+      height: 200px;
+    }
+    @include breakpoint($xlarge) {
+      width: 220px;
+      height: 220px;
+    }
+    .title {   
+      display: inline-block;
+      font-size: 1em;
+      font-weight: 600;
+      vertical-align: middle;  
+      @include breakpoint($medium_mid) {
+        padding: 0 .5em; 
+      }
+        
+      @include breakpoint($medium_large) {
+        font-size: 1.2em;
+      }
+      @include breakpoint($xlarge) {
+        font-size: 1.4em;
+      }
+    }
+    &:before { // for vertical centering
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-top: .5em;
+      margin-right: 0; //inline-blocks add a little space between elements, this fixes that - jh
+    }
+    .hover_title {
+      display: none;
+      width: 90%;
+      vertical-align: middle;
+      color: white;
+      font-size: 1.1em;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+  }
+  
+
+  .large_button_text_container {
+    padding: 1em 0;
+    @include breakpoint($medium_mid) {
+      padding: 2em;
+    }
+  }
+  h3.title {
+    font-size: 1.1em;
+    margin-bottom: .3em;
+    display: inline-block;
+    vertical-align: middle;
+    width: 33%;
+    text-align: left;
+    padding-right: 1%;
+    @include breakpoint($medium_mid) {
+      font-size: 1.35em;
+      text-align: center;
+      width: auto;
+    }
+  }
+  .definition_description {
+    font-size: .85em;
+    display: inline-block;
+    vertical-align: middle;
+    width: 56%;
+    text-align: left;
+    @include breakpoint($medium_mid) {
+      width: auto;
+      text-align: center;
+    }
+
+  }
+}
+
+
+//mobile styles
+
+section.definition_teaser_mobile {
+  display: none;
+  @include breakpoint(max-width 599px) { // different breakpoint point than the nav - jh 
+    //@include unselectable;
+    display: block;
+    background: url('/src/assets/applications_bg.jpg'); // mobile version?
+    background-size: 100% auto;
+    overflow: hidden;  
+    color: white;
+    padding: 1em 0 2em;
+    header {
+      padding: 2em 0 1.5em; // should match definition_item's padding
+      .module_title {
+        text-align: center;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .module_subtitle {
+        text-align: center;
+        font-size: 1em;
+        margin-top: 1.5em; // optional?
+        font-weight: normal;
+        line-height: 1.4em;
+      }
+
+    }
+    footer {
+      text-align: center;
+      padding: 2.5em 0;
+    }
+    .definitions_container {
+      text-align: center;
+    }
+    .definition_viewer {
+      display: none; // js shows and hides, when necessary
+    }
+    .definition_item {
+      padding: 1.1em 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      &.current {
+        background-color: rgba(77,124,152,0.4);
+        .definition_button { // removed from design - jh
+          background-color: white;
+          border-color: #126a9c; 
+        }
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .definition_button {
+      display: none; 
+    }
+
+    .title {
+      display: inline-block;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .current_definition {
+      margin: .7em 0;
+    }
+    .current_definition_link a {
+      color: #9EE7FF;
+      font-weight: 600;
+    }
+  }
+}
+
+
+

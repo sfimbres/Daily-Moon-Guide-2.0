@@ -1,0 +1,46 @@
+/* variables */
+
+//Text Colors:
+$caption_color: #5a6470; //figcaption, byline?, text under an image
+$secondary_title_color: #71a3d5;
+$off_white_over_black_text_color: #CCC;
+
+//graphics colors
+$hyperlink_color: #0E7EE0; //257cdf // not used yet on SMAP
+$box_outline_color: #C1C1C1;
+
+$carousel_arrow_background_color: rgba(32, 32, 32, 0.9);
+
+$rollover_color: rgba(0, 0, 0, 0.95);
+
+$caption_font_size: .8em; // not a fan of this, since it needs to change font sizes responsively - jh
+
+//Font family for Magic shell
+// maybe make these $secondary_font_family - these fonts are used outside of magic shell
+//$secondary_font_family: Whitney, Helvetica, Arial, sans-serif;
+//$secondary_font_family_bold: Whitney-Bold, Helvetica, Arial, sans-serif; // get rid of these
+$core_font_family: Metropolis, Helvetica, Arial, sans-serif; // maybe: $primary_font: and $secondary_font:
+$secondary_font_family_condensed_bold: WhitneyCondensed-Bold, Helvetica, Arial, sans-serif;
+
+
+// Widths for content at different breakpoints
+$small_inner_layout_width: 90%;
+$medium_mid_inner_layout_width: 90%;
+$medium_large_inner_layout_width: 90%;
+$large_inner_layout_width: 97%;
+$max_inner_layout_width: 1200px;
+
+//brought over from webgl globe module
+$nav_background_color: #0d1423;
+$nav_item_background_color: #161c3c;
+$nav_item_hover_background_color: #182d68;
+$nav_item_text_color: #6b8ae3;
+$nav_item_text_color_hover: #c8d5fb;
+$header_title_text_color: #fafcff;
+$subtitle_text_color: #96a8dc;
+
+// hotpsot color theme:
+$human_landing_sites: #db5d7e;
+$robotic_landing_sites: #dbab5d;
+$geography: #43c95a;
+$core: #0097f9;

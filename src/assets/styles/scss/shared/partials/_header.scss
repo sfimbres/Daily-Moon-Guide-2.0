@@ -1,0 +1,288 @@
+/*
+*   _header
+*
+*   Styles that are shared between both mobile and desktop
+*/
+
+
+
+
+/* 
+*   Adaptive styles for sizing and position of the header
+*   and the elements within it. All screen widths.
+*   These are fine-tuned, so tread here at your peril. -JM
+*
+*/
+
+// possibly:
+//if version 1 header, the parameter group = []
+//if version 2 header, the parameter group = []
+//if version 3 header, the parameter group = []
+//if version 4 header, the parameter group = []
+// $width_for_top_trilogo is not used if there is no site logo
+
+.site_header_area {
+    //@include header_height;
+    .brand_area {
+      // This requires margin-left rather than left to handle conditional branding (Cassini vs. JPL) -JM
+      top: 8px; margin-left: 8px; height: 54px;
+      width: 180px;
+      &.subsite_brand {
+        width: 240px;
+      }
+    }
+    .site_logo_container { // "cassini grand finale", with removable "grand finale"
+      top: 16px; margin-left: 0;
+      width: 189px;  
+    }
+    .menu_button, #modal_close {
+      top: 12px; right: 8px;
+    }
+    @include breakpoint($medium_large) {
+      .brand_area {
+        top: 10px; margin-left: 12px; height: 51px;
+        width: 200px; 
+      }
+      .site_logo_container { 
+        top: 23px; margin-left: 13px; width: 189px;
+      }
+      .menu_button, #modal_close {
+        top: 12px; right: 12px;
+      }
+    }
+    @include breakpoint($large) {
+      .brand_area {
+        top: 12px; margin-left: 10px; height: 55px;   
+        width: 216px; 
+      }
+      .site_logo_container {
+        width: 120px;
+      }
+    }
+    @include breakpoint($xlarge) {
+      .brand_area {
+        top: 14px; margin-left: 17px; height: 69px;
+        width: 270px;
+        &.subsite_brand {
+          width: 290px;
+        }
+      }
+      .site_logo_container {
+        top: 30px; width: 210px;
+      }
+    }
+  
+    @include breakpoint($xxlarge) {
+      .brand_area {
+        top: 14px; margin-left: 30px; height: 69px;
+        width: 270px; 
+      }
+      .site_logo_container {
+        top: 30px; width: 246px;
+      }
+    }
+  }
+  
+  
+  // Mobile and desktop shared header styles
+  .site_header_area {
+    background-color: $site_nav_bg_color_fixed;
+    width: 100%;
+    position: absolute;
+    transition: background-color .5s ease-in-out;
+    z-index: 21; // Below nav overlay, above filter bar -JM
+    top: 35px; // position below tophat
+    .nav_overlay_true & { // move header up when
+      top: 0;
+    }
+    &.opaque {
+      transition: background-color .5s ease-in-out;
+    }
+    .main_feature_present & {
+      background-color: transparent;
+    } 
+    .main_feature_present &.opaque {
+      background-color: $site_nav_bg_color;
+    } 
+     .top_feature_map_module & {
+       background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+     }
+  
+    .nav_is_fixed  & { // some overlap with header_desktop styles
+      //transform: translate3d(0px,0px,0px); // a fix for ios9 sticky nav, but alters the open nav overlay - jh
+      //position: fixed !important; // important added because specificity is easily overridden by mobile and desktop styles. But if 'fixed' is present it should always be fixed - jh
+      box-shadow: 0 4px 4px -2px rgba(0,0,0,.15);
+      transition: background-color .5s ease-in-out;
+      background-color: $site_nav_bg_color_fixed;
+      }
+  
+    .admin_only & { // move site header area up because there is no tophat in the admin - smb
+      top: 0;
+    }
+  
+    .site_header {
+      width: 100%;
+      height: 100%;
+    }
+    .brand_area { // parents, really - NASA, JPL and Caltech
+      @extend %brand_area !optional;
+      position: relative;
+      display: inline-block;
+      z-index: 100; // nav is now 100% wide, the brand area has to be above it 
+      // Handle switching from just NASA logo in the header to the tri-logo
+      background-image: url('/src/assets/logo_nasa_duo_mobile@2x.png');
+      @include breakpoint($width_for_top_trilogo) {
+        background-image: url('/src/assets/logo_nasa_trio@2x.png');
+  /*
+        .nav_overlay_true & {
+          background-image: url('/src/assets/logo_nasa_trio_white@2x.png');
+        }
+  */
+      }
+      .brand1 {
+        width: 32%;
+        @include breakpoint($width_for_top_trilogo) {
+          // switches to tri-logo at this point
+        }
+      }
+      .brand2 {
+        width: 68%;
+        @include breakpoint($width_for_top_trilogo) {
+          // Switches to tri-logo at this point
+        }
+      }
+      // hit areas
+      a.top_logo,  a.sub_logo { 
+        width: 100%;
+        float: left;
+        height: 100%;
+        @include breakpoint($width_for_top_trilogo) {
+          height: 50%;
+        }
+      }
+      a.top_logo {
+        display: none;
+        @include breakpoint($width_for_top_trilogo) {
+          display: block;
+          height: 28%;
+        }
+      }
+      a.sub_logo { 
+        @include breakpoint($width_for_top_trilogo) {
+          height: 72%;
+        }
+      }
+    }
+  
+    .brand_area.subsite_brand { // international observe the moon night
+      background-image: url('/src/assets/logo_nasa_inomn_duo_white@2x.png');
+      .brand1 {
+        width: 30%;
+      }
+      .brand2 {
+        width: 70%;
+      }
+      a.sub_logo {
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    
+    .site_logo_container { // container for inline image
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      z-index: 100; // nav is now 100% wide, the brand area has to be above it 
+      @include breakpoint($medium_large) {
+        &:before {
+          content: "";
+          height: 110%;
+          background-color: rgba(255,255,255,.4);
+          width: 1px;
+          position: absolute;
+          left: -9px;
+          top: 0px;
+        }
+      }
+      @include breakpoint($large) {
+        &:before {
+          height: 150%;
+          top: 1px;
+        }
+      }
+      @include breakpoint($xlarge) {
+        &:before {
+          height: 110%;
+          top: -2px;
+        }
+      }
+      @include breakpoint($xxlarge) {
+        &:before {
+          top: 0px;
+        }
+      }
+      a {
+        display: block; // fully wrap image
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      img.site_logo {
+        display: block;
+        position: relative;
+        width: 130px;
+        top: 3px;
+        @include breakpoint($medium_large) {
+          width: 170px;
+          top: 0px;
+        }
+        @include breakpoint($large) {
+          width: 120px;
+          top: 6px;
+        }
+        @include breakpoint($xlarge) {
+          width: 188px;
+          top: 0;
+        }
+        @include breakpoint($xxlarge) {
+          width: 215px;
+        }
+      }
+      img.site_logo_truncated {
+        display: none;
+        @include breakpoint($large) {
+          display: block;
+        }
+        @include breakpoint($xlarge) {
+          display: none;
+        }
+  
+      }
+    }
+  
+    img.site_logo_black {
+      display: none;
+    }
+    form.nav_search, form.meganav_search {
+      display: inline-block;
+      vertical-align: middle;
+      // This needs to be here because can't be within a media query, 
+      // otherwise would be in header_desktop -JM
+      //@extend %form_field; 
+      margin-right: 1em;
+    }
+  }
+  
+  .header_mask { 
+    display: none; //not needed on mobile sizes
+    @include breakpoint($width_for_desktop_nav) { 
+      //@include header_height;
+      display: block;
+      //background-color: $site_nav_bg_color;
+    }
+    .has_tophat & {
+      margin-bottom: 40px;
+    } 
+  }
+  

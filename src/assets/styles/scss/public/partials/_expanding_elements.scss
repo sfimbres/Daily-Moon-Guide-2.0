@@ -1,0 +1,12 @@
+/* expanding_elements styles */
+
+.condense_control {
+  color: $core_link_color;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:before {
+    content: ' › ';
+    white-space: nowrap;
+  }
+}

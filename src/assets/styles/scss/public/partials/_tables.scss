@@ -1,0 +1,108 @@
+.wysiwyg_content { 
+  // table styles 
+  // these could be entered through the ckeditor's advanced mode
+  table {
+    border-spacing: 1px;
+    border-collapse: separate;
+    font-size: 15px;
+    line-height: normal;
+    //margin: 4em 0; 
+    th, td {
+      padding: 13px;
+    }
+    th {
+      background-color: #ddd;
+      font-weight: 600;
+      text-align: left;
+    }
+    td {
+      background-color: #eee; // google search results, if used, need td { background-color: transparent;}
+    }
+  }
+  .table_wrapper {  // added by javascript to all tables in the wysiwyg
+    width: 100%;
+    //overflow: auto;
+    margin: 1em 0;
+    -webkit-overflow-scrolling: touch;
+    & > div::-webkit-scrollbar {
+      height:12px;
+    }
+    & > div::-webkit-scrollbar-track {
+      box-shadow:0 0 2px rgba(0,0,0,0.15) inset;
+      background:#f0f0f0;
+    }
+    & > div::-webkit-scrollbar-thumb {
+    border-radius:6px;
+    background:#ccc;
+    }
+  }
+
+  
+  .table_wrapper.has-scroll {
+    position:relative;
+    overflow:hidden; /* Clips the shadow created with the pseudo-element in the next rule. Not necessary for the actual scrolling. */
+  }
+  .table_wrapper.has-scroll:after {
+    position:absolute;
+    top:0;
+    left:100%;
+    width:50px;
+    height:100%;
+    border-radius:10px 0 0 10px / 50% 0 0 50%;
+    box-shadow:-5px 0 10px rgba(0, 0, 0, 0.25);
+    content:'';
+  }
+  /* This is the element whose content will be scrolled if necessary */
+  .table_wrapper.has-scroll > div {
+    overflow-x:auto;
+  }
+  //custom table for tabular data only
+  table.mb_table {
+    border-collapse: collapse;
+    width: 100%;
+    td { background-color: transparent;} // reset default table styles
+    th {
+      background-color: white;
+      color: $secondary_title_color;
+      //text-transform: uppercase;
+      font-size: .75em;
+      font-weight: 500;
+      text-align: left;
+      padding: 13px; // px because font size is set on this element
+      @include breakpoint($medium_mid) {
+        font-size: .9em;
+      }
+    }
+    tbody td { // careful, setting an em font size on a container - jh 
+      font-size: .9em;
+      @include breakpoint($medium_mid) {
+        font-size: 1.1em;
+      }
+    }
+    tr:nth-child(even) {
+      background-color: #edf4fb;
+    }
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    td {
+     border: 1px solid #d2d2d2;
+     padding: .8em;
+    }
+    td:first-child {
+      border-left: transparent;
+    }
+    td:last-child {
+      border-right: transparent;
+    }
+  }
+  table, table.mb_table {
+    &.small_table {
+      font-size: .75em;
+      padding: .6em;
+    }
+  }
+}
+
+
+

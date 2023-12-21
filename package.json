@@ -1,0 +1,26 @@
+{
+  "name": "daily-moon-guide",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^3.0.0",
+    "jquery": "^3.7.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "tailwindcss": "^3.3.5",
+    "vite": "^4.4.11"
+  }
+}

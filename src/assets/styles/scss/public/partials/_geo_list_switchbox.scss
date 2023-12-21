@@ -1,0 +1,80 @@
+/*
+*   _switchbox
+*
+*   a lightswitch kind of interface
+*   modified for geo_list 
+*/
+// copied over from solarsystem
+
+.geo_list_module {
+  .mobile_view_toggle {
+    @include breakpoint($medium_large) { 
+      display: none;
+    }
+  }
+
+  .switchbox {
+    border: 2px solid black;
+    position: relative;
+    height: 42px;
+    width: 180px;
+    margin: 20px auto;
+    &.hidden {
+      display: none;
+    } 
+  }
+
+  .switch-label {
+    text-transform: uppercase;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    @include unselectable;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .switch-input {
+    display: none;
+  }
+
+  .events_view .switch-input:first-of-type + .switch-label {
+    color: black;
+  }
+
+  .events_view .switch-input:last-of-type + .switch-label {
+    color: white;
+  }
+  .switch-input:checked + .switch-label {
+    transition: 0.15s ease-out;
+    transition-property: color;
+    color: black;
+  }
+
+  .switch-input:not(:checked) + .switch-label {
+    color: white;
+  }
+
+  .switch-input:checked + .switch-label-right ~ .switch-indicator {
+    right: 50%;
+  }
+
+  .switch-indicator {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    transition: left 0.15s ease-out;
+  }
+}

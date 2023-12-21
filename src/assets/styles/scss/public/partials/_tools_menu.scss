@@ -1,0 +1,130 @@
+/*  
+*  tools_menu.scss
+*  Expandable side menu on desktop only
+*  
+*/
+
+
+.webgl_globe_module .tools {
+  display: none;
+  @include breakpoint($width_for_desktop_nav) { // tools icons are used on on mobile expandable menu
+    display: block;
+    z-index: 10;
+    position: absolute;
+    right: 5%;
+    top: 40%;
+    color: #CCC;
+    width: 52px;
+    text-align: center;
+    @media screen and ( max-height: 1000px ){
+      top: 35%;
+    }
+    @media screen and ( max-height: 800px ){
+      top: 25%;
+    }
+    @include breakpoint($large) {
+      right: 2%;
+    }
+
+    @include breakpoint($xxlarge) {
+      right: 12%;
+    }
+    .title {
+      font-size: 13px; // this area is pixel-specific
+      margin-bottom: 6px;
+    }
+    nav {
+      border: 1px solid rgba(67, 75, 80, 0.4); // variable?
+      background-color: rgba(0,0,0,0.25);
+      border-radius: 4px;
+    }
+    li {
+      list-style: none;
+      position: relative;
+      width: 100%;
+      height: 44px;
+      .hover_text {
+        display: none;
+      }
+      &:hover .hover_text {
+        display: block;
+        position: absolute;
+        right: 65px;
+        top: 11px;
+        text-transform: capitalize;
+        font-size: 0.9em;
+        color: #fff;
+        @include breakpoint($xxlarge) {
+          left: 65px;
+        }
+      }
+    }
+
+    // dividing lines could also change the html, which may be better
+    li:nth-child(-n+3):after {
+      content: "";
+      height: 1px;
+      width: 60%;
+      display: block;
+      border-bottom: 1px solid rgba(67, 75, 80, 0.4);
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      right: 0;
+      margin: auto;    }
+    li:nth-child(4) {
+      border-bottom: 1px solid rgba(67, 75, 80, 0.4);
+    }
+  }
+}
+
+// the icons, on mobile and destop
+.webgl_globe_module .top_level_tools {
+  margin-left: 0;
+  li {
+    margin-bottom: 0;
+    .icon {
+      //@include sprite_based_ui_button(27px,27px,-100px,0,-75px,0); 
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  
+    //&.core .icon {
+      //@include sprite_based_ui_button(27px,27px,-100px,-25px,-75px,-25px); 
+    //}
+    //&.data .icon {
+      //@include sprite_based_ui_button(27px,27px,-100px,-50px,-75px,-50px); 
+    //}
+    //&.phases .icon {
+      //@include sprite_based_ui_button(27px,27px,-100px,-75px,-75px,-75px); 
+    //}
+    &.lighting {
+      //.icon {
+        //@include sprite_based_ui_button(27px,27px,-100px,-100px);
+      //}
+      &.enabled:hover .icon, &.enabled.fully_lit .icon {
+        background-position: -75px -100px;
+      }
+  
+    }
+    &.reset {
+      ///.icon {
+       // @include sprite_based_ui_button(27px,27px,-100px,-125px);
+      //}
+      &.enabled:hover .icon {
+        background-position: -75px -125px;
+      }
+    }
+    &.disabled {
+      .icon {
+        opacity: .25;
+        cursor: auto;
+      }
+    }
+  }
+}
+

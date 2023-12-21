@@ -1,0 +1,177 @@
+/*
+*   _headings - public view
+*
+*   A variety of headings that are shared between headings
+*
+*/
+
+
+
+.module_title, .media_feature_title, .sitemap_title, .nav_title, .article_title, .sidebar_title, .rollover_title { //add to responsive_headline mixin? - jh
+  letter-spacing: -.04em;
+}
+
+.module_title {
+  letter-spacing: -.04em;
+}
+
+.homepage_page .module_title {
+  margin-top: 0;
+  //@include responsive_headline(1.4, .35);
+}
+
+//.rollover_title {
+  //@include responsive_headline(1.8);
+//}
+
+.content_title {
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+.module_title { // This is used in various place, so be careful with it if you change it here -JM
+  //@include responsive_headline(1.4, .35); // this mixin handles responsive text size changes
+  text-align: center;
+  font-weight: 700;
+  .grid_gallery & {
+    @include breakpoint($medium_mid) {
+      text-align: left;
+      width: 80%; // Leaves space for icons on right. -JM
+    }
+  }
+}
+
+.module_title_small, .double_teaser .module_title { // responsive_headline doesn't really work with this one
+  font-size: 1.4em;
+  @include breakpoint($medium_mid) {
+    font-size: 1.8em;
+    margin-bottom: .85em;
+  }
+  .filter_bar & {
+    text-align: left;
+    width: 90%;
+    @include breakpoint($medium_mid) {
+      text-align: center;
+    }
+  }
+}
+
+
+// .wysiwyg_content added because moon's default h1 (etc) styles are wrapped in '.wysiwyg_content'
+.category_title, .wysiwyg_content .category_title { //small all caps section (except for dates) or category title sometimes above may be too general. In multimedia_teaser and media feature module and carousel separate these, also detail pages - jh
+  font-size: .9em;
+  font-weight: 700;
+  color: $secondary_title_color;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  .multimedia_teaser & {
+    font-size: .8em;
+  }
+}
+
+.primary_media_feature .media_feature_title {  //gcc - only on the homepage carousel
+  //@include responsive_headline(1.1);
+  font-weight: 700;
+  color: white;
+}
+
+.image_of_the_day .media_feature_title { //gcc - only on the homepage beautiful earth section
+  //@include responsive_headline(1.1);
+  font-weight: 700;
+  color: white;
+}
+
+.multimedia_module_gallery .media_feature_title { // gcc - explore your planet front page
+  //@include responsive_headline(1.1);
+  color: white;
+  font-weight: 700;
+}
+
+
+.article_title { //may need different math if it goes full width (across columns) - jh
+  //@include responsive_headline(1.4);
+  font-weight: 700;
+}
+
+// This is here because it is being extended for use in the iframe overlay, in addition to magic shell -JM
+.magic_shell_title {
+  font-family: $secondary_font_family_condensed_bold;
+  background-color: #000;
+  font-size: 2.6em;
+  font-weight: normal;
+  padding: .9em .5em;
+  text-align: center;
+  line-height: .8;
+  @include breakpoint($medium_mid) {
+    padding: .9em .5em;
+    text-align: left;
+    font-size: 2.6em;
+  }
+  .parent_title {
+    display: block;
+    a {
+      color: $secondary_title_color;
+      transition: color 400ms;
+      &:hover {
+        text-decoration: none;
+        color: white;
+      }
+    }
+    @include breakpoint($medium_mid) {
+      display: inline;
+      margin-right: 0.1em;
+    }
+  }
+  .article_title {
+    color: #FFF;
+    font-weight: normal;
+  }
+  .article_title, .parent_title {
+    font-size: .7em;
+    text-transform: uppercase;
+    letter-spacing: normal;
+  }
+}
+
+.sidebar_title {
+  font-size: 1.55em;
+  margin-bottom: 0.6em;
+  font-weight: 700;
+  margin-left: -1px;
+}
+
+.links_module {
+  a {
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
+
+.dashboard_title{
+  font-size: 1em;
+  font-weight: 300;
+  color: #e4e4e4;
+  white-space: nowrap;
+  @include breakpoint($medium_mid) {
+    font-size: 1.4em;
+  }
+}
+
+.news_subtitle {
+  margin-top: .5em;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1.3em;
+  @include breakpoint($medium_mid){
+    font-size: 1.4em;
+  }
+
+  @include breakpoint($medium_large){
+    font-size: 1.5em;
+  }
+
+  @include breakpoint($large){
+    font-size: 1.6em;
+  }
+}

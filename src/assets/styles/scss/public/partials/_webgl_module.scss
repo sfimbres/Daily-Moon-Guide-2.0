@@ -1,0 +1,445 @@
+@mixin gradient_topdown {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;1+14,0+99 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(0,0,0,1) 14%, rgba(0,0,0,0) 99%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(14%,rgba(0,0,0,1)), color-stop(99%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 14%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin gradient_bottomup {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+7,1+100 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 7%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(7%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 7%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 7%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 7%,rgba(0,0,0,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 7%,rgba(0,0,0,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: calc($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+//the webGL module that can be in a content page. too basic to include module_layout mixin, I think - jh
+// .overlay_webgl {
+//   display: none;
+//   .webgl-enabled & {
+//     display: block;
+//     @extend .clearfix;
+//     margin-top: 2em;
+//     margin-bottom: 2em;
+//   }
+// }
+
+// feature page styles
+.feature_pages .wysiwyg_content #scene_container {
+  //@include feature_page_module_layout;
+  @include aspect-ratio(4, 3);
+  // @include breakpoint($medium_mid) {
+  //   @media only screen and (orientation: landscape) {
+  //     @include aspect-ratio(16, 9);
+  //   }
+  // }
+}
+
+// content page template
+.content_page:not(.feature_pages) .wysiwyg_content #scene_container {
+  //@include module_layout;
+  @include aspect-ratio(4, 3);
+}
+
+// magic shell page template
+.magic_shell_page .wysiwyg_content #scene_container {
+  height: 100%;
+}
+
+#scene_container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  .loading_webgl {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 21;
+    opacity: 1.0;
+    color: white;
+    background-color: black;
+    text-align: center;
+    -webkit-transition: opacity 2s, visibility 2s;
+    -moz-transition: opacity 2s, visibility 2s;
+    transition: opacity 2s, visibility 2s;
+    
+    .loading_text {
+      position: relative;
+      top: 50%;
+      padding-bottom: 6px;
+    }
+    .load_bar {
+      position: relative;
+      top: 50%;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #FFFFFF;
+      opacity: 0.5;
+    }
+  }
+}
+
+#gl_layer {
+  margin: 0 auto;
+  // all my unique sass and/or overrides
+}
+
+//#gl_fallback_layer {
+  // margin: 10px auto;
+//}
+
+#gl_layer, #gl_fallback_layer {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  // z-index: 0;
+  .module_title_wrapper {
+    position: absolute;
+    padding-top: 8px;
+    top: -120px;
+    left: 50%;
+    width: 90%;
+    text-align: center;
+    visibility: hidden;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: top 1s, visibility 1s;
+    -moz-transition: top 1s, visibility 1s;
+    transition: top 1s, visibility 1s;
+    z-index: 20;
+    @include breakpoint($medium) {
+      padding-top: 26px;
+      @media only screen and (orientation: landscape) {
+        padding-top: 0px;
+      }
+    }
+    @include breakpoint($medium_mid) {
+      padding-top: 34px;
+      @media only screen and (orientation: landscape) {
+        padding-top: 4px;
+      }
+    }
+    @include breakpoint($medium_large) {
+      padding-top: 34px;
+    }
+    &.active {
+      top: 0px;
+      visibility: visible;
+    }
+    .gradient_overlay_top {
+      position: absolute;
+      width: 120%;
+      height: 250%;
+      top: 0;
+      left: 50%;
+      opacity: .8;
+      @include gradient_topdown;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .module_title {
+      font-size: 20px;
+      margin-right: 0.4em;
+      position: relative;
+      color: #FFFFFF;
+      font-family: $secondary_font_family;
+      vertical-align: middle; 
+      @include breakpoint($medium) {
+        font-size: 22px;
+      }
+      @include breakpoint($medium_mid) {
+        font-size: 34px;
+        @media only screen and (orientation: landscape) {
+          font-size: 24px;
+        }
+      }
+      @include breakpoint($medium_large) {
+        font-size: 28px;
+      }
+      @include breakpoint($large) {
+        font-size: 34px;
+      }
+    }
+    a.close_focus {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      padding: .1em;
+      width: 26px;
+      height: 26px;
+      vertical-align: middle; 
+      @include breakpoint($medium) {
+        width: 28px;
+        height: 28px;
+      }
+      @include breakpoint($medium_mid) {
+        width: 36px;
+        height: 36px;
+        @media only screen and (orientation: landscape) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      @include breakpoint($medium_large) {
+        width: 36px;
+        height: 36px;
+      }
+      @include breakpoint($large) {
+        width: 42px;
+        height: 42px;
+      }
+      .close_icon {
+       // @include x_icon(3px, white);
+        opacity: 0.7;
+      }
+      &:hover .close_icon {
+        opacity: 1.0;
+      }
+    }
+  }
+  .module_description_wrapper {
+    position: absolute;
+    padding-bottom: 26px;
+    bottom: -110px;
+    left: 50%;
+    width: 90%;
+    text-align: center;
+    visibility: hidden;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: bottom 1s, visibility 1s;
+    -moz-transition: bottom 1s, visibility 1s;
+    transition: bottom 1s, visibility 1s;
+    z-index: 20;
+    @include breakpoint($medium) {
+      padding-bottom: 66px;
+      @media only screen and (orientation: landscape) {
+        padding-bottom: 12px;
+      }
+    }
+    @include breakpoint($medium_large) {
+      padding-bottom: 66px;
+    }
+    &.active {
+      bottom: 0px;
+      visibility: visible;
+    }
+    .gradient_overlay {
+      position: absolute;
+      width: 120%;
+      height: 250%;
+      bottom: 0;
+      left: 50%;
+      opacity: .8;
+      @include gradient_bottomup;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .module_description {
+      padding: 0px 12px;
+      font-size: 14px;
+      font-weight: 300;
+      // vertical-align: middle;
+      position: relative;
+      z-index: 10;
+      color: #FFFFFF;
+      font-family: $secondary_font_family;
+      @include breakpoint($medium_mid) {
+        font-size: 20px;
+        @media only screen and (orientation: landscape) {
+          font-size: 16px;
+        }
+      }
+      @include breakpoint($xlarge) {
+        font-size: 22px;
+      }
+    }
+    .explore {
+      letter-spacing: .1em;
+      font-family: $secondary_font_family;
+      font-weight: bold;
+      font-size: 0;
+      vertical-align: baseline;
+      margin: 0px;
+      color: #78BDFF;
+      background: rgba(0,0,0,.1);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+      &:hover {
+        color: #CFE7FF;
+        background: rgba(0,0,0,.2);
+      }
+      &:after {
+        content: "››";
+        font-size: 20px;
+      }
+      @include breakpoint($large) {
+        font-size: 17px;
+        padding: 10px;
+        border: 1px solid #78BDFF;
+        vertical-align: middle;
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+#gl_layer {
+  .label {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    max-width: 300px;
+    text-align: center;
+    -webkit-transform: translate(-50%, -110%);
+    -ms-transform: translate(-50%, -110%);
+    transform: translate(-50%, -110%);
+    font-size: 16px;
+    color: #FFFFFF;
+    font-family: $secondary_font_family;
+  }
+}
+
+#gl_fallback_layer {
+  .focus_layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 1s, visibility 1s;
+    -moz-transition: opacity 1s, visibility 1s;
+    transition: opacity 1s, visibility 1s;
+    z-index: 15;
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .overlay_image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+.hotspot_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  .hotspot_wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 350px;
+    visibility: visible;
+    -webkit-transform: translate(-12px, -12px);
+    -ms-transform: translate(-12px, -12px);
+    transform: translate(-12px, -12px);
+    span {
+      position: relative;
+      visibility: visible;
+      font-size: 0.7em;
+      color: #FFFFFF;
+      opacity: 0.0;
+      transition: opacity 0.75s;
+      left: 6px;
+    }
+    &.hidden {
+      visibility: hidden;
+    }
+    .hotspot {
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+    }
+  }
+  // &.hidden {
+  //   display: none;
+  // }
+}
+
+// #gl-layer-detail { // not needed since introduction of iframe in explore overlay
+//   -webkit-tap-highlight-color: rgba(0,0,0,0);
+//   -webkit-tap-highlight-color: transparent;
+//   position: relative;
+//   overflow: hidden;
+//   width: 100%;
+//   height: 584px;
+//   float: left;
+// /*  border: 2px solid #4460A1;*/
+// }
+
+
+// ----------- fallback mode - no webgl ---------------- //
+.fallback_mode #gl_fallback_layer {
+  // position: relative;
+  height: auto;
+  img {
+    height: auto;
+  }
+}
+
+.image {
+  height: 300px;
+  width: 300px;
+  border-color: #000000;
+  border: 4px solid #ffffff;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+}

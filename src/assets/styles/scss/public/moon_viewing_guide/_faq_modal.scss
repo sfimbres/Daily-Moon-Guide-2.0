@@ -1,0 +1,40 @@
+.moon_viewing_guide_page #dashboard_modal { // HiPO
+    position: fixed;
+    a {
+      color: #78CBFF;
+    }
+    a.close_button {
+      filter: invert(1);
+    }
+    .grid_layout {
+      background-color: black;
+      color: white;
+      p {
+        color: white;
+      }
+    }
+    .module_title {
+      font-size: 34px;
+      @include breakpoint($medium_mid) {
+        font-size: 44px;
+      }
+    }
+    .faq_section {
+      h2 {
+        margin-bottom: 13px;
+        @include breakpoint($medium_mid) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+    .left_col {
+      border: none;
+    }
+    .boxed {
+      border: 1px solid #555555;
+      padding: 20px;
+      h2 {
+        margin-top: 0;
+      }
+    }
+  }

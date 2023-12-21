@@ -1,0 +1,31 @@
+/* footnotes */
+
+.wysiwyg_content{
+  .footnotes { //we may need to convert this to an ol - jh
+    h3 {
+    }
+    li {
+      position: relative;
+      font-size: .85em; // do not put a size on the p within, or it will cascade - jh
+      margin-bottom: 1em;
+      .footnote h2 {
+        margin: 0;
+        color: $core_text_color;
+        font-size: 1.2em;
+      }
+      p { // to match design, all references are indented, but not reference numbers - jh
+        //margin-left: 3em; // bad for future-proofing - jh 
+        margin: 0.4em 0 0.6em;
+      }
+    }
+  }
+  .footnote {
+     font-size: .8em; 
+  }
+}
+
+#secondary_column {
+  .footnote {
+    font-size: .8em; 
+  }
+}

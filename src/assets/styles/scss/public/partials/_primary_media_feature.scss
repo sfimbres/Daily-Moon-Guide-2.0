@@ -1,0 +1,84 @@
+/* 
+*   _primary_media_feature
+*
+*   The large full-width feature area at the top of a top-level page
+*   Can be a single image or a videos
+*   gcc on: beautiful-earth
+*/
+
+.primary_media_feature {
+  
+  // Defaults
+  
+  margin-bottom: 0;
+  @include breakpoint($medium_large) {
+    padding: 0;
+  }
+
+  // Single item
+  
+  &.single {
+    position: relative;
+    margin-bottom: 0; //for filter bar module all single media features? No - jh
+    overflow: hidden;
+    .feature_container { //the class on the article. This contains the background image
+      height: 300px;
+      background-size: cover;
+      position: relative;
+      z-index: 3;
+      background-position: center;
+      @include breakpoint($medium_large) {
+        height: calc(100vh - 36px);
+      }
+      &.missions {
+        @include breakpoint($medium_large) {
+          height: calc(100vh - 62px);
+        }
+      }
+    }
+
+    &.video .play {
+      display: none; //show when video ready
+      position: absolute;
+      top: 47%; // for non calc browsers
+      left: 47%; // for non calc browsers
+      top: calc(50% - 30px);
+      left: calc(50% - 30px);
+      top: -webkit-calc(50% - 30px); // safari
+      left: -webkit-calc(50% - 30px); // safari
+      width: 60px;
+      height: 60px;
+      padding-top: 0;
+      cursor: pointer;
+      background: url('/src/assets/play-button.png') 0 0 no-repeat;
+      z-index: 10;
+    }
+    &.video .player{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+    .video_header_overlay {
+      position: absolute;
+      bottom: 2em;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      width: auto;
+      text-align: center;
+      color: white;
+      z-index: 5;
+      .media_feature_title {
+        font-size: 3em;
+      }
+      
+    }
+  }
+}
+
+.custom_banner_container {
+  position: relative;
+}

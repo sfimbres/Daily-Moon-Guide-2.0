@@ -1,0 +1,165 @@
+
+/* Instance Overrides */
+
+// megasection nav override
+// middle nav and megasection_nav now match on mobile middle nav (with the arrow down) is on subsites on Moon
+@media (max-width: 1023px) {
+  .megasection_nav {
+    li:last-child {
+      .megasection_subnav {
+        margin-bottom: 2rem; // add a little spacing for mobile bottom of the screen inconsistencies
+      }
+    }
+  }
+}
+
+// .megasection_title.site_title_display::after, .megasection_title_container--nav-hidden::after 
+
+
+.megasection_nav {
+  font-family: $core_font_family;
+  background-color: #DADADA;
+  font-size: 16px; // should be ok this high
+  color: #747474;
+
+  @media (max-width: 1023px) {
+    padding: 18px 17px 0px; // matching middle-nav
+    ul.nav {
+      padding: 7px 5px 0; // indent a little for the sub nav
+    
+      > li {
+        border-bottom: 1px solid #B3B3B3;
+        padding: 10px 0;
+        &:first-child {
+          padding-top: 0;
+        }
+      }
+    }
+
+  }
+  .nav_title a {
+    font-size: 16px;
+  }
+  ul.nav {
+    > li.current .main_nav_item, li.current {
+      color: #222222;
+      a {
+        color: inherit;
+      }
+    }
+    li {
+      font-family: inherit;
+      font-weight: 600;
+    }
+  }
+  .nav .main_nav_item {
+    color: #747474;
+    text-transform: none;;
+  }
+  .megasection_title {
+    color: #747474;
+    text-transform: none;
+    font-family: inherit;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .megasection_title_container--nav-hidden::before {
+    content: "MENU";
+    position: absolute;
+    right: 46px;
+    color: #5A5A5A;
+    font-size: 14px;
+    font-weight: 700;
+    top: 21px;
+  }
+  .megasection_subnav li {
+    color: #747474;
+    background-color: #DADADA;
+    
+  }
+  .arrow_down {
+    opacity: .6;
+  }
+}
+
+// .megasection_nav_present {
+//   .site_header_area {
+//     box-shadow: none;
+//     background-color: transparent;
+//     position: absolute;
+//     top: auto; // why? because - jh
+//   }
+//   &.nav_is_fixed { // override nav is fixed when midsection nav present
+//     .site_header_area {
+//       box-shadow: none;
+//       position: absolute;
+//       top: auto;
+//     }
+//   }
+// }
+
+.middle_nav { // middle nav and megasection_nav now match on mobile middle nav (with the arrow down) is on subsites on Moon
+  .secondary_nav .mobile_middle_nav_header {
+    .middle_nav_title, .middle_nav_title_expanded {
+      //color: #747474;
+      color: #222222;
+    }
+  }
+}
+
+.magic_shell_page.megasection_nav_present:not(.scrolling_feature) {
+  .site_header_area, .megasection_nav {
+    position: relative;
+  }
+  
+}
+
+body.top_feature_map_module {
+  .site_header_area {
+    background-color: #272727;
+  }
+  section.dashboard {
+    background-color: #272727;
+    position: absolute;
+    left: -9999px;
+    @include breakpoint($medium_large) {
+      position: relative;
+      left: 0;
+    }
+  }
+}
+
+.image_of_the_day header .multimedia_link {
+  font-weight: 700;
+}
+
+// Partial solution for adding some spacing to account for tophat
+.has_tophat #page {
+  padding-top: 35px;
+  @include breakpoint($width_for_desktop_nav) {
+    padding-top: 0px;
+  }
+}
+
+.expandable_info_button {
+  bottom: 31%; // lined up with article title // this can be removed after adding middle nav to moon
+  // we decided it was better over the nav
+  //z-index: 20; //show up below nav
+  @include breakpoint($medium_mid) { // this can be removed after adding middle nav to moon
+    right: 2%;
+    bottom: 7.5%;
+  }
+  @include breakpoint($medium_large) { // this can be removed after adding middle nav to moon
+    bottom: 9%;
+  }
+  //@include breakpoint($width_for_desktop_nav) {
+  //  z-index: 21; //but back over dashboard on desktop
+  //}
+}
+
+
+.slick-slider.features {
+  .content_title {
+    font-size: 1em;
+  }
+}

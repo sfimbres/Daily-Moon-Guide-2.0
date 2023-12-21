@@ -1,0 +1,68 @@
+/* Traditional ul and ol styles for WYSIWYG AND secondary column */
+ 
+.wysiwyg_content ul, ol {
+  margin-left: 1.6em; 
+}
+
+
+.feature_pages { //styles for OL's in feature page, need to be smaller than width of column -OS
+  .wysiwyg_content {  
+    ol, ul {
+      list-style-position: inside; // temporary fix. the width in a feature page is set by margins - jh
+    }
+  }
+} 
+
+   
+#secondary_column ul, ol {
+  margin-left: 1.2em;
+}
+ 
+.wysiwyg_content, #secondary_column {
+    ul { //this is apparently the best way to restore defaults, including sub list items. ALL wysiwyg ul's and li's are back to the 'default' styles
+      //margin-left: 23px; // this should be 1em, really
+      margin-left: 1.6em;
+      list-style-type: disc;
+      //list-style-position: inside; 
+      list-style-position: outside;
+        ul {list-style-type: circle; margin-left: 1.6em; margin-top: .5em;}
+        ul ul {list-style-type: square; margin-left: 1.6em; margin-top: .5em;}
+        ul ul ul {list-style-type: disc; margin-left: 1.6em; margin-top: .5em;}
+    }
+    
+    ol {
+      margin-left: 1.6em;
+      list-style-type: decimal;
+      //list-style-position: inside;
+      list-style-position: outside;
+      ol {list-style-type: decimal; margin-left: 1.6em; margin-top: .5em;}
+      ol ol {list-style-type: decimal; margin-left: 1.6em; margin-top: .5em;}
+      ol ol ol {list-style-type: decimal; margin-left: 1.6em; margin-top: .5em;}
+    }
+    
+    ol, ul {
+      margin-bottom: 2em; // this may be too general. watch out for this - jh
+      &:last-child {
+        margin-bottom: 0;
+      }
+      li {
+        margin-bottom: .5em; // Need this, but need to see how this affects other types of lists - jm
+      }
+    }
+    
+    
+    
+    //all the lists that shouldn't have bullets or numbers
+
+   .item_list_module, .item_list, .list_sublist, .footnotes ul, .sidebar_gallery, .related_items, .sitemap_directory ul, .list_view_module ul, .faq_topics ul, .item_grid, .related_content_module ul, .sig_events_module ul {
+      margin-left: 0;
+      list-style-type: none;
+      list-style-position: inside; // Do we need this? I only added it because I removed it from the defaults, where Jody had added it. -JM
+      li {
+        margin-bottom: 0; // This might need overrides for some of these - jm
+      }
+   }
+}
+
+
+

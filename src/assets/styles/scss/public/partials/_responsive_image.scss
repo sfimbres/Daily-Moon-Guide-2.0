@@ -1,0 +1,63 @@
+/*
+*   _responsive_image
+*   
+*/
+
+/* OPTIONAL: Make images a consistent height, and reserve vertical space for them while they’re loading. */
+.responsive_image {
+  display: block;
+  position: relative;
+  padding-bottom: 100%; /* Default to a square image */
+  background: black;
+
+  /* TRICKY: Prevent <img /> element from overflowing this container,
+             in browsers that don’t understand “object-fit”. */
+  overflow: hidden;
+}
+.responsive_image__element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Special case for <img /> elements */
+img.responsive_image__element {
+  height: auto;
+}
+@supports (object-fit: cover) {
+  img.responsive_image__element {
+    height: 100%;
+    object-fit: cover;
+  }
+  [data-avoid-crop] img.responsive_image__element {
+    object-fit: contain;
+  }
+}
+
+/* Special case for Google Maps, which add inline style with JavaScript */
+.responsive_image__element[style*="relative"] {
+  position: absolute !important;
+}
+
+/* Landscape */
+.responsive_image[data-aspect-ratio="2/1"] {
+  padding-bottom: 50%; /* 1/2 x 100% */
+}
+.responsive_image[data-aspect-ratio="3/2"] {
+  padding-bottom: 66.66666667%;
+}
+.responsive_image[data-aspect-ratio="4/3"] {
+  padding-bottom: 75%;
+}
+
+/* Square */
+.responsive_image[data-aspect-ratio="1/1"] {
+  padding-bottom: 100%;
+}
+
+/* Portrait */
+.responsive_image[data-aspect-ratio="1/2"] {
+  padding-bottom: 200%; /* 2/1 x 100% */
+}

@@ -1,0 +1,117 @@
+/* 
+*   _banner_area - public
+*   
+*   The secondary nav ('s.nav') (for now) only exists in the custom banner area
+*   therefore we're targeting that container specifically.
+*   
+*   If we start to display the s.nav in the main page area
+*   we will need a distinct separation between a banner s.nav and a page s.nav 
+*/
+
+.custom_banner_container {
+  // The banner has to extend beyond sides on small screen,
+  // thus the following adjustments to the container and the img. -JM
+  height: 225px; // 35 added for tophat - jh
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+/*
+  img { // now a background image
+    width: auto;
+    height: 100%;
+    margin: auto;
+    left: 50%;
+    margin-left: -25%;
+    @include breakpoint($medium) {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      left: auto;
+      margin-left: 0;
+    }
+  }
+*/
+
+
+    @media only screen and (orientation: landscape) {
+      height: 260px;
+    }
+    @include breakpoint($medium_mid) {
+      height: 420px;
+      @media only screen and (orientation: landscape) {
+        height: 350px;
+      }
+    }
+    @include breakpoint($medium_large) {
+      height: 400px;
+      @media only screen and (orientation: landscape) {
+        height: 400px;
+      }
+    }
+    @include breakpoint($large) {
+      height: 440px;
+    }
+    @include breakpoint($xlarge) {
+      height: 550px;
+    }
+    @include breakpoint($xxlarge) {
+      height: 660px;
+    }
+  
+  
+  
+/*
+  .banner_header_overlay { // container for the secondary nav and page title 
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+  }
+*/
+  
+  .article_title { //may need different math if it goes full width - jh
+    margin-bottom: .5em;
+    text-align: center;
+    color: #FFF;
+  }
+
+  .secondary_nav_mobile { //very similar to tertiary_nav_mobile
+    display: block;
+    select {
+      //@include select_menu;
+      //background: $button_color url('/assets/arrow_down_white.png') no-repeat 94% 22px; // doesn't work in firefox, fix below
+      margin: .3em 0 2em;
+    }
+    @include breakpoint($medium_large) {
+      display: none;
+    }
+  }
+
+  .secondary_nav_desktop{
+    display: none;
+    @include breakpoint($medium_large) {
+      display: block;
+    }
+    margin: 0 0 .8em 0;
+    text-align: center;  
+    li {
+      display: inline-block;
+      position: relative;
+    }
+    a {
+      color: #5AA1F5;
+      font-size: 1.2em;
+      font-weight: 700;
+      display: block;
+      padding: .3em .9em .3em 0;
+      @include breakpoint($xxlarge) {
+        font-size: 1.3em;
+      }
+    }
+
+    li.current a, li:hover a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

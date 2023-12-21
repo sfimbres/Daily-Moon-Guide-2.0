@@ -1,0 +1,303 @@
+/*
+*   _video_module
+*
+*    videos have their own widths, a little wider than other modules
+*    also, webvr module uses these video module styles
+*
+*/
+
+.homepage_video_module header .module_title, .homepage_video_module .video_description h1 {
+  margin-top: 0;
+}
+
+
+//.wysiwyg_content .video_player_container, .wysiwyg_content figure.embedded_video { //for uploaded videos
+  //@include module_layout;
+//}
+
+
+// this is very close to SSE's _homepage_video_module partial since adding youtube support
+// most likely refactor these 2 and gem -nmj
+
+// feature page styles - both embedded and uploaded videos
+.feature_pages .wysiwyg_content .video_player_container, .feature_pages .wysiwyg_content figure.embedded_video {
+  //@include feature_page_module_layout;
+  &.left, &.right {
+    //max-width: 100%;
+  	@include breakpoint($medium_mid) {
+      width: 50%;
+    }
+	  @include breakpoint($medium_large) {
+	  	width: 44%;
+	  }
+	  @include breakpoint($large) {
+  	  width: 33%;
+	  }
+    @include breakpoint($xxlarge) {
+      width: 25%;
+    }
+	}
+  &.full-width > iframe, &.full-bleed > iframe, &.wide > iframe { // make sure these wide videos aren't too tall.
+  	max-height: 98vh;
+    @include breakpoint(min-height 400px) {
+    	max-height: 300px;
+  	}
+  	@include breakpoint(min-height 600px) {
+    	max-height: 400px;
+  	}
+    @include breakpoint(min-height 800px) {
+    	max-height: 600px;
+  	}
+    @include breakpoint(min-height 1000px) {
+    	max-height: 90vh;
+  	}
+	}
+}
+
+//embedded videos:
+.wysiwyg_content figure.embedded_video { //for embedded videos
+  > iframe {
+    width: 100%;
+    min-height: 300px;
+    @include breakpoint($medium_large) {
+      min-height: 400px;
+    }
+    @include breakpoint($xlarge) {
+      min-height: 500px;
+    }
+  }
+}
+
+//webvr module - within the embedded container. add class="webvr_module" to embed code to utilize these styles
+// non feature page webvr modules use embedded_video styles
+.wysiwyg_content .embedded_video iframe.webvr_module {
+  .feature_pages & {
+    @include breakpoint($medium_large) {
+      min-height: 400px;
+    }
+    @include breakpoint($large) {
+      min-height: 500px;
+    }
+    @include breakpoint($xxlarge) {
+      min-height: 600px;
+    }
+    @include breakpoint($xxlarge) {
+      min-height: 700px;
+    }
+  }
+}
+
+
+
+// content page template
+.content_page:not(.feature_pages) .wysiwyg_content figure.embedded_video {
+	&.left, &.right {
+		> iframe {
+			min-height: 300px;
+		}
+		width: 100%;
+		max-width: 100%;
+		@include breakpoint($medium_large) {
+			width: 50%;
+		}
+	}
+}
+
+.content_page:not(.feature_pages) .wysiwyg_content .video_player_container {
+	&.left, &.right {
+		width: 100%;
+		max-width: 100%;
+		@include breakpoint($medium_large) {
+			width: 50%;
+		}
+	}
+}
+
+//special homepage video module used for 'whats up' videos - OS
+// move into the gem if used on more than moon - jh 2021
+
+.homepage_video_module {
+  @extend .clearfix;
+  header {
+    margin-bottom: 1em;
+    @include breakpoint($medium_mid) {
+      margin-bottom: 2em;
+    }
+    .module_title {
+      margin-bottom: .3em;
+    }
+    .subtitle {
+      font-size: 1.5em;
+      text-align: center;
+    }
+  }
+  .video_area {
+    overflow: hidden;
+    display: block;
+    @include breakpoint($medium_mid) {
+      display: flex;
+    }
+    .video_description {
+      color: white;
+      background: #2a2b2d;
+      width: 100%;
+      padding: 1em;
+      @include breakpoint($medium_mid) {
+        padding: 1.5em;
+        order: 1;
+        float: left;
+        width: 30%;
+      }
+      @include breakpoint($medium_large) {
+        padding: 2em;
+      }
+      @include breakpoint($large) {
+        padding: 2.5em;
+      }
+      @include breakpoint($xlarge) {
+        padding: 3em;
+      }
+      h1 {
+        display: inline-block;
+        margin-bottom: .3em;
+      }
+      header {
+        margin-bottom: 0;
+        @include breakpoint($medium_mid) {
+          margin-bottom: 1em;
+        }
+      }
+      .year {
+        display: inline-block;
+        margin-left: 5px;
+        font-weight: 700;
+        color: #cfcfcf;
+        @include breakpoint($medium_mid) {
+          display: block;
+          margin: 0;
+        }
+      }
+      .description {
+        @include breakpoint($medium_mid) {
+          margin-bottom: 1em;
+        }
+      }
+      .length {
+        display: none;
+        @include breakpoint($medium_mid) {
+          color: #cfcfcf;
+          text-transform: uppercase;
+          background-color: #1c1c1c;
+          padding: 0.5em .8em;
+          display: inline-block;
+          font-size: .8em;
+        }
+      }
+    }
+    figure.lede {
+      margin-bottom: 0;
+      width: 100%;
+      display: flex;
+      background-color: #000;
+      @include breakpoint($medium_mid) {
+        float: right;
+        width: 70%;
+        order: 2;
+      }
+      .jwplayer {
+        height: 100%;
+      }
+
+      .video_embed_container {
+        position: relative;
+        height: 0;
+        width: 100%;
+        padding-top: 56.25%;
+        @include breakpoint($medium-mid){
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+      }
+    }
+  }
+  &.dark_theme { // light text
+    .module_title {
+      color: white;
+    }
+  }
+}
+
+.video_player_container {
+  .video_container {
+    display: block;
+    min-height: 0;
+    overflow: hidden;
+    background-color: #000;
+    video {
+      width: 100%;
+    }
+  }
+  // minimal overlay ui option
+  .play_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: .8;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+
+    .svg_icon_container {
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+
+}
+
+
+
+// subsite content page template, ability to have column-width module (embedded) -nmj 9/16/20
+.subsite_content_page .wysiwyg_content .video_player_container.embedded_video {
+  &.column-width {
+    //@include feature_page_module_layout;
+    &.left, &.right {
+      //max-width: 100%;
+      @include breakpoint($medium_mid) {
+        width: 50%;
+      }
+      @include breakpoint($medium_large) {
+        width: 44%;
+      }
+      @include breakpoint($large) {
+        width: 33%;
+      }
+      @include breakpoint($xxlarge) {
+        width: 25%;
+      }
+    }
+  }
+}
+
+// lottie files in video embed module
+.wysiwyg_content .embedded_video.video_player_container.lottie .video_wrapper {
+  position: relative;
+  padding-bottom: 0;
+  padding-top: 0;
+  height: unset;
+}

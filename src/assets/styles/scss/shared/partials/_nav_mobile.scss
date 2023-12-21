@@ -1,0 +1,26 @@
+/*
+*   _nav_mobile
+*
+*
+*/
+
+.nav_area { 
+  @include breakpoint($width_for_mobile_nav) {
+    background-color: #272727;
+  }
+}
+
+#site_nav_container { // just the nav container and the overlay on mobile
+
+  @include breakpoint($width_for_mobile_nav) {
+    //the main nav item is in a div called nav_title
+    .nav_title a {
+      color: #FFF;
+    }
+
+    /* SUBNAV STYLES  */
+    ul.subnav a {
+      color: #519ddf;
+    }
+  }
+}

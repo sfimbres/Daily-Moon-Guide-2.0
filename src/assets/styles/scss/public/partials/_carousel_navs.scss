@@ -1,0 +1,128 @@
+/*  
+*   _carousel_navs - public view
+*
+*   common carousel nav elements - arrows and dots - may change to a mixin
+*
+*/
+
+/* All carousel arrows */
+.slick-slider { 
+  .slick-prev, .slick-next { // the arrows around the dots
+    width: 30px;
+    height: 48px;
+    &:before {
+      content: '';
+      display: inline-block;
+      //@include sprite_based_ui_button(17px,25px,-30px,-100px,-30px,-100px); // arrow right no hover state
+      opacity: .5;
+    }
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+    
+  .slick-next:before {
+    content: '';
+    display: inline-block;
+    //@include sprite_based_ui_button(17px,25px,-30px,-150px,-30px,-150px); // arrow right no hover state
+  }
+  
+  .slick-prev {
+    left: -33px;
+  }
+
+  .slick-next {
+    right: -33px;
+  }
+
+  .slick-disabled {
+    cursor: default;
+    opacity: .4;
+    &:before {
+      cursor: default;
+    }
+  }
+}
+
+/* Main carousel navigation */
+.main_carousel { // the main carousel on the homepage - arrows inlign and aligned with dots - style
+  .slick-nav_container {
+    width: 100%;
+    text-align: center;
+    padding-top: 1em;
+    border-top: 1px solid $line_color;
+    @include breakpoint($medium_mid) {
+      border: none;
+      margin-top: 1em;
+    }
+  }
+
+  .slick-dots { 
+    position: relative;
+    top: 0;
+    li {
+      vertical-align: top;
+    }
+    li button:before {  //  dots are now pure css, not fonts. Very pixel-specific for cross-browser compatibility - jh
+      content: "";
+      //border: 1px solid black;
+      border-radius: 50%;
+      background-color: black;
+      height: 8px;
+      width: 8px;
+      top: 6px;
+      left: 5px;
+      text-align: center;
+    }
+  }
+  .slick-nav {
+    @extend .clearfix;
+    position: relative;
+    display: inline-block;
+  }
+  .slick-prev, .slick-next {
+    top: -4px;
+  }
+}
+/* END - Main carousel navigation */
+
+
+
+.suggested_features { // the carousel teaser
+  .slick-prev, .slick-next {
+    top: 38%;
+  }
+  .slick-prev {
+    left: -9%;
+    @include breakpoint($medium_mid) {
+      left: -7%;
+    }
+    @include breakpoint($medium_large) {
+      left: -5%;
+    }
+  }
+  .slick-next {
+    right: -9%;
+    @include breakpoint($medium_mid) {
+      right: -7%;
+    }
+    @include breakpoint($medium_large) {
+      right: -5%;
+    }
+  }
+}
+
+.related { //related carousel teaser on detail pages - 4 across on desktop
+  .slick-prev, .slick-next {
+    top: 31%;
+    @include breakpoint($medium_mid) {
+      top:38%;
+    }
+
+    @include breakpoint($large) {
+      top: 31%;
+    }
+  }
+}
+
+

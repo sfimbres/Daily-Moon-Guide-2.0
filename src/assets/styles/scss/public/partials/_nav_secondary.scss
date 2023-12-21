@@ -1,0 +1,242 @@
+/* 
+*   _nav_secondary - public
+*   The page nav that is outside of the header
+*   within the banner_header_overlay if present
+*
+*/
+
+
+
+.secondary_nav_desktop {
+  @include breakpoint($width_for_desktop_nav) {
+    overflow-x: auto;
+  }
+}
+
+.custom_banner_container {
+  .secondary_nav_desktop {
+    @include breakpoint($width_for_desktop_nav) {
+      overflow-x: visible;
+      padding: 0;
+    }
+  }
+  .fixed_secondary_nav {
+    @include breakpoint($width_for_desktop_nav) {
+      overflow-x: auto;
+    }
+  }
+}
+
+nav.secondary_nav {
+  .grid_layout {
+    width: 100%;
+    padding-left: 10px; // generally matching site header left and right gutters
+    padding-right: 10px;
+    max-width: none;
+    @include breakpoint($medium_mid) {
+      padding-left: 17px; // generally matching site header left and right gutters
+      padding-right: 17px;
+    }
+  }
+
+  &.secondary_nav_mobile { //secondary nav NOT in a banner area or primary media feature overlay
+  display: block;
+  width: 100%;
+    select {
+      @include select_menu;
+      margin: 0;
+      background-color: #AFB3B9;
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+    }
+    @include breakpoint($width_for_desktop_nav) {
+      display: none;
+    }
+  }
+  &.secondary_nav_desktop {
+    display: none;
+    @include breakpoint($width_for_desktop_nav) {
+      padding: 0.8em 0 0.9em;
+      display: block;
+      margin: 0;
+      text-align: center;
+    }
+    .section_title { // only appears when sticky
+      display: none;
+      a {
+        padding-left: 0;
+        text-decoration: none;
+      }
+    }
+    li {
+      display: inline-block;
+      position: relative;
+    }
+    a {
+      font-weight: 600;
+      display: block;
+      padding: .3em .3em;
+      @include breakpoint($medium_large) {
+        padding: .3em .6em;
+      }
+      @include breakpoint($xlarge) {
+        padding: .3em .9em;
+      }
+      .custom_banner_container & {
+        color: white;
+      }
+    }
+
+    ul {
+      white-space: nowrap;
+    }
+
+    li.current a, li:hover a {
+      text-decoration: none;
+      color: $core_text_color;
+    }
+
+    // Secondary nav becomes fixed styles 
+    // only on $width_for_desktop_nav, otherwise the main header becomes fixed
+    &.fixed_secondary_nav {
+      .grid_layout {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+     }
+      @include breakpoint($width_for_desktop_nav) { 
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100; //may not be needed once the primary nav / header is out of the way - jh
+        box-shadow: 0 4px 4px -2px rgba(0,0,0,.15);
+        &.secondary_nav_desktop {
+          padding: 1em 0 0.8em;
+          white-space: nowrap;
+        }
+        .section_title {
+          display: inline-block;
+          margin-top: 3px;
+          margin-right: 1.6em;
+          font-size: 1.2em;
+          flex-shrink: 0; // fix for safari and ios
+          a {
+            padding: 0;
+            color: #2B2B2B; // variable?
+          }
+          @include breakpoint($xxlarge) {
+            margin-top: 6px;
+          }
+        }
+        ul {
+          display:inline-block;
+          text-align: right;
+          width: 100%; // with flexbox layout this fills the available space
+        }
+        li a {
+          @include breakpoint($large) {
+            padding: .3em .5em;
+            font-size: 0.9em;
+          }
+          @include breakpoint($xlarge) {
+            padding: .3em .6em;
+            font-size: 0.95em;
+          }
+          @include breakpoint($xxlarge) {
+            padding: .3em .8em;
+            font-size: 1em;
+          }
+        }
+        li.current a, a:hover, .section_title a:hover {
+          text-decoration: none;
+          color: #2B2B2B;
+        }
+        li:last-of-type a {
+          padding-right: 0;
+        }
+      }  
+    }
+  }
+}
+
+.custom_banner_container nav.secondary_nav, .homepage_feature_container nav.secondary_nav {
+   &.secondary_nav_desktop {
+    text-align: center;
+    margin: 0 0 .9em 0;
+    background-color: transparent;
+    padding: 0;
+    li { // alittle extra bottom space
+      margin-bottom: 6px;
+      a {
+        color: white;
+      }
+      &.current {
+        a {
+          color: white;
+        }
+      }
+    }
+    li.current:after { //the indicator arrows under the current item
+      bottom: -60px; // - size of box(arrox x2) + (li's margin-bottom) + secondary_nav padding
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-top-color: black; // the same as text color
+      border-width: 20px;
+      margin-left: -20px; 
+    }
+    &.fixed_secondary_nav { 
+      background-color:  #e4e7ec;
+      li.current:after {
+        content: none;
+      }
+      li a {
+        color: $nav_text_color;
+        &:hover {
+          color: #2B2B2B;
+        }
+      }
+    }  
+  }
+  &.secondary_nav_mobile {
+    text-align: center;
+    padding: 0 2.5%;
+    select { //custom banner specific
+      @include select_menu;
+      margin: 0 0 1.1em;
+      @include breakpoint($medium_large) {
+        margin: 0.9em 0 1.1em;
+      }
+    }
+  }
+}
+
+// absolutely positioned in homepage_feature_container and no arrow indicator
+.homepage_feature_container nav.secondary_nav {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  &.secondary_nav_desktop{
+    width: 100%;
+    &.fixed_secondary_nav { 
+      bottom: auto;
+      li.current:after {
+        content: none;
+      }
+    } 
+  }
+}
+    
+#explore_overlay {
+  nav.secondary_nav {
+    display: none;
+  }
+}
+
+

@@ -1,0 +1,56 @@
+// Multi-teaser
+// Full width teaser with multiple items (but not the multimedia teaser) 
+// 
+
+.multi_teaser {  
+  padding-top: 4em;  //standard for a boxed module
+  padding-bottom: 3em;  //standard for a boxed module
+  margin-bottom: 0;
+  &.related.module header .gradient_line_module_top {
+   //@include gradient_line(#b8beca);
+    height: 2px;
+  }
+  ul.gallery_list { // this needs to be more broad? - jh 9/4/14
+    //@include clearfix;
+    margin-bottom: 3em;
+  }
+  ul li {
+    width: 100%;
+    margin-bottom: gutter(4);
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @include breakpoint($medium_large) {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint($medium) {
+      //@include gallery(6 of 12);
+    }
+    @include breakpoint($medium_mid) {
+      //@include gallery(3 of 12);
+    }
+  }
+  .image_and_description_container {
+    position: relative; 
+  }
+  a:hover {
+    text-decoration: none;
+    .content_title, .date {
+      color: $button_color;
+    }
+  }
+  .content_title {
+    color: $core_text_color;
+    .date {
+      font-weight: 300;
+      font-size: .9em;
+      margin-bottom: .2em;
+      color: #5a5a5a;
+    }
+    //@include content_title_padding;
+  }
+  &.events_teaser {
+    background-color: white;
+  }
+}

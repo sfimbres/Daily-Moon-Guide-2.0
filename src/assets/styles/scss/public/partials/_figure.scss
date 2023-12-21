@@ -1,0 +1,68 @@
+/*
+*   _figure - public view
+* 
+*   image with a caption in the body area or the main image (lede)
+*   could go in global
+*/
+
+
+figure {
+  margin-bottom: 1em; 
+  max-width: 100%; // sometimes the img/fugure size is an inline style, wider than 320px. This keeps it in the window
+  @include breakpoint($medium_large) {
+    margin-bottom: 2em;
+  }
+  figcaption, figcaption p  {
+    margin-top: .8rem;
+    font-size: .8rem;
+    color: $caption_color;
+    &.lunar_module_caption {
+      margin-top: -0.5rem;
+      padding: 1rem;
+      background-color: #E0E7EF;
+    }
+    @include breakpoint($medium_large) {
+      font-size: .88rem;
+    }
+  }
+}
+
+
+.explore_overlay_page {
+  figcaption, figcaption p  {
+    color: #7c828a; // variabilize? e.o. caption_color?
+  }
+}
+//the full-width on mobile figures need padding in the figcaption, or they too are 100% wide. - why? - jh. This is probably old.
+
+figure.lede.full_width {
+  //@extend .grid_layout;
+  @include breakpoint($small_only) { // can not and should not override anything but small screens only
+    width: 100%; // on mobile only
+    figcaption {
+      //width: 95%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+//mostly legacy html, but also a safety - not on SMAP yet - jh
+/*
+.inline_caption {
+  margin-top: .8em;
+  font-size: .8em;
+  color: $caption_color;
+  @include breakpoint($medium_large) {
+    font-size: .88em;
+  }
+}
+
+*/
+// Sidebar image
+#secondary_column aside figure {
+  margin-bottom: 1em;
+  figcaption {
+    margin-bottom: 0;
+  }
+}

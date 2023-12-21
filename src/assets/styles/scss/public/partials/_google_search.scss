@@ -1,0 +1,280 @@
+/*
+ * GOOGLE SEARCH
+ *  overrides for the Google search page
+ *  google results use: box-sizing: content-box;
+ *  not set up on SMAP yet - jh 10/20/14
+
+ Brought over from SSE for global search styles (maybe should be in gem?) -RK 3/1/21
+*/
+
+
+// Autocomplete
+.gsc-completion-container img[src*="google"] {
+  // Override default mb styles for images, so the Google logo will be a normal size.
+  width: auto;
+}
+
+
+#main_container { //within our container, also helps with specificity
+
+  // Text input field container
+  form.gsc-search-box {
+    padding: 0;
+    td.gsc-input {
+      padding: 0;
+    }
+  }
+
+  table[class^="gsc-"] td, table[class^="gcsc-"] td { // all forms with the google search prefix 'gsc-' class - jh
+    background-color: transparent;
+  }
+
+  //@include placeholder {
+  //  -webkit-font-smoothing: antialiased; // needed for webkit browsers. the body targeted style doesn't cover placeholder
+  //}
+
+  .gsc-control-cse { // a div, close to top-level in google search page
+    table {
+      margin: 0;
+
+      // Override default mb styles for tables inside a wysiwyg_content element
+      border-spacing: 0;
+      font-size: inherit;
+    }
+  }
+
+  // Text input field
+  input.gsc-input {
+
+    // Hide the background color, so it won’t cover up the pseudo
+    // border style added by Google in version 2 of custom search.
+    background-color: transparent !important;
+  }
+
+  // Search button
+  input.gsc-search-button,
+  button.gsc-search-button {
+    border: 1px solid transparent;
+    background-color: $button_color;
+    background-image: none;
+    color: white;
+
+    &:hover {
+      background-color: $button_color_hover;
+    }
+  }
+
+  // Text input field
+  input.gsc-input {
+    padding: 10px 12px !important;
+    height: auto !important;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+
+  // Search button
+  input.gsc-search-button,
+  button.gsc-search-button {
+    padding: 10px 14px;
+    height: 38px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  // Goole Custom Search, version 2
+  .gsc-search-box-tools {
+
+    // Container around the text input field
+    .gsc-input-box {
+      padding-top: 0;
+      height: auto;
+      border-radius: 6px;
+      td {
+        // Override default mb styles for tables inside a wysiwyg_content element
+        padding: 0 0 0 5px;
+      }
+    }
+
+    // Search button
+    .gsc-search-button-v2 {
+      margin: 0;
+    }
+  }
+
+  // Sort by
+  .gsc-selected-option-container {
+    width: auto !important;
+    max-width: none;
+  }
+  // Clear button
+  td.gsc-clear-button {
+    padding-left: 4px;
+  }
+
+  // Main container for the list
+  .cse .gsc-control-cse, .gsc-control-cse {
+    padding: 0;
+    tr {
+      background: none !important; // This is needed to overwrite our wysiwyg_content table styles -JM
+    }
+  }
+
+
+
+
+
+
+
+
+  // Results area above list
+  td.gsc-result-info-container {
+    padding-left: 0;
+  }
+
+
+  //div.gsc-above-wrapper-area {
+    //margin-bottom: 16px;
+  //}
+
+  // This is the "No Results" or Error text below the input field
+  .gs-no-results-result .gs-snippet, .gs-error-result .gs-snippet {
+    padding: 5px 0;
+    margin: 5px 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .gsc-webResult.gsc-results {
+    margin-top: 0px;
+  }
+
+  // List item container
+  div.gsc-webResult.gsc-result {
+    border-bottom: 1px solid #CFD7E1;
+    padding-bottom: 16px;
+    padding-top: 16px; // padding instead of margin so the blue hover is prettiers
+    padding-left: 0;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-left: 1px solid transparent; /* Avoid jumpy animation, on hover */
+  }
+
+  // Text content container
+  td.gsc-table-cell-snippet-close {
+    padding: 0;
+  }
+
+  // Titles
+  div.gs-title {
+    padding: 0;
+    height: auto;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+
+
+
+  .gs-result a.gs-title, .gs-result a.gs-title b {  // The matched result term is wrapped in a 'b'
+    color: #388FDA;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: -.035em;
+    height: auto;
+    padding: 0;
+
+    @include breakpoint ($medium_mid) {
+      font-size: 18px;
+    }
+    @include breakpoint ($medium_large) {
+      font-size: 20px;
+    }
+  }
+  a.gs-title {
+    &:hover {
+      color: #115FA3;
+      text-decoration: underline;
+      b {
+        color: #115FA3;
+      }
+    }
+  }
+
+  // Descriptions
+  .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet, .gs-fileFormatType {
+    color: #333;
+    line-height: 1.4em;
+    @include breakpoint ($large) {
+      font-size: 15px;
+    }
+  }
+
+  // Visible URL
+  .gs-webResult div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl {
+    color: #888;
+  }
+
+  // Styles for thumbnail image
+  // img container
+  .gsc-table-cell-thumbnail { // the cell around the image
+    padding: 0 6px 0 0;
+    @include breakpoint($medium_mid) {
+      padding: 0 12px 0 0;
+    }
+    @include breakpoint($large) {
+      padding: 0 16px 0 0;
+    }
+  }
+  .gs-web-image-box {
+    overflow: hidden;
+    width: 100px;
+    @include breakpoint($medium_mid) {
+      //padding: 0;
+      width: 125px;
+    }
+  }
+  // img
+  img.gs-image, .gs-promotion-image-box img.gs-promotion-image {
+    border: none;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+  }
+  a.gs-image {
+    display: block;
+    max-width: 100%;
+  }
+
+
+  // Pagination
+  // container
+  .gsc-results .gsc-cursor-box {
+    padding-top: 2px;
+  }
+  // numbers
+  .gsc-results .gsc-cursor-box .gsc-cursor-page {
+    color: #388FDA;
+    font-size: 17px;
+  }
+  // current page
+  .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+    color: #333;
+    background-color: transparent;
+    text-shadow: none;
+    padding: 0;
+  }
+
+
+  //hide the ads hack
+  .gsc-adBlock {
+    display: none !important;
+  }
+}
+
+
+
+
+

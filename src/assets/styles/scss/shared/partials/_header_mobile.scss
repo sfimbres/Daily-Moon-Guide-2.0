@@ -1,0 +1,105 @@
+/*
+*   _header_mobile
+*
+*
+*/
+
+// The spacer should be the size of the header for mobile 
+// and the size of the nav for desktop
+// only needed on mobile - jh 
+#sticky_nav_spacer {
+  @include breakpoint($width_for_mobile_nav) {
+    height: $header_height_small;
+    @include breakpoint($medium) {
+      height: $header_height_medium;
+    }
+    @include breakpoint($medium_mid) {
+      height: $header_height_medium_mid;
+    }
+    @include breakpoint($medium_large) {
+      height: $header_height_medium_large;
+    }
+    .main_feature_present & {
+      display: none;
+    }
+  }
+}
+
+
+.site_header_area {
+
+  @include breakpoint($width_for_mobile_nav) {
+    
+    position: absolute;
+
+    .panel_open:not(.nav_is_fixed) & {
+      // This is for the webGL slide out menu -JM
+      display: none !important;
+    }
+    
+    .fixfixed & {
+      // This is part of a JS/CSS fix for ios7 bug 
+      // that breaks fixed positioning when form elements are focused.
+      // Some day we can stop using this, as it seems to be fixed in 
+      // ios8 (need to test this theory) -JM
+      position: absolute;
+      box-shadow: none;
+    }
+
+    .nav_is_fixed & {
+      box-shadow: 0 4px 4px -2px rgba(0,0,0,.15);
+      position: fixed;
+      top: 0;
+    }
+    
+    .nav_overlay_true & {
+      background-color: #272727;
+      transition: none;
+      position: fixed;
+    }
+    img.grace_logo_black {
+      display: none;
+    }
+
+    .right_header_container {
+      width: 300px;
+      .menu_icon, .modal_close_icon {
+        text-indent: -9999px;
+        display: block;
+      }
+      .menu_button { //pixel based for an exact height, matching the search form next to it
+        position: absolute;
+        vertical-align: middle;
+        padding: 10px;
+        text-decoration: none;
+        //@include unselectable;
+        .menu_icon { // the hamburger
+          display: block;
+          //vertical-align: middle;
+          //@include sprite_based_ui_button(25px,25px,0,0,0,0); // the hamburger, no hover
+        }
+      }
+      #modal_close {  // the 'x' button for closing the mobile nav
+        display: none;
+        position: absolute;
+        padding: 10px;
+        text-decoration: none;
+        //@include unselectable; 
+        .modal_close_icon {  //the 'x' icon for closing the mobile nav
+          display: block;
+          //@include sprite_based_ui_button(25px,25px,-25px,0,-25px,0); // the white 'x' no hover
+        }
+      }
+      form.nav_search {
+        display: none;
+      }
+    }
+    
+    // when the mobile nav overlay is expanded / open
+    &.menu_open {
+      #modal_close {
+        display: inline-block;
+      }
+    }
+  }
+}

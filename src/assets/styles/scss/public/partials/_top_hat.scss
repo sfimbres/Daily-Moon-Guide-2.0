@@ -1,0 +1,54 @@
+.top_hat {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #133A5B;
+  overflow-y: hidden;
+  overflow-x: auto;
+  z-index: 22;
+  .nav_overlay_true & { // hide top hat when overlay nav is open
+    display: none;
+  }
+  @include breakpoint($width_for_desktop_nav) {
+    &.open {
+      height: 100%; // this is necessary due to a safari bug where fixed elements are sometimes clipped by parents
+    }
+    .nav_overlay_true & {
+      display: flex;
+    }
+  }
+  .search_container {
+    height: 35px;
+    display: none;
+    @include breakpoint($width_for_desktop_nav) {
+      display: block;
+      height: 40px;
+    }
+  }
+  nav {
+    display: flex;
+    margin-left: 0.4rem;
+    height: 35px;
+    @include breakpoint($width_for_desktop_nav) {
+      height: 40px;
+    }
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 0.5em 1em;
+      &.current {
+
+      }
+
+      a {
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+    }
+  }
+}

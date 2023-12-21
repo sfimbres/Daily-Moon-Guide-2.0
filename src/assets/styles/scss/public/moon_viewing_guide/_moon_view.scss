@@ -1,0 +1,260 @@
+section.moon_view {
+    background-color: black;
+    position: relative;
+    .main_window {
+      position: sticky;
+      overflow-x: hidden;
+      //top: 78px;  //probably a css var here
+    }
+  
+    .moon_img_and_detail_container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: calc(100vh - 70px); // bottom toolbar is 70 on small screens
+      @include breakpoint($medium_mid) {
+        height: calc(100vh - 123px); // bottom toolbar is 123px on medium screens
+      }
+      @include breakpoint($large) {
+        width: calc(100% + 700px);
+        height: calc(var(--vh) - 107px); // bottom toolbar is 107px on larger screens
+      }
+    }
+    &.detail_open {
+      .moon_img_and_detail_container {
+        height: var(--vh);
+      }
+      .moon_and_hotspots {
+        width: calc(100vw - 700px);
+      }
+    }
+    .zoomed & {
+      .moon_img_and_detail_container {
+        height: calc(var(--vh) - 50px); // bottom zoom button is 50
+      }
+    }
+    .moon_and_hotspots {
+      position: relative;
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+    .moon_img {
+      position: absolute;
+      width: auto;
+      margin-top: 0; // needs to be lowered a little on small screens
+      @include breakpoint($medium_mid) {
+        margin-top: 0;
+      }
+      img {
+        //display: block;
+        //margin-left: auto;
+        //margin-right: auto;
+        width: auto;
+        max-height: calc(100vh - 78px - 97px);
+      }
+    }
+    &.south {
+      .moon_img {
+        transform: rotate(180deg);
+      }
+      .scroll_for_more {
+        transform: rotate(180deg);
+        bottom: auto;
+      }
+    }
+    .scroll_for_more {
+      position: absolute;
+      bottom: -5.1vh;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      width: 100%;
+      pointer-events: none;
+      transition: opacity 2s ease-out 0ms, visibility 0s linear 2s;
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+      .down_arrow {
+        height: 12px;
+        width: 11px;
+        line-height: 0;
+        margin-right: 9px;
+        .down_arrow_icon path {
+          fill: #959599;
+        }
+      }
+      .scroll_text {
+        font-size: 12px;
+        font-weight: 700;
+        color: #959599;
+      }
+      &.fade {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    .hotspots {
+      visibility: hidden;
+      &.active {
+        visibility: visible;
+      }
+      &.zooming_in .sitespot {
+        transition: transform 600ms ease-out, transform-origin 600ms ease-out;
+        transform: translate(-15px, -50%) scale(0.4);
+        transform-origin: calc(0% + 15px) 50%;
+      }
+      &.zooming_out .sitespot {
+        transition: transform 600ms ease-in, transform-origin 600ms ease-in;
+        transform: translate(-15px, -50%) scale(1);
+        transform-origin: 0 0;
+      }
+    }
+    .sitespot {
+      position: absolute;
+      top: 0;
+      color: white;
+      align-items: center;
+      transform: translate(-15px, -50%);
+      cursor: pointer;
+      z-index: 0;
+      .icon {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        margin-right: 8px;
+      }
+      .text {
+        flex: 1;
+        font-family: $core_font_family;
+        font-size: 14px;
+        font-weight: 700;
+        text-shadow: 0 1px 2px #000;
+      }
+      &.reverse {
+        flex-direction: row-reverse;
+        transform: translate(calc(-100% + 15px), -50%);
+        .icon {
+          margin-right: 0;
+          margin-left: 8px;
+        }
+        .text {
+          text-align: right;
+        }
+      }
+      &:hover {
+        z-index: 1;
+      }
+    }
+  
+    &.south .sitespot {
+      .text {
+        display: inline-block;
+        transform: rotate(180deg);
+        text-align: right;
+      }
+      &.reverse .text {
+        text-align: left;
+      }
+    }
+  
+    .detail_selector { // a floating text area
+      color: white;
+      position: absolute;
+      top: 16px;
+      bottom: auto;
+      text-align: center;
+      width: 100%;
+      @include breakpoint($medium_mid) {
+        text-align: left;
+        width: 341px;
+        left: 20px;
+        top: auto;
+        bottom: 60px;
+      }
+      @include breakpoint($medium_large) {
+        bottom: 155px;
+      }
+      @include breakpoint($large) {
+        left: 50px;
+      }
+      @media (max-height: 700px) and (orientation: landscape) { // for small landscape screens, could add a width
+        left: 20px;
+        bottom: 98px;
+      }
+  
+      .occasional_button {
+        &.button {
+          display: inline-block;
+          @media (max-width: 769px) and (min-height: 500px) {
+            display: none;
+          }
+        }
+        &.icon {
+          display: none;
+          @media (max-width: 769px) and (min-height: 500px) {
+            display: inline;
+            width: 30px;
+            height: 30px;
+            margin-bottom: 0.5em;
+            cursor: pointer;
+            .plus_icon {
+              width: 15px;
+              height: 15px;
+              polygon {
+                fill: #78CBFF;
+                transition: fill 200ms ease-out;
+              }
+            }
+            &:hover .plus_icon polygon {
+              fill: $hover_color;
+            }
+          }
+        }
+      }
+  
+      .media_feature_title {
+        display: inline-block;
+        margin-top: 0;
+        color: $moon_blue;
+        cursor: pointer;
+        @include breakpoint($medium_large) {
+          display: block;
+          color: white;
+        }
+        @media (max-height: 700px) and (orientation: landscape) { // variabalize?
+          display: block;
+        }
+      }
+      .category_title {
+        color: #A5B4CF;
+        font-family: $secondary_font_family;
+        font-size: 13px;
+  
+      }
+    }
+  
+    .transparent_cover {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      &.open {
+        display: block;
+        @include breakpoint($medium_mid) {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  .moon_viewing_guide.zoomed .detail_selector {
+    display: none;
+  }

@@ -1,0 +1,117 @@
+/*
+*   _footer_carousel
+*
+*   Carousel in footer for planets
+*
+*/
+
+// Overrides to vendor file
+
+.planet_teaser.module {
+    padding-bottom: 2.8em;
+    .module_title {
+      font-size: 1.7em;
+      color: #fff;
+      @include breakpoint($medium_mid) {
+        font-size: 2em;
+      }
+    }
+    .slick-slider {
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%; // the width of carousels with arrows on the sides. make a mixin with responsiveness - jh
+      margin-bottom: 2.5em;
+      @include breakpoint($medium) {
+        //width: 84%; // allow some space for arrows
+      }
+      @include breakpoint($medium_mid) {
+        //width: 90%;
+        margin-bottom: 3em;
+      }
+      @include breakpoint($medium_large) {
+        margin-bottom: 3.5em;
+      }
+      .category_title {
+        color: white; // just the Explore your planet section on homepage. How to be more specific? - jh
+        line-height: 1.4em;
+      }
+      .slick-slide a {
+        text-decoration: none;
+        color: $core_text_color;
+      }
+      .slide {
+        margin: 0 6px; // gutters between slides on mobile - px is needed as % changes with the amount of items in carousel and em changes with css
+        @include breakpoint($medium_large) {
+          margin: 0 12px;
+        }
+  
+      }
+      .no-touchevents & {
+        .slide:hover .content_title a { // this is under the slide strip carousel, not an overlay. jh
+          //color: rgba(54,101,153,1); // variable?
+          cursor: pointer;
+        }
+      }
+  
+      //carousel items hover state - jh 
+      .image_and_description_container {
+        // slide_strips need an extra wrapper for containing the rollover_description to the image size
+        position: relative;
+        overflow: hidden;
+        min-height: 129px; // this is based on the shortest height allowed in the javascript. I think this could be a little taller. 887px wide for the shortest example - jh
+  
+        .rollover_description {
+          display: none; //hiding rollover state until we decide on what we want -OS
+        }
+      }
+  
+      .content_title { //matches other teaser modules, like the multi-teaser - jh
+        padding: .6em 0 0;
+        color: #fff;
+        text-align: center;
+        font-size: 1.1em;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+  
+      .slick-prev, .slick-next {
+        top: 40%;
+        &:before {
+          content: none;
+        }
+      }
+  
+      .slick-prev {
+        @include outline_arrow(left, gray);
+        left: -9%;
+        @include breakpoint($medium_mid) {
+          left: -7%;
+        }
+        @include breakpoint($medium_large) {
+          left: -5%;
+        }
+      }
+      .slick-next {
+        @include outline_arrow(right, gray);
+        right: -9%;
+        @include breakpoint($medium_mid) {
+          right: -7%;
+        }
+        @include breakpoint($medium_large) {
+          right: -5%;
+        }
+      }
+      .slick-disabled {
+        cursor: default;
+        opacity: .4;
+        &:before {
+          cursor: default;
+        }
+      }
+    }
+  }
+  
+  
+  

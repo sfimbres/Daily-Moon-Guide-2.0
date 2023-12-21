@@ -1,0 +1,18 @@
+/* put in public */
+  
+.ie9 {
+    section.filter_bar { // from jpl not used in GCC? - jh
+      select {
+        padding: .5em 1em .5em 1em;
+        background-image: none; //also ie8 see above
+      }
+    }
+    #footer_science_calendar{
+      display: none;  //requires xDomain request which ie8/9 do not support
+    }
+  } //ie9
+  //end - put in public
+  
+  
+  
+  

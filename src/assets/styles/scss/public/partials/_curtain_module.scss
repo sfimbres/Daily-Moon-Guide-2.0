@@ -1,0 +1,44 @@
+/*
+*   _curtain_module
+*   'before' and 'after' images with a swipe
+*
+*
+*/
+
+//variables section for every sass file? - jh
+//$curtain-background-color: blue;
+$curtain-background-color: #dfe7ed !default;
+
+.curtain_module {
+  margin: 3em 0;
+  clear: both;
+  .curtain_caption_container {
+    background-color: $curtain-background-color; //#eeeeee;
+    padding: 1em;
+  } 
+  .curtain_title {
+    margin: 0 0 .5em 0;
+  }  
+  .curtain_subtitle {
+    color: #777777; // variable? - jh
+    margin: 0 0 0.5em 0;
+  }      
+}
+
+
+//feature page styles
+
+//.feature_pages .curtain_module {
+  //@include feature_page_module_layout;
+//}
+
+
+//explore overlay styles
+
+.explore_overlay_page {
+  .curtain_module {
+    .curtain_caption_container {
+      background-color: #232323;
+    }
+  }
+}

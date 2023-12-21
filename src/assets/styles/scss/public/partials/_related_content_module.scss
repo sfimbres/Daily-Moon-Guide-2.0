@@ -1,0 +1,136 @@
+/*
+*   _related_content_module
+*  CKeditor module - default module styles
+*
+*  sizes, layout, margins are in mixins. overrides are in this document 
+*/
+
+.wysiwyg_content .related_content_module, #secondary_column .related_content_module {
+  /*-----------styles for module at any position---------*/
+  font-weight: 700;
+  ul {
+    margin: 0;
+    @extend .clearfix;
+  }
+  li {
+    padding: 1em 0;
+    border-bottom: 1px solid #E5E5E5;
+    @extend .clearfix;
+  }
+  li:first-child {
+    border-top: 1px solid #E5E5E5;
+  }
+  .module_title {
+    font-size: 1.2em;
+    text-align: left;
+    margin-top: 0;
+  }
+  .list_image {
+    width: 25%;
+    display: inline-block;
+  }
+  .list_image + .list_text {
+    width: 67%;
+    position: relative;
+    display: inline-block;
+    margin-left: 4%;
+    vertical-align: middle;
+  }
+}
+
+
+
+
+  /*-----------position specific styles---------*/
+
+.wysiwyg_content .related_content_module {
+  //@include module_layout;
+  .sidebar_title { // left and right only
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  
+  &.full_width {
+    border: 1px solid #D2D2D2;
+    padding: gutter(4); // mimics secondary column module padding on mobile
+    @include breakpoint($medium_mid) {
+      padding: 2em; 
+    }
+    li {
+      width: 100%;
+    }
+    li:first-child {
+      border-top: none;
+    }
+    li:last-child {
+      border-bottom: transparent 0;
+      padding-bottom: 0;
+    }
+    .module_title {
+      margin-top: 0;
+      font-size: 1.5em;
+    }
+  }
+}
+.feature_pages .wysiwyg_content .related_content_module {
+  //@include feature_page_module_layout;
+  .module_title {
+    margin-bottom: 0.8em;
+  }
+}
+
+//homepage overlay styles for related content module(for now targeting 'vital_signs')
+.vital_signs .related_content_module {
+  font-weight: normal;
+  margin-bottom: 1em;
+  li {
+    border: none;
+    padding: 0.4em 0;
+    font-size: 0.9em;
+  }
+  .module_title {
+    font-size: 1.2em;
+    margin-bottom: .4em;
+  }
+  .list_image {
+    display: none;
+  }
+  .list_text {
+    width: 100%;
+    float: none;
+    margin-left: 10px;
+    &:before {
+      content: "›";
+      color: #42a0f2;
+      margin-left: -10px
+    }
+  }
+}
+
+//explore overlay styles
+.explore_overlay_page {
+  .related_content_module {
+    &.full_width {
+      border-color: #353535;
+    }
+    ul {
+      li {
+        border-bottom: 1px solid #212121;
+        &:first-child {
+          border-top: 1px solid #212121;
+        }
+      }
+    } 
+  }
+}
+
+
+/*-----hiding and showing sidebar_title and module_title when module is in sidebar or main column-----*/
+
+#secondary_column, .right_col {
+  .related_content_module {
+    .module_title {
+      @extend .sidebar_title; // make into a placeholder? - jh
+    }
+  }
+}

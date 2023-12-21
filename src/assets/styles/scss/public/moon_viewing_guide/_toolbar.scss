@@ -1,0 +1,405 @@
+.toolbar {
+    background-color: #1C2027;
+    color: $moon_blue;
+    font-size: 14px;
+    font-weight: 700; // too general?
+    bottom: 0;
+    position: sticky;
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    border-radius: 9px 9px 0 0;
+    clip-path: inset(-750px 0 -1px 0); // cannot use overflow hidden on parent b/c it breaks position sticky, this prevents bottom of panels in mobile nav from showing when they animate up  -smb
+    @include breakpoint($medium_mid) {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+    .toolbar_inner_wrapper {
+      height: 70px;
+      transition: height 450ms ease-in-out;
+      @include breakpoint($medium_mid) {
+        height: auto;
+      }
+      &.more_options_open {
+        height: 164px;
+        @include breakpoint($medium_mid) {
+          height: auto;
+        }
+        .more_options_toggle {
+          padding: 11px;
+        }
+      }
+    }
+    .zoomed & {
+      width: 100%;
+      border-radius: 0;
+      background-color: #16355F;
+      .toolbar_inner_wrapper {
+        display: none;
+      }
+    }
+    .more_options_toggle {
+      height: 25px;
+      width: 40px;
+      margin: 0 auto;
+      padding: 7px 14px 3px;
+      cursor: pointer;
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+      .icon {
+        //@include minus_icon(2px, #959595);
+        color: white; 
+      }
+      .chevron_icon {
+        display: block;
+        transform: rotate(180deg);
+        width: 12px;
+        height: 12px;
+        color: #F6F6F6;
+      }
+    }
+    .date_container {
+      display: inline-flex;
+      margin-bottom: 4px;
+      @include breakpoint($medium_mid) {
+        margin: 21px 0 8px;
+        align-items: center;
+      }
+      @include breakpoint($medium_large) {
+        margin: 18px 0 8px;
+      }
+      @include breakpoint($large) {
+        margin: 12px 0 4px;
+      }
+      .arrows {
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        transition: transform 500ms ease-out;
+        @include breakpoint($medium_mid) {
+          height: 21px;
+          width: 21px;
+        }
+        svg g {
+          fill: #B9B9BB;
+          transition: fill 500ms ease-out;
+        }
+        &:hover {
+          transform: scale(1.1);
+          svg g {
+            fill: #ffffff;
+          }
+        }
+      }
+  
+    }
+    .today_container {
+      margin-top: .4rem;
+      @include breakpoint($medium_mid) {
+        margin-top: 0;
+        margin-bottom: 32px;
+      }
+      @include breakpoint($medium_large) {
+        margin-bottom: 26px;
+      }
+      @include breakpoint($large) {
+        margin-bottom: 20px;
+      }
+    }
+    .button.today {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 5px 20px;
+      color: $moon_blue;
+      cursor: pointer;
+      background-color: #303743;
+      transition: color 200ms ease-out;
+      &:hover {
+        color: $hover_color;
+        background-color: #303743;
+        cursor: pointer;
+      }
+    }
+    .date_title {
+      font-size: 22px;
+      color: white;
+      white-space: nowrap;
+      font-weight: 700;
+      padding: 2px 21px 0;
+      //margin: 0px 12px 0;
+      @include breakpoint($medium_mid) {
+        font-size: 26px;
+      }
+      @include breakpoint($medium_large) {
+        font-size: 32px;
+        padding: 2px 38px 0;
+      }
+    }
+    .tap_for_more_panel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .date_today_container {
+        display: none;
+        flex-basis: 0;
+        margin: 0 10px;
+        // style margins for panel on desktop here
+        @include breakpoint($medium_mid) {
+          display: block;
+        }
+      }
+      .button.today {
+        color: #E8E8E8;
+      }
+    }
+    .date_today_container, .calendar_select_container, .events_select_container {
+      text-align: center;
+      width: 33%;
+      @include breakpoint($medium_mid) {
+        position: relative;
+      }
+    }
+    .date_today_container {
+      //@include unselectable; 
+      width: 100%;
+      @include breakpoint($medium_mid) {
+        display: none;
+        //width: 50%;
+      }
+      //@include breakpoint($large) {
+      //  max-width: 400px;
+      //}
+    }
+    .calendar_select_container, .events_select_container {
+      display: block;
+      max-width: 400px;
+      @include breakpoint($medium_mid) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .icon_button {
+      text-align: center;
+      padding: 1rem 0;
+      &:hover {
+        color: $hover_color;
+      }
+      .icon {
+        display: inline-block;
+        .calendar_icon {
+          width: 16px;
+          height: 16px;
+          @include breakpoint($medium_mid) {
+            width: 22px;
+            height: 22px;
+          }
+        }
+        .special_events_icon {
+          width: 17px;
+          height: 17px;
+          @include breakpoint($medium_mid) {
+            width: 23px;
+            height: 23px;
+          }
+        }
+        .naked_eye_icon, .binoculars_icon, .telescope_icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .text {
+        font-size: 12px;
+        margin-top: 3px;
+        @include breakpoint($medium_large) {
+          font-size: 14px;
+        }
+      }
+    }
+    .icon_active {
+      color: white;
+      & ~ .text  {
+        color: white;
+      }
+    }
+    .mobile_your_view_container {
+      @include breakpoint($medium_mid) {
+        display: none;
+      }
+    }
+  
+    .popover_menu { // the calendar_container and events_menu_container
+      display: none;
+      position: absolute;
+      border-radius: 5px;
+      width: calc(100% - 12px);
+      margin: auto;
+      background: linear-gradient(#0B1932,#0e3366); //0e3366
+      border-top: 9px solid #0B1932;
+      border-bottom: 9px solid #0e3366;
+      z-index: 1;
+      bottom: 0;
+      opacity: 0;
+      transition: bottom 500ms ease-in-out, opacity 500ms ease-in-out;
+      @include breakpoint($medium_mid) {
+        width: 400px;
+      }
+      &.open {
+        display: block;  // calendar_container is flex
+      }
+      &.calendar {
+        left: 6px;
+        bottom: -10px;
+        @include breakpoint($medium_mid) {
+          margin-right: auto;
+          bottom: 123px; // 90 + 17 + 10
+        }
+        @include breakpoint($medium_large) {
+          bottom: 125px; // 90 + 17 + 10
+        }
+        @include breakpoint($large) {
+          bottom: 117px; // 90 + 17 + 10
+        }
+        &.slide_and_fade {
+          bottom: 0;
+          opacity: 1;
+          @include breakpoint($medium_mid) {
+            bottom: 113px;
+          }
+          @include breakpoint($medium_large) {
+            bottom: 115px;
+          }
+          @include breakpoint($large) {
+            bottom: 107px;
+          }
+        }
+      }
+      &.events_menu {
+        right: 6px;
+        bottom: -10px;
+        @include breakpoint($medium_mid) {
+          margin-left: auto;
+          bottom: 123px; // 90 + 17 + 10
+        }
+        @include breakpoint($medium_large) {
+          bottom: 125px; // 90 + 17 + 10
+        }
+        @include breakpoint($large) {
+          bottom: 117px; // 90 + 17 + 10
+        }
+        &.slide_and_fade {
+          bottom: 0;
+          opacity: 1;
+          @include breakpoint($medium_mid) {
+            bottom: 113px;
+          }
+          @include breakpoint($medium_large) {
+            bottom: 115px;
+          }
+          @include breakpoint($large) {
+            bottom: 107px;
+          }
+        }
+      }
+      .popover_inner_wrapper {
+        //@include scrollbar_styled(#78CBFF, rgb(26, 48, 85), 8px); 
+        height: 80vh;
+        overflow-y: auto;
+        @include breakpoint($medium_mid) {
+          height: 40vh;
+        }
+      }
+      .close {
+        cursor: pointer;
+        top: 0;
+        width: 20px;
+        margin: auto;
+        border-top: 2px solid grey;
+        text-align: center;
+        height: 11px;
+        @include breakpoint($medium_mid){
+          pointer-events: none;
+          top: 2px;
+          left: calc(100% - 24px);
+          width: unset;
+          height: 11px;
+          border-top: none;
+        }
+  
+        .icon {
+          width: 33px;
+          height: 33px;
+          position: absolute;
+          color: #CCCCCC;
+          font-size: 1rem;
+          pointer-events: all;
+          right: 10px;
+          &:hover {
+            color: #FFFFFF;
+          }
+        }
+      }
+  
+    }
+    .popover_menu_arrow {
+      //@include arrow(down, #0e3366, 17px, 17px); 
+      transform: rotate(90deg) translateY(25%);
+      position: absolute;
+      left: 50%;
+      bottom: 92px;
+      opacity: 0;
+      display: none;
+      transition: bottom 500ms ease-in-out, opacity 500ms ease-in-out;
+      &.open {
+        display: block;
+      }
+      &.calendar_arrow {
+        @include breakpoint($medium_mid) {
+          bottom: 98px;
+        }
+        @include breakpoint($medium_large) {
+          bottom: 100px;
+        }
+        @include breakpoint($large) {
+          bottom: 92px;
+        }
+        &.slide_and_fade {
+          opacity: 1;
+          @include breakpoint($medium_mid) {
+            bottom: 88px;
+          }
+          @include breakpoint($medium_large) {
+            bottom: 90px;
+          }
+          @include breakpoint($large) {
+            bottom: 82px;
+          }
+        }
+      }
+      &.events_arrow {
+        @include breakpoint($medium_mid) {
+          bottom: 98px;
+        }
+        @include breakpoint($medium_large) {
+          bottom: 100px;
+        }
+        @include breakpoint($large) {
+          bottom: 92px;
+        }
+        &.slide_and_fade {
+          opacity: 1;
+          @include breakpoint($medium_mid) {
+            bottom: 88px;
+          }
+          @include breakpoint($medium_large) {
+            bottom: 90px;
+          }
+          @include breakpoint($large) {
+            bottom: 82px;
+          }
+        }
+      }
+    }
+  
+  }

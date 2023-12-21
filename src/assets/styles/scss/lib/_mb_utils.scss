@@ -1,0 +1,86 @@
+/*
+*   mb_utils - public view
+*   to go into the MBCMS gem eventually
+*   config files have the variables required for this
+*
+*/
+
+// these need to go into public and magic_shell
+$sprite-image: "/src/assets/images/ui_sprite@2x.png";
+$sprite-image-size: 300px;
+
+
+$responsive-font_multiplier-small: 1.3; // follow this naming convention - bm
+$responsive-margin_multiplier-small: 1; 
+
+
+
+
+/* ----- title and headline styles ----- */
+
+// A headline is the main heading for a module (including sidebar modules) or a title for a feature (not used on thumbnails, for instance) -JM
+
+
+
+// we choose strategy 2
+// Strategy 2: Simple, just pull out variables into a map and access them - put this in gem/utils
+@mixin responsive_heading($_size, $_margin_bottom: 0) { // This may not work on all headlines, especially the ones that alternate between a full-width and multi-comlumn layout. 
+  font-size: $_size*map-get($responsive_headline_fontsize_multipliers, small) + em;
+  margin-bottom: ($_margin_bottom * map-get($responsive_headline_marginbottom_multipliers, small)) + em;
+  
+  @include breakpoint($medium_mid) {
+    font-size: ($_size * map-get($responsive_headline_fontsize_multipliers, medium_mid)) + em;
+    margin-bottom: ($_margin_bottom * map-get($responsive_headline_marginbottom_multipliers, medium_mid)) + em;
+  }
+  @include breakpoint($medium_large) {
+    font-size: ($_size * map-get($responsive_headline_fontsize_multipliers, medium_large)) + em;
+    margin-bottom: ($_margin_bottom * map-get($responsive_headline_marginbottom_multipliers, medium_large)) + em;
+  }
+  @include breakpoint($large) {
+    font-size: ($_size * map-get($responsive_headline_fontsize_multipliers, large)) + em;
+    margin-bottom: ($_margin_bottom * map-get($responsive_headline_marginbottom_multipliers, large)) + em;
+  }
+  @include breakpoint($xlarge) {
+    font-size: ($_size * map-get($responsive_headline_fontsize_multipliers, xlarge)) + em;
+    margin-bottom: ($_margin_bottom * map-get($responsive_headline_marginbottom_multipliers, xlarge)) + em;
+  }
+} 
+
+
+
+// mb_utils.scss
+@mixin set_responsive_value($breakpoint, $property, $value) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @include breakpoint(map-get($breakpoints, $breakpoint)) {
+      #{$property}: $value;
+    }
+  } @else {
+    @warn "Unknown `#{$breakpoint}` in $breakpoints.";
+  }
+}
+
+
+// mb_utils.scss
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }  
+  @return $string;
+}
+
+@mixin set_responsive_values($map) {
+  @each $breakpoint, $property_map in $map {  
+    @if map-has-key($breakpoints, $breakpoint) {
+      @include breakpoint(map-get($breakpoints, $breakpoint)) {
+        @each $property, $value in map-get($map, $breakpoint) {  
+          #{$property}: $value;
+        }
+      }
+    } @else {
+      @warn "Unknown `#{$breakpoint}` in $breakpoints.";
+    }
+  }
+}
+
+

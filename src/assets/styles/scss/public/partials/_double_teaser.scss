@@ -1,0 +1,147 @@
+/* double_teaser on homepage */
+
+//There's too much top padding in the module, as this now has a white background, we need to come up with a good solution 10.23.14 - jh
+.double_teaser {
+  .column {
+    width: 100%;
+    @include breakpoint($medium_mid) {
+      @include span(2.75 of 6);  //3
+    }
+  }
+
+  .column + .column { // space between columns for mobile - stacked on mobile
+    margin-top: 3em;
+    @include breakpoint($medium_mid) {
+      margin-top: 0;
+      @include span(2.75 of 6 last);
+    }
+  }
+  header {
+    margin-bottom: 1.3em;
+  }
+  .module_title {
+    text-align: center;
+    @include breakpoint($medium_mid) {
+      text-align: left;
+    }
+  }
+
+  footer {
+    @include breakpoint($medium_mid) {
+      text-align: left;
+    }
+    a:not(.button):before {
+      content: '›';
+    }
+    .detail_link { // text link, not a button
+      float: left; // this should maybe be 'text align left' on the footer level, but the buttons would then need to be block elements - jh
+      clear: both;
+      text-align: left;
+      white-space: nowrap; // android fix
+    }
+  }
+
+  .img_area { // the main image from the referenced website
+    margin-bottom: 1em;
+    float: none;
+    width: 100%;
+  }
+
+  .item_list {
+    margin-bottom: 1em; // this is a small list, compared to full width item-lists
+    li {
+      border-bottom: 1px solid $line_color;
+      padding: gutter(6) 0;
+      &:first-child {
+        padding-top: 0;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.news_teaser { // image,title,desc
+  .subtitle p:first-child {
+    // prevent too much margin under the title
+    // they don't seem to be using multiple paragraphs -JM
+    margin-top: 0;
+  }
+}
+
+.media_news_teaser { // a type of double teaser - on the homepage
+  .list_date { //also in news, but different
+    font-size: .9em;
+    margin-bottom: .2em;
+    color: #5A5A5A;
+  }
+  .title {
+    margin-bottom: .3em;
+  }
+}
+
+.wysiwyg_content .double_teaser.module {
+  &.border_hidden {
+    border: none;
+  }
+  @extend .clearfix;
+  width: 100%;
+  max-width: 1200px;
+  border-top: 3px solid #ece5e5;
+  border-bottom: 3px solid #ece5e5;
+  padding: 2em 0;
+  margin: 3em auto;
+  @include breakpoint($medium_mid) {
+    width: 90%;
+    padding: 4em 0;
+    margin: 4em auto;
+  }
+  .columns {
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+    @include breakpoint($medium_mid) {
+      width: 80%;
+    }
+  }
+  .explore_teaser {
+    li {
+      // border-bottom: none;
+      // padding: .5em 0;
+      &:first-child {
+        padding-top: 0;
+      }
+      .title {
+        font-size: 1em;
+        a {
+          color: $core_text_color;
+        }
+      }
+    }
+  }
+  .promo_teaser {
+    figure {
+      margin-bottom: 1em;
+    }
+    .text_area {
+      margin-bottom: 1em;
+    }
+  }
+  .module_title {
+    font-size: 1.5em;
+    margin-top: 0;
+    text-align: left;
+  }
+  footer .detail_link {
+    font-weight: 700;
+  }
+
+  &.bhe_recent_news_double_teaser {
+    .list_text {
+      h3.title {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

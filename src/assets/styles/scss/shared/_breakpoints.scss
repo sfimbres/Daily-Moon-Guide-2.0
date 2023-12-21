@@ -1,0 +1,49 @@
+/* Screen size / Breakpoints */
+
+//a sass map to allow for programmatic setting of responsive headers, etc. 
+$breakpoints: (
+  small: 0px,
+  small_only: max-width 480px,
+  medium: 480px,
+  medium_mid: 600px,
+  medium_large: 769px,
+  large: 1024px,
+  xlarge: 1200px,
+  xxlarge: 1700px
+);
+
+$small: map-get($breakpoints, small); 
+$small_only: map-get($breakpoints, small_only); /* use sparingly. when the styles don't apply to any other sizes */
+$medium: map-get($breakpoints, medium);
+$medium_mid: map-get($breakpoints, medium_mid);
+$medium_large: map-get($breakpoints, medium_large);
+$large: map-get($breakpoints, large);
+$xlarge: map-get($breakpoints, xlarge);
+$xxlarge: map-get($breakpoints, xxlarge);
+
+/*  
+*   Use $width_for_desktop_nav to change the media query for switch from mobile to desktop nav.
+*     - This might need some other adjustments in header.scss and nav.scss to make it work perfectly,
+*     - and might affect relationships to other elements in the body -JM
+*    
+*/
+
+
+$width_for_mobile_nav: max-width $large - 1px;
+$width_for_desktop_nav: $large;
+
+$width_for_top_trilogo: $medium_large;
+
+//print style targeting would alter variables, but this makes them unuseable in math. Ex.: $width_for_mobile_nav: max-width $large - 1px;
+// width for print styles, while all variables above are still just numbers, and still available for math 
+$medium_mid: map-get($breakpoints, medium_mid), print;
+$medium_large: map-get($breakpoints, medium_large), print;
+$large: map-get($breakpoints, large), print;
+
+//$medium_large: print 1024px; //'print comes first - important
+//$medium_large: print map-get($breakpoints, medium_large);
+
+// setting CSS variable for javascript desktop detection
+:root {
+  --breakpoint_for_desktop_nav: $width_for_desktop_nav;
+}

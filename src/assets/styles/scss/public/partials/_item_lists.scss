@@ -1,0 +1,194 @@
+/* Item lists - lists of artical previews, people, usually image with text */
+
+
+ul.item_list {
+  @extend .clearfix;
+  margin-bottom: 2em;
+  .list_title {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: .5em;
+    a {
+      color: $core_text_color;
+    }
+  }
+  .text_only .list_text { // the intro text at the top of the page - jh
+    width: 100%;
+    padding: 0;
+  }
+  > li {
+    @extend .clearfix;
+    hr {
+      margin: 0;
+    }
+  }
+  //
+  .list_image {
+    @include span(2 of 5 last);
+    margin-left: gutter(5);
+    margin-bottom: .5em;
+    //width: 40%;
+    @include breakpoint($medium_mid) {
+      margin-left: 0;
+      margin-bottom: 0;
+      @include span(3 of 8);
+    }
+    @include breakpoint($medium_large) {
+      @include span(1.5 of 6);
+    }
+    @include breakpoint($large) {
+      @include span(2 of 6);
+    }
+  }
+  .list_text {
+    //margin-right: 0 !important; // This is overriding the grid right margin for now, but would prefer to do differently. -JM
+    //@include span(3 of 5 last);
+    @include breakpoint($medium_mid) {
+      @include span(5 of 8 last);
+    }
+    @include breakpoint($medium_large) {
+      @include span(4.5 of 6 last);
+    }
+    @include breakpoint($large) {
+      @include span(4 of 6 last);
+    }
+    h2, h3, h4 { //headings in the 'list view' should have no top-margin so they align with the image next to them - jh 
+      margin-top: 0;
+    }
+    :last-child { // all last children should have 0 bottom margin - jh. This is too general, but too late to change now without testing
+      margin-bottom: 0;
+    }
+  }
+  .list_content {
+    @extend .clearfix;
+    padding: 1em 0;
+  }
+  .list_description {
+    margin-top: 0;
+  }
+
+  .description .long{
+    display: none;
+    p:first-of-type{
+      margin-top: 0;
+    }
+  }
+}
+
+
+//specific types of item lists to override the default
+
+ul.people.item_list {
+  li.person {
+    padding: gutter(5) 0;
+  }
+  li.person:first-child {
+    padding-top: 0;
+  }
+/*
+  .list_text {
+    float: left; // if there is no image, it doesn't have an empty area to the left, but to the right - jh
+  }
+*/
+  .middle_links {
+    margin: .5em 0;
+  }
+  .list_title.list_name {
+    margin-bottom: .3em;
+    padding-top: 7%;
+    @include breakpoint($medium_mid) {
+      padding: 0;
+    }
+  }
+  .person_title {
+    font-weight: 300;
+    margin-bottom: .4em;
+  }
+  .description  {
+    clear: both;
+    @include breakpoint($medium_mid) {
+      clear: none;
+    }
+  }
+
+  .person + .person {
+    border-top: 1px solid $line_color;
+  }
+}
+
+ul.item_list.text_item_list { // text only - publications, data updates, meetings
+  .list_text {  
+    width: 100%;
+    .date {
+      margin-bottom: .3em;
+    }
+  }
+  a { // may need to be more generic
+    color: $core_link_color;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .publication_authors {
+    margin-bottom: .4em;
+  }
+  .citation {
+    font-size: .85em;
+    margin-bottom: .4em;
+    font-weight: 300;
+  }
+  .publication_title {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: .4em;
+    a {
+      color: $core_text_color;
+    }
+  }
+  .list_title a {
+    color: $core_text_color;
+  }
+}
+
+//explore overlay specific styles
+
+.explore_overlay_page {
+  .feature_pages {  
+    .wysiwyg_content {
+      .item_list_module {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+// mission grid/list page
+.grid_gallery {
+  .mission_item {
+    .launch_date {
+      font-size: .9em;
+      color: #959696;
+      margin-bottom: 0.5em;
+    }
+  }
+  &.grid_view {
+    .list_text .launch_date {
+      display: none;
+    }
+    .rollover_description .launch_date {
+      color: #fff;
+    }
+    .bottom_gradient h3 {
+      margin: 0;
+    }
+  }
+}
+
+.feature_pages ul.item_list {
+  .list_title {
+    a {
+      color: $core_text_color;
+    }
+  }
+  @include feature_page_module_layout_generic();
+}

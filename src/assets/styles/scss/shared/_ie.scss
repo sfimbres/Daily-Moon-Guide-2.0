@@ -1,0 +1,11 @@
+/* IE-only styles SHARED  */ 
+/* There is also an IE public */
+
+.ie {  // this only applies to .ie8 and .ie9, not ie10 or ie11 - jh
+    #featured_image img{
+      left: 0 !important;
+      height: auto!important;
+    }
+  }
+  
+  // END shared ie styles

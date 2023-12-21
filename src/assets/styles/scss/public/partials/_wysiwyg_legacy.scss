@@ -1,0 +1,15 @@
+/* Legacy styles and advanced html in the ckeditor */
+
+/* .wysiwyg_legacy.scss */
+
+.wysiwyg_content {
+  
+  .small_gray_text{ font-size: .85em; color: #676767; line-height: 1.3em; }
+  
+  .hr hr { // don't show hr's within a div.hr this is legacy, ok for item_lists. but these also appear in some content pages around blockquotes  - jh
+  }
+
+
+
+  // tables are a possiblity
+}

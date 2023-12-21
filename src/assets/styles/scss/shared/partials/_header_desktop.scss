@@ -1,0 +1,49 @@
+/*
+*   _header_desktop
+*  
+*
+*/
+
+.site_header_area { // contains the header, could also contain elements related to header
+  @include breakpoint($width_for_desktop_nav) {
+    top: 40px;
+    //position: relative;
+    display: block !important; // always show nav on 'desktop' sizes
+    .nav_overlay_true & { // overrides mobile, keep header below top hat when overlay open and at desktop size
+      top: 40px;
+    }
+    form.nav_search { //in the header nav
+      display: inline-block;
+      margin-top: -20px;
+      max-width: 216px;
+      @include breakpoint($xlarge) {
+        margin-top: -25px;
+      }
+      .search_field { // expandable search box styles
+        width: 40px; /* overridden in main.js on click, be sure to change the value there as well */
+        padding-right: 0;
+        padding-left: 0;
+        height: 40px;
+      }
+      .search_open {
+        padding-left: .8em;
+        padding-right: 38px;
+        outline:none; // removes distracting and redundent, in this case, blue highlight indicator
+      }
+    }
+    #modal_close {
+      display: none; // important - the meganav depends on this being 'hiden' to detect if it is desktop or not
+    }
+    .right_header_container{
+      display: none;
+    }
+    .no-touchevents .nav_is_fixed & {
+      bottom: auto;
+      top: 0;
+      position: fixed;
+      width: 100%;
+      box-shadow: 0 4px 4px -2px rgba(0,0,0,.15);
+      margin-top: 0px;
+    }
+  }
+}

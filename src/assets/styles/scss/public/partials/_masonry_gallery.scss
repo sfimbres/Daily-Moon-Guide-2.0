@@ -1,0 +1,50 @@
+// masonry_gallery - for grid/list page with masonry option e5ecf4
+
+
+.grid_gallery{
+
+  &.list_view {
+    .item_grid {
+      display: none;
+    }
+  }
+
+  &.masonry_view {
+    .item_list {
+      display: none;
+    }
+
+    .grid_text .caption {
+      background-color: #e5ecf4;
+    }
+
+    // .grid_content .image_and_description_container {
+    //   position: relative;
+    //   height: 100%;
+    // }
+
+
+    .detail_link_button{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      padding: 0.7em 1.5em;
+      border: 2px solid white;
+      border-radius: 12px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+  }
+}
+
+// see _grid_list_gallery.scss for other icons
+.view_selectors .nav_item.masonry_icon {
+  background-position: -62px -62px;
+  .no-touchevents &:hover {
+    background-position: -62px -12px;
+  }      
+  .masonry_view & { // if grid_view is active
+    background-position: -62px -12px;
+  }
+}
