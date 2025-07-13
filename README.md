@@ -1,6 +1,8 @@
 # daily-moon-guide
 
-The new home for https://moon.nasa.gov/moon-observation/daily-moon-guide/
+Recreated https://moon.nasa.gov/moon-observation/daily-moon-guide/ using Vue 3
+
+
 
 ## Recommended IDE Setup
 
